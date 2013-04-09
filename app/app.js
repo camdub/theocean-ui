@@ -7,7 +7,6 @@ require('dependencies/jquery.ajax.fake/jquery.ajax.fake');
 require('dependencies/lunr.js/lunr');
 require('data');
 
-
 $.ajax.fake.registerWebservice('http://theocean.com/search', function(data) {
     return json;
 });

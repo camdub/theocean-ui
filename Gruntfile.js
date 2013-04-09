@@ -66,6 +66,13 @@ module.exports = function (grunt) {
       server: {
         url: 'http://localhost:<%= connect.livereload.options.port %>'
       }
+    },
+
+    mochacli: {
+      options: {
+        reporter: 'spec'
+      },
+      all: ['test/*_spec.js']
     }
   });
 
@@ -75,8 +82,11 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-open');
   grunt.loadNpmTasks('grunt-ember-templates');
   grunt.loadNpmTasks('grunt-neuter');
+  grunt.loadNpmTasks('grunt-mocha-cli');
 
   grunt.renameTask('regarde', 'watch');
+
+  grunt.registerTask('test', ['mochacli']);
 
   grunt.registerTask('server', [
       'ember_templates',
@@ -84,6 +94,7 @@ module.exports = function (grunt) {
       'livereload-start',
       'connect:livereload',
       'open',
+      'mochacli',
       'watch'
   ]);
 
