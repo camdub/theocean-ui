@@ -1,10 +1,10 @@
 /* Dependencies */
-require('dependencies/jquery/jquery');
-require('dependencies/handlebars/handlebars.runtime');
-require('dependencies/ember/ember');
-require('dependencies/compiled/templates');
-require('dependencies/jquery.ajax.fake/jquery.ajax.fake');
-require('dependencies/lunr.js/lunr');
+require('../dependencies/jquery/jquery');
+require('../dependencies/handlebars/handlebars.runtime');
+require('../dependencies/ember/ember');
+require('../dependencies/compiled/templates');
+require('../dependencies/jquery.ajax.fake/jquery.ajax.fake');
+require('../dependencies/lunr.js/lunr');
 require('data');
 
 $.ajax.fake.registerWebservice('http://theocean.com/search', function(data) {

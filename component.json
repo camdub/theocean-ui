@@ -11,7 +11,8 @@
     "handlebars": "~1.0.0-rc.3",
     "ember": "~1.0.0-rc.2",
     "lunr.js": "~0.3.0",
-    "jquery.ajax.fake": "latest"
+    "jquery.ajax.fake": "latest",
+    "foundation": "~4.1.1"
   },
   "install": {
     "path": "dependencies"

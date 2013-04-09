@@ -23,7 +23,7 @@ module.exports = function (grunt) {
       },
       templates: {
         files: [
-          'app/templates/*.hbs'
+          'app/js/templates/*.hbs'
         ],
         tasks: ['ember_templates','livereload']
       }
@@ -47,24 +47,32 @@ module.exports = function (grunt) {
     ember_templates: {
       options: {
         templateName: function(sourceFile) {
-          return sourceFile.replace(/app\/templates\//, '');
+          return sourceFile.replace(/app\/js\/templates\//, '');
         }
       },
-      'app/dependencies/compiled/templates.js' : ['app/templates/**/*.hbs']
+      'app/dependencies/compiled/templates.js' : ['app/js/templates/**/*.hbs']
     },
 
     neuter: {
       options: {
         includeSourceURL: true,
-        filepathTransform: function(filepath) { return 'app/' + filepath; },
+        filepathTransform: function(filepath) { return 'app/js/' + filepath; },
         template: "{%= src %}"
       },
-      'build/application.js' : 'app/app.js'
+      'build/application.js' : 'app/js/app.js'
     },
 
     open: {
       server: {
         url: 'http://localhost:<%= connect.livereload.options.port %>'
+      }
+    },
+
+    sass: {
+      dist: {
+        files: {
+          'build/application.css' : 'app/sass/application.scss'
+        }
       }
     },
 
@@ -84,6 +92,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-neuter');
   grunt.loadNpmTasks('grunt-mocha-cli');
   grunt.loadNpmTasks('grunt-devtools');
+  grunt.loadNpmTasks('grunt-contrib-sass');
 
   grunt.renameTask('regarde', 'watch');
 
@@ -92,6 +101,7 @@ module.exports = function (grunt) {
   grunt.registerTask('server', [
       'ember_templates',
       'neuter',
+      'sass',
       'livereload-start',
       'connect:livereload',
       'open',

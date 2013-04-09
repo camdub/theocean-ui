@@ -1,0 +1,10 @@
+/* This file should only import other stylesheets except for application
+ * wide styles and Foundation variable overrides
+ */
+
+// import foundation styles
+@import "../dependencies/foundation/scss/foundation/foundation-global";
+@import "../dependencies/foundation/scss/foundation/components/grid";
+
+// import user styles
+@import "search";

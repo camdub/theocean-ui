@@ -3,3 +3,4 @@ build/application.js
 app/dependencies
 app/dependencies/compiled/*.*
 .DS_Store
+.sass-cache
