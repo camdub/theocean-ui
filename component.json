@@ -1,0 +1,19 @@
+{
+  "name": "ember-ocean",
+  "version": "0.0.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ],
+  "dependencies": {
+    "jquery": "~1.9.1",
+    "handlebars": "~1.0.0-rc.3",
+    "ember": "~1.0.0-rc.2",
+    "lunr.js": "~0.3.0",
+    "jquery.ajax.fake": "latest"
+  },
+  "install": {
+    "path": "dependencies"
+  }
+}
