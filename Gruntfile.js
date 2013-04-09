@@ -56,8 +56,8 @@ module.exports = function (grunt) {
     neuter: {
       options: {
         includeSourceURL: true,
-        filepathTransform: function(filepath) { return 'app/' + filepath; }
-//        template: "{%= src %}"
+        filepathTransform: function(filepath) { return 'app/' + filepath; },
+        template: "{%= src %}"
       },
       'build/application.js' : 'app/app.js'
     },
@@ -83,6 +83,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-ember-templates');
   grunt.loadNpmTasks('grunt-neuter');
   grunt.loadNpmTasks('grunt-mocha-cli');
+  grunt.loadNpmTasks('grunt-devtools');
 
   grunt.renameTask('regarde', 'watch');
 
