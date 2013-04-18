@@ -28,6 +28,7 @@ require('routes/router');
 
 /* Controllers */
 require('controllers/search_controller');
+require('controllers/search_filter_controller');
 
 /* Views */
 require('views/searchInput_view');
