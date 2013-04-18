@@ -3,8 +3,22 @@
  */
 
 // import foundation styles
-@import "../dependencies/foundation/scss/foundation/foundation-global";
-@import "../dependencies/foundation/scss/foundation/components/grid";
+//@import "reset";
+//@import "../dependencies/foundation/scss/foundation/foundation-global";
+//@import "../dependencies/foundation/scss/foundation/components/global";
+//@import "../dependencies/foundation/scss/foundation/components/grid";
+//@import "../dependencies/foundation/scss/foundation/components/top-bar";
+
+// my mixins
+@import "mixins";
+
+// all foundation styles
+@import "../dependencies/foundation/scss/foundation";
 
 // import user styles
 @import "search";
+
+.top-bar {
+	background-color: #2C3E50;
+	h1 { color: white; }
+}

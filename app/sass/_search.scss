@@ -1,0 +1,126 @@
+$firm: #3498db;
+$inverse: #fff;
+
+ul.results {
+	background-color: #ecf0f1;
+	margin-top: -14px;
+	list-style: none;
+}
+
+li.result {
+	padding: 5px;
+	border-top: 1px solid rgba(#bdc3c7, 0.15);
+
+	&:hover {
+		background-color: #3498db;
+		cursor: pointer;
+		color: white;
+	}
+}
+
+.tagsinput {
+	text-align: left;
+}
+
+.tag {
+	border-radius: 4px;
+	background: $firm;
+	color: $inverse;
+	cursor: pointer;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	overflow: hidden;
+	padding: 12px 35px 12px 20px;
+	position: relative;
+	vertical-align: middle;
+	@include inline-block;
+	@include transition(.14s linear);
+
+	&:hover {
+		background-color: scale-color($firm, $lightness: -15%);
+
+		.tagsinput-remove-link {
+			color: $inverse;
+			opacity: 1;
+			display: block\9;
+		}
+	}
+}
+
+.tagsinput-remove-link {
+	bottom: 0;
+	color: $inverse;
+	cursor: pointer;
+	font-size: 12px;
+	opacity: 1;
+	padding: 9px 7px 3px 0;
+	position: absolute;
+	right: 0;
+	text-align: right;
+	text-decoration: none;
+	top: 0;
+	width: 100%;
+	z-index: 2;
+	display: none\9; // fallback for IE
+	font-size: 20px;
+
+	&:before {
+		color: $inverse;
+	}
+}
+
+.button {
+	background-color: #3498db;
+	border-color: #2980b9;
+	box-shadow: none;
+	-webkit-box-shadow: none;
+
+	&:hover {
+		background-color: scale-color(#3498db, $lightness: 15%);
+	}
+}
+
+.active {
+	background-color: scale-color(#3498db, $lightness: -15%);
+}
+
+.people {
+	list-style: none;
+	line-height: 0;
+
+	li {
+		background-color: scale-color(#ecf0f1, $lightness: -5%);
+		padding: 10px;
+		@include transition(.14s linear);
+		border-top: 1px solid scale-color(#ecf0f1, $lightness: -10%);
+
+		&:nth-child(2n) {
+			background-color: #ECF0F1;
+			
+		}
+		&:hover {
+			background-color: scale-color(#ecf0f1, $lightness: -10%);
+			cursor: pointer;
+		}
+		.img {
+			width: 60px;
+		}
+		h5 {
+			margin: 0;
+		}
+		p {
+			margin: 0;
+		}
+	}
+}
+
+.valign {
+	display: table;
+	width: 100%;
+}
+
+.valign > div {
+	display: table-cell;
+	vertical-align: middle;
+}
+

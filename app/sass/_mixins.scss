@@ -1,0 +1,12 @@
+@mixin transition($properties) {
+	-webkit-transition: $properties;
+	-moz-transition: 	$properties;
+	-o-transition: 		$properties;
+	transition: 		$properties;
+}
+
+@mixin inline-block {
+	display: inline-block;
+	zoom: 1;
+	*display: inline;
+}

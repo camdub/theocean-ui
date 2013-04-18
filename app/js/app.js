@@ -12,7 +12,9 @@ $.ajax.fake.registerWebservice('http://theocean.com/search', function(data) {
 });
 
 /* Start app */
-App = Ember.Application.create();
+App = Ember.Application.create({
+	LOG_TRANSITIONS: true,
+});
 
 /* Initializers
  * this loads the initial search data into the lunr index and local storage
@@ -25,8 +27,8 @@ require('initializers/lunr_initializer');
 require('routes/router');
 
 /* Controllers */
-require('controllers/index_controller');
+require('controllers/search_controller');
 
 /* Views */
-require('views/search_view');
+require('views/searchInput_view');
 

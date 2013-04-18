@@ -1,4 +1,4 @@
-App.IndexController = Em.ArrayController.extend({
+App.SearchController = Em.ArrayController.extend({
   search: function(value, context) {
     if(value === '') { // clear the textbox
       context.set('content', []);
@@ -9,9 +9,11 @@ App.IndexController = Em.ArrayController.extend({
         return parseInt(obj.ref, 10)
       });
       console.timeEnd('search');
+      console.time('filter');
       context.set('content', this.content.filter(function(item) {
         return ids.contains(parseInt(item.id, 10));
       }));
+      console.timeEnd('filter');
     }
   }
 });

@@ -23,9 +23,13 @@ module.exports = function (grunt) {
       },
       templates: {
         files: [
-          'app/js/templates/*.hbs'
+          'app/js/templates/**/*.hbs'
         ],
         tasks: ['ember_templates','livereload']
+      },
+      css: {
+        files: ['app/sass/*.scss'],
+        tasks: ['sass','livereload']
       }
     },
 
@@ -104,7 +108,6 @@ module.exports = function (grunt) {
       'sass',
       'livereload-start',
       'connect:livereload',
-      'open',
       'mochacli',
       'watch'
   ]);
