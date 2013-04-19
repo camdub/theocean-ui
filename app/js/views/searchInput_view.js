@@ -1,35 +1,17 @@
-App.SearchInputView = Em.ContainerView.extend({
-  content: null,
-  childViews: ['inputView', 'resultView'],
+App.SearchInputView = Em.TextField.extend({
+  placeholder: 'Search...',
 
-  inputView: Em.TextField.extend({
-    placeholder: 'Search...',
+  keyUp: function(e) {
+    var parentView = this.get('parentView');
+    var controller = this.get('controller');
 
-    keyUp: function(e) {
-      var parentView = this.get('parentView');
-      parentView.get('controller').search(this.$().val(), parentView);
+    // handle key events
+    if(Ember.KEY_EVENTS[e.keyCode] === 'escape') {
+      this.$().val('');
+      controller.search(this.$().val(), parentView, controller);
     }
-  }),
-
-  resultView: Em.CollectionView.extend({
-    classNames: ['results'],
-    tagName: 'ul',
-    contentBinding: 'parentView.content',
-    templateBinding: 'parentView.template',
-
-    itemViewClass: Em.View.extend({
-      tagName: 'li',
-      classNames: ['result'],
-      templateBinding: 'parentView.template',
-
-      click: function(e) {
-        var mainView = this.get('parentView').get('parentView');
-        mainView.set('content', []);
-        mainView.get('childViews')[0].set('value', '');
-
-        // prototype stuff, ONLY TEMPORARY
-      }
-    })
-  })
-
-});
+    else {
+      parentView.get('controller').search(this.$().val(), parentView, this.get('controller'));
+    }
+  }
+})

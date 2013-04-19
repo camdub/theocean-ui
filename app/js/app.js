@@ -16,6 +16,13 @@ App = Ember.Application.create({
 	LOG_TRANSITIONS: true,
 });
 
+Ember.KEY_EVENTS = {
+	27: 'escape',
+	40: 'downArrow',
+	38: 'upArrow'
+	// return key is handled already by ember's textfield view
+}
+
 /* Initializers
  * this loads the initial search data into the lunr index and local storage
  */
@@ -31,5 +38,5 @@ require('controllers/search_controller');
 require('controllers/search_filter_controller');
 
 /* Views */
-require('views/searchInput_view');
+require('views/searchContainer_view');
 
