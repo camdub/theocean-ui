@@ -13,14 +13,14 @@ $.ajax.fake.registerWebservice('http://theocean.com/search', function(data) {
 
 /* Start app */
 App = Ember.Application.create({
-	LOG_TRANSITIONS: true,
+  LOG_TRANSITIONS: true,
 });
 
 Ember.KEY_EVENTS = {
-	27: 'escape',
-	40: 'downArrow',
-	38: 'upArrow'
-	// return key is handled already by ember's textfield view
+  27: 'escape',
+  40: 'downArrow',
+  38: 'upArrow'
+    // return key is handled already by ember's textfield view
 }
 
 /* Initializers

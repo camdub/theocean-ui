@@ -1,7 +1,11 @@
 App.SearchFilterController = Em.Controller.extend({
-	filters: [],
+	filters: new Ember.Set(),
 	people: [],
 	projects: [],
+
+	filters_array: function() {
+		return this.get('filters').toArray();
+	}.property('filters.[]'),
 
 	people_total: function() {
 		return this.get('people').length;
@@ -12,8 +16,6 @@ App.SearchFilterController = Em.Controller.extend({
 	}.property('projects.@each'),
 
 	removeFilter: function(item) {
-		this.set('filters', this.get('filters').filter(function(filter) {
-			item.toString() !== filter;
-		}));
+		this.get('filters').remove(item.toString());
 	}
 });

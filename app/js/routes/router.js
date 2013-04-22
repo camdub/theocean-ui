@@ -47,7 +47,9 @@ App.SearchFilterRoute = Em.Route.extend({
 	},
 	events: {
 		selectSearchItem: function(term) {
-			this.controller.get('filters').push(term);
+			console.log(term);
+			console.log(this.controller.get('filters'));
+			this.controller.get('filters').add(term);
 		}
 	}
 });
