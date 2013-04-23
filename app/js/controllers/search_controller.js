@@ -24,7 +24,7 @@ App.SearchController = Em.ArrayController.extend({
             console.time('search');
             var ids = App.inx.search(value);
             ids = ids.map(function(obj) {
-                return parseInt(obj.ref, 10)
+                return parseInt(obj.ref, 10);
             });
             console.timeEnd('search');
             context.set('content', _this.content.filter(function(item) {

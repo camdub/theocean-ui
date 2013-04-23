@@ -2,26 +2,26 @@
 require('../dependencies/jquery/jquery');
 require('../dependencies/handlebars/handlebars.runtime');
 require('../dependencies/ember/ember');
+require('../dependencies/ember-model/ember-model');
 require('../dependencies/compiled/templates');
 require('../dependencies/jquery.ajax.fake/jquery.ajax.fake');
 require('../dependencies/lunr.js/lunr');
 require('data');
-
-$.ajax.fake.registerWebservice('http://theocean.com/search', function(data) {
-    return json;
-});
+require('utils/fake_ajax');
 
 /* Start app */
 App = Ember.Application.create({
-  LOG_TRANSITIONS: true,
+  LOG_TRANSITIONS: true
 });
+
+App.baseURL = "http://theocean.apiary.io";
 
 Ember.KEY_EVENTS = {
   27: 'escape',
   40: 'downArrow',
   38: 'upArrow'
     // return key is handled already by ember's textfield view
-}
+};
 
 /* Initializers
  * this loads the initial search data into the lunr index and local storage
@@ -32,6 +32,9 @@ require('initializers/lunr_initializer');
  * Currently all of them in this file
  */
 require('routes/router');
+
+/* Models */
+require('models/person');
 
 /* Controllers */
 require('controllers/search_controller');

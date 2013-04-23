@@ -40,7 +40,10 @@ App.SearchFilterRoute = Em.Route.extend({
 		var post = $.post('http://theocean.apiary.io/search/filter',
 			postdata).then(
 				function(data) {
-					controller.set('people', data.results.people);
+					var people = controller.get('people');
+					data.results.people.map(function(person) {
+						people.push(App.Person.create(person));
+					});
 					controller.set('projects', data.results.projects);
 				}
 			);
