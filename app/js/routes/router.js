@@ -13,7 +13,7 @@ App.IndexRoute = Em.Route.extend({
 	redirect: function() {
 		this.transitionTo('search');
 	}
-})
+});
 
 App.SearchRoute = Em.Route.extend({
 	model: function() {
@@ -37,7 +37,7 @@ App.SearchFilterRoute = Em.Route.extend({
 		});
 
 		// return results from /search/filter POST
-		var post = $.post('http://theocean.apiary.io/search/filter', 
+		var post = $.post('http://theocean.apiary.io/search/filter',
 			postdata).then(
 				function(data) {
 					controller.set('people', data.results.people);
