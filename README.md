@@ -16,7 +16,7 @@ Once all the dependencies have been installed you can start a development server
 
     grunt server
     
-Which will build development versions of the application into the `build` folder and open the app in a web browser. 
+Which will build development versions of the application into the `build` folder and start the app on `localhost:9001`. 
 
 This application uses livereload and will automatically refresh the browser page when files are changed.
 
