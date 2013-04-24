@@ -1,43 +1,41 @@
-<div class="tagsinput row">
-	<div class="small-12 small-centered columns">
-		Filters:
-		{{#if filters_array}}
-			{{#each filters_array}}
-				<span class="tag">
-					<span>{{this}}</span>
-					<a {{action 'removeFilter' this}} class="tagsinput-remove-link">×</a>
-				</span>
-			{{/each}}
-		{{else}}
-			None
-		{{/if}}
-	</div>
-</div>
-<br />
 {{#if filters_array}}
-	<div class="row">
-		<div class="small-12 small-centered columns">
-			<ul class="button-group even-2">
-				<li><a class="small button active">People <span class="badge">{{people_total}}</span></a></li>
-				<li><a class="small button">Projects <span class="badge">{{projects_total}}</span></a></li>
-			</ul>
-		</div>
-	</div>
-	<div class="row">
-		<div class="small-12 small-centered columns">
-			<ul class="people">
-				{{#each people}}
-					<li class="valign">
-						<div class="img"><img src="http://placehold.it/50x50" /></div>
-						<div>
-							<h5>{{first_name}}</h5>
-							<p>{{level}}</p>
-						</div>
-					</li>
+	{{#view App.SearchFilterView}}
+
+		<div class="tagsinput row">
+			<div class="small-12 small-centered columns">
+				Filters:
+				{{#each filters_array}}
+					<span class="tag">
+						<span>{{this}}</span>
+						<a {{action 'removeFilter' this}} class="tagsinput-remove-link">×</a>
+					</span>
 				{{/each}}
-			</ul>
+			</div>
 		</div>
-	</div>
-{{else}}
-	<h3>No Results</h3>
+		<br />
+		<div class="row">
+			<div class="small-12 small-centered columns">
+				<ul class="button-group even-2">
+					<li><a class="small button active">People <span class="badge">{{people_total}}</span></a></li>
+					<li><a class="small button">Projects <span class="badge">{{projects_total}}</span></a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="row">
+			<div class="small-12 small-centered columns">
+				<ul class="people">
+					{{#each people}}
+						<li class="valign">
+							<div class="img"><img src="http://placehold.it/50x50" /></div>
+							<div>
+								<h5>{{first_name}}</h5>
+								<p>{{level}}</p>
+							</div>
+						</li>
+					{{/each}}
+				</ul>
+			</div>
+		</div>
+
+	{{/view}}
 {{/if}}

@@ -3826,6 +3826,9 @@ table {
   .f-dropdown.large {
     max-width: 800px; }
 
+.hide {
+  display: none; }
+
 span.badge {
   padding: 0 9px !important;
   border-radius: 9px;

@@ -8,6 +8,7 @@ require('../dependencies/jquery.ajax.fake/jquery.ajax.fake');
 require('../dependencies/lunr.js/lunr');
 require('data');
 require('utils/fake_ajax');
+require('utils/utils');
 
 /* Start app */
 App = Ember.Application.create({
@@ -20,7 +21,7 @@ Ember.KEY_EVENTS = {
   27: 'escape',
   40: 'downArrow',
   38: 'upArrow'
-    // return key is handled already by ember's textfield view
+  // return key is handled already by ember's textfield view
 };
 
 /* Initializers
@@ -35,6 +36,7 @@ require('routes/router');
 
 /* Models */
 require('models/person');
+require('models/search');
 
 /* Controllers */
 require('controllers/search_controller');
@@ -42,4 +44,5 @@ require('controllers/search_filter_controller');
 
 /* Views */
 require('views/searchContainer_view');
+require('views/searchFilter_view');
 

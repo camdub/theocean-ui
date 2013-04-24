@@ -8,7 +8,7 @@ App.Person = Ember.Model.extend({
   location: attr(),
 
   first_name: function() {
-    return this.get('firstName') + ' ' + this.get('lastName');    
+    return this.get('firstName') + ' ' + this.get('lastName');
   }.property('firstName', 'lastName')
 
 });
@@ -25,7 +25,7 @@ App.Person.adapter = Ember.Adapter.create({
     $.getJSON(App.baseURL + "/people/1", {}, function(data) {
       Ember.run(function() {
         return record.load(data);
-      });      
+      });
     });
   }
 });
