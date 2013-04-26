@@ -7,7 +7,7 @@ App.Person = Ember.Model.extend({
   level: attr(),
   location: attr(),
 
-  first_name: function() {
+  fullName: function() {
     return this.get('firstName') + ' ' + this.get('lastName');
   }.property('firstName', 'lastName')
 

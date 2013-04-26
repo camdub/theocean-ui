@@ -17,4 +17,4 @@ App.SearchResultsView = Em.CollectionView.extend({
         // prototype stuff, ONLY TEMPORARY
       }
     })
-  })
+  });

@@ -11,9 +11,14 @@ require('utils/fake_ajax');
 require('utils/utils');
 
 /* Start app */
-App = Ember.Application.create({
-  LOG_TRANSITIONS: true
+window.App = Ember.Application.create({
+  LOG_TRANSITIONS: window.TESTING ? true : false,
+  rootElement: window.TESTING ? '#qunit-fixture' : 'body'
 });
+
+if(window.TESTING) {
+  window.App.deferReadiness();
+}
 
 App.baseURL = "http://theocean.apiary.io";
 

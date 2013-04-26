@@ -14,4 +14,4 @@ App.SearchInputView = Em.TextField.extend({
       parentView.get('controller').search(this.$().val(), parentView, this.get('controller'));
     }
   }
-})
+});

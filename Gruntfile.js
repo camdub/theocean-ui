@@ -80,11 +80,25 @@ module.exports = function (grunt) {
       }
     },
 
-    mochacli: {
+    /* Runs all .html files in the test dir through PhantomJS and prints
+       results in the terminal
+     */
+    qunit: {
+      all: ['test/**/*.html']
+    },
+
+    /* Finds all <name>_test.js files in the test folder load them into
+     * the test runner via the custom task below
+     */
+    build_test_runner_file: {
+      all: ['test/**/*_test.js']
+    },
+
+    jshint: {
+      all: ['app/js/**/*.js', 'test/**/*.js', '!test/support/*.*'],
       options: {
-        reporter: 'spec'
-      },
-      all: ['test/*_spec.js']
+        jshintrc: '.jshintrc'
+      }
     }
   });
 
@@ -97,10 +111,24 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-mocha-cli');
   grunt.loadNpmTasks('grunt-devtools');
   grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-contrib-qunit');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+
+  grunt.registerMultiTask('build_test_runner_file', 'Creates a test runner file', function() {
+    var tmpl = grunt.file.read('test/support/runner.html.tmpl');
+    var context = {
+      data: {
+        files: this.filesSrc.map(function(fileSrc) {
+          return fileSrc.replace('test/', '');
+        })
+      }
+    };
+    grunt.file.write('test/runner.html', grunt.template.process(tmpl, context));
+  });
 
   grunt.renameTask('regarde', 'watch');
 
-  grunt.registerTask('test', ['mochacli']);
+  grunt.registerTask('test', ['ember_templates','neuter', 'build_test_runner_file', 'qunit']);
 
   grunt.registerTask('server', [
       'ember_templates',
