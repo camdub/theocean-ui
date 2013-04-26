@@ -10,14 +10,28 @@ require('data');
 require('utils/fake_ajax');
 require('utils/utils');
 
+/* Setup for integration tests. Unfortunately, this needs to be
+   specified prior to the application creation so it can't be combined
+   with the if statement below, which needs to be done afterwards
+ */
+if(window.TESTING) {
+  Ember.testing = true;
+}
+
 /* Start app */
 window.App = Ember.Application.create({
   LOG_TRANSITIONS: window.TESTING ? true : false,
-  rootElement: window.TESTING ? '#qunit-fixture' : 'body'
+  rootElement: window.TESTING ? '#ember-testing' : 'body'
 });
 
+/* Required for integration testing with ember-testing */
 if(window.TESTING) {
-  window.App.deferReadiness();
+  /* Waits to render app until qunit is ready */
+  App.setupForTesting();
+  /* injectHelpers adds
+   * vist, click, fillIn, and find for integration tests
+   */
+  App.injectTestHelpers();
 }
 
 App.baseURL = "http://theocean.apiary.io";

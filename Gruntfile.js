@@ -91,7 +91,7 @@ module.exports = function (grunt) {
      * the test runner via the custom task below
      */
     build_test_runner_file: {
-      all: ['test/**/*_test.js']
+      all: ['test/support/test_helper.js', 'test/**/*_test.js']
     },
 
     jshint: {

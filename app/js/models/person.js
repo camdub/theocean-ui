@@ -13,6 +13,24 @@ App.Person = Ember.Model.extend({
 
 });
 
+App.Person.reopenClass({
+  merge: function(data) {
+    if(!data.hasOwnProperty('id')) {
+      this.create(data);
+    }
+    var record = this.cachedRecordForId(data['id']);
+    // merge if the record has been loaded (it alredy exists)
+    if(record.get('isLoaded')) {
+      for(var prop in data) {
+        record.set(prop, data[prop]);
+      }
+      return record;
+    }
+    // If no record with this ID exists, make a new record
+    return this.create(data);
+  }
+});
+
 App.Person.adapter = Ember.Adapter.create({
   findAll: function(klass, recordArray) {
     $.getJSON(App.baseURL + "/people", {}, function(data) {
