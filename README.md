@@ -10,6 +10,15 @@ This will install necessary dependencies for the application.
 
 NPM will install its dependencies into the `node_modules` folder and Bower will install into `app/dependencies`.
 
+### Libaries in Use
+
+- [Ember.js](http://emberjs.com) awesome JS MV* framework. See guides on the website for a getting started video. Also recommended to read the guides through.
+- [Ember Model](https://github.com/ebryn/ember-model) until Ember-data is more stable
+- [Lunr.js](http://lunrjs.com/) for indexed search on the client (might replace this)
+- [QUnit](http://qunitjs.com/) for testing and phantomjs to run the tests on the command line.
+- [Sinon](http://sinonjs.org/) for mocks and stubs in tests
+- [Foundation](http://foundation.zurb.com/docs/) for mobile-first and base styles
+
 ### Grunt Tasks
 
 Once all the dependencies have been installed you can start a development server with
@@ -23,6 +32,12 @@ This application uses livereload and will automatically refresh the browser page
 	grunt test
 	
 will run the tests for this application, but the server task will do this as well in the process of serving your application.
+
+We are enforcing style with JSHint. To see what rules are enforced see the `.jshintrc` file and the [docs](http://www.jshint.com/docs/) for JSHint. This runs automatically with the `server` and `test` tasks but if you want to run jshint stand alone you can do that too with
+
+	grunt jshint
+	
+It would be good to add this as a git precommit/prepush hook so that we enforce code style on all commits.
 
 There also is a [grunt chrome plugin](https://chrome.google.com/webstore/detail/grunt-devtools/fbiodiodggnlakggeeckkjccjhhjndnb) that allows you to run grunt tasks from the development console. If you want to use that plugin, run
 
