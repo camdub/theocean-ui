@@ -10,6 +10,8 @@ This will install necessary dependencies for the application.
 
 NPM will install its dependencies into the `node_modules` folder and Bower will install into `app/dependencies`.
 
+Since Ember-model (see below) does not have a bower config, you'll need to download Ember-model manually and put it in `app/dependencies/ember-model`.
+
 ### Libaries in Use
 
 - [Ember.js](http://emberjs.com) awesome JS MV* framework. See guides on the website for a getting started video. Also recommended to read the guides through.
