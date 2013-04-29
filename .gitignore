@@ -5,3 +5,4 @@ app/dependencies/compiled/*.*
 .DS_Store
 .sass-cache
 npm-debug.log
+tags

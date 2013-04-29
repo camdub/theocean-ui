@@ -1,5 +1,5 @@
 App.SearchController = Em.ArrayController.extend({
-  search: Ember.debounce(function(value, context, _this) {
+  search: Ember.debounce(function(value, context, terms) {
     if(value === '') { // clear the textbox
       context.set('content', []);
     }
@@ -10,7 +10,7 @@ App.SearchController = Em.ArrayController.extend({
         return parseInt(obj.ref, 10);
       });
       console.timeEnd('search');
-      context.set('content', _this.content.filter(function(item) {
+      context.set('content', terms.filter(function(item) {
         return ids.contains(parseInt(item.id, 10));
       }));
     }

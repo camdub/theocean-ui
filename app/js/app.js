@@ -12,7 +12,7 @@ require('utils/utils');
 
 /* Setup for integration tests. Unfortunately, this needs to be
    specified prior to the application creation so it can't be combined
-   with the if statement below, which needs to be done afterwards
+   with the if statement below, which need to be done afterwards
  */
 if(window.TESTING) {
   Ember.testing = true;
@@ -20,7 +20,7 @@ if(window.TESTING) {
 
 /* Start app */
 window.App = Ember.Application.create({
-  LOG_TRANSITIONS: window.TESTING ? true : false,
+  LOG_TRANSITIONS: window.TESTING ? false : true,
   rootElement: window.TESTING ? '#ember-testing' : 'body'
 });
 

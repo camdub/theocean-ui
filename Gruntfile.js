@@ -136,7 +136,6 @@ module.exports = function (grunt) {
       'sass',
       'livereload-start',
       'connect:livereload',
-      'mochacli',
       'watch'
   ]);
 

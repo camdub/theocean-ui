@@ -13,7 +13,8 @@
   "boss": true,
   "eqnull": true,
   "browser": true,
-  "globals": {
+  "jquery":true,
+  "predef": {
     "test": true,
     "equal": true,
     "ok": true,
@@ -22,9 +23,15 @@
     "Em":true,
     "console":true,
     "App": true,
-    "$": true,
     "attr" : true,
     "json" :true,
-    "lunr" : true
+    "lunr" : true,
+    "module":true,
+    "find":true,
+    "visit":true,
+    "fillIn":true,
+    "stop":true,
+    "start":true,
+    "expect":true
   }
 }
