@@ -19,7 +19,7 @@ if(window.TESTING) {
 }
 
 /* Start app */
-window.App = Ember.Application.create({
+window.App = Em.Application.create({
   LOG_TRANSITIONS: window.TESTING ? false : true,
   rootElement: window.TESTING ? '#ember-testing' : 'body'
 });
@@ -29,7 +29,7 @@ if(window.TESTING) {
   /* Waits to render app until qunit is ready */
   App.setupForTesting();
   /* injectHelpers adds
-   * vist, click, fillIn, and find for integration tests
+   * visit, click, fillIn, and find for integration tests
    */
   App.injectTestHelpers();
 }

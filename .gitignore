@@ -6,3 +6,4 @@ app/dependencies/compiled/*.*
 .sass-cache
 npm-debug.log
 tags
+.idea/

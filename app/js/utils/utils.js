@@ -18,3 +18,10 @@ Ember.debounce = function(func, wait, immediate) {
     return result;
   };
 };
+
+Ember.slugify = function(value) {
+  return value
+      .toLowerCase()
+      .replace(/[^\w ]+/g,'')
+      .replace(/ +/g,'-');
+};

@@ -29,14 +29,7 @@ App.SearchRoute = Em.Route.extend({
 App.SearchFilterRoute = Em.Route.extend({
   setupController: function(controller) {
     this._super(controller);
-
-    App.Search.filter(controller.get('filters')).then(function(data) {
-      var people = controller.get('people');
-      data.results.people.map(function(person) {
-        people.push(App.Person.merge(person));
-      });
-      controller.set('projects', data.results.projects);
-    });
+    controller.set('people', App.Person.search(controller.get('filters')));
   },
   events: {
     selectSearchItem: function(term) {
