@@ -2,6 +2,7 @@ App.Router.map(function() {
   this.resource('search', function() {
     this.route('filter');
   });
+  this.route('people');
 });
 
 App.Router.reopen({
@@ -37,3 +38,10 @@ App.SearchFilterRoute = Em.Route.extend({
     }
   }
 });
+
+App.PeopleRoute = Em.Route.extend({
+  model: function() {
+    App.Person.adapter.findAll();
+    
+  }
+})
