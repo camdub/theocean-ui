@@ -18,6 +18,9 @@ if(window.TESTING) {
   Ember.testing = true;
 }
 
+//turn on LOG_BINDINGS
+Ember.LOG_BINDINGS = true;
+
 /* Start app */
 window.App = Em.Application.create({
   LOG_TRANSITIONS: window.TESTING ? false : true,
