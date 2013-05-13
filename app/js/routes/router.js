@@ -41,7 +41,6 @@ App.SearchFilterRoute = Em.Route.extend({
 
 App.PeopleRoute = Em.Route.extend({
   model: function() {
-    App.Person.adapter.findAll();
-    
+    return App.Person.findAll();
   }
 })
