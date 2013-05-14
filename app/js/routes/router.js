@@ -2,7 +2,8 @@ App.Router.map(function() {
   this.resource('search', function() {
     this.route('filter');
   });
-  this.route('people');
+  this.resource('people');
+  this.resource('person', { path: 'person/:person_id'} );
 });
 
 App.Router.reopen({
@@ -43,4 +44,5 @@ App.PeopleRoute = Em.Route.extend({
   model: function() {
     return App.Person.findAll();
   }
-})
+});
+

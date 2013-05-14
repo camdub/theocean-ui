@@ -58,7 +58,6 @@ require('routes/router');
 
 /* Models */
 require('models/person');
-require('models/search');
 
 /* Controllers */
 require('controllers/search_controller');

@@ -1,10 +1,9 @@
-hi
-
+<h1>Employees</h1>
 <ul>
 {{#each model}}
-
-	<li>{{firstName}}</li>
+		<li>
+				{{#linkTo 'person' this}} {{firstName}} {{lastName}} {{/linkTo}}
+		</li>
 {{/each}}
 </ul>
-
-lasdlfasdfs
+{{outlet}}
