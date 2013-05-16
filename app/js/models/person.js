@@ -40,7 +40,6 @@ App.Person.adapter = Ember.Adapter.create({
   findAll: function(klass, recordArray) {
     $.getJSON(App.baseURL + "/people", {}, function(data) {
       Ember.run(function() {
-        
         return recordArray.load(klass, data.people);
       });
     });
