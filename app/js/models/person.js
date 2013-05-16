@@ -51,7 +51,7 @@ App.Person.adapter = Ember.Adapter.create({
     $.getJSON(App.baseURL + "/people/" + id, {}).then(function(data) {
       Ember.run(function() {
         debugger
-        return record.load(data);
+        return record.load(id, data);
       });
     });
   },
