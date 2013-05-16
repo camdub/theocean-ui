@@ -38,19 +38,16 @@ App.Person.reopenClass({
 
 App.Person.adapter = Ember.Adapter.create({
   findAll: function(klass, recordArray) {
-    debugger
     $.getJSON(App.baseURL + "/people", {}, function(data) {
       Ember.run(function() {
-        debugger
+        
         return recordArray.load(klass, data.people);
       });
     });
   },
   find: function(record, id) {
-    debugger
     $.getJSON(App.baseURL + "/people/" + id, {}).then(function(data) {
       Ember.run(function() {
-        debugger
         return record.load(id, data);
       });
     });
