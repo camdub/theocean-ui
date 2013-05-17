@@ -1,0 +1,8 @@
+<h1>Employees</h1>
+<ul>
+{{#each model}}
+		<li>
+				{{#linkTo 'person' this}} {{firstName}} {{lastName}} {{/linkTo}}
+		</li>
+{{/each}}
+</ul>
