@@ -5,7 +5,7 @@ App.Router.map(function() {
 });
 
 App.Router.reopen({
-  //location: 'history'
+  location: 'history'
 });
 
 App.IndexRoute = Em.Route.extend({

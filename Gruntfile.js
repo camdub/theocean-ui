@@ -1,11 +1,7 @@
 'use strict';
 
-var path = require('path');
-var lrSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet;
-
-var folderMount = function folderMount(connect, point) {
-  return connect.static(path.resolve(point));
-};
+var modRewrite = require('connect-modrewrite');
+var connect = require('connect');
 
 module.exports = function (grunt) {
 
@@ -13,38 +9,44 @@ module.exports = function (grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     watch: {
+      options: {
+        livereload: true,
+      },
       js: {
         files: [
           'build/index.html',
           'app/dependencies/**/*.js',
           'app/**/*.js'
         ],
-        tasks: ['neuter', 'livereload']
+        tasks: ['neuter']
       },
       templates: {
         files: [
           'app/js/templates/**/*.hbs'
         ],
-        tasks: ['ember_templates','livereload']
+        tasks: ['ember_templates']
       },
       css: {
         files: ['app/sass/*.scss'],
-        tasks: ['sass','livereload']
+        tasks: ['sass']
       }
     },
 
-    livereload: {
-      port: 35729 // default livereload listening port
-    },
     connect: {
-      livereload: {
+      server: {
         options: {
           port: 9001,
+          base: 'build',
           middleware: function(connect, options) {
-            console.log(options.base + '/');
-            return [lrSnippet, folderMount(connect, options.base + '/build')];
+            return [
+              modRewrite([
+                '!\\.js|\\.css$ /index.html [L]',
+                '^/.*$ /index.html'
+              ],[]),
+              connect.static(options.base)
+            ];
           }
-        }
+        },
       }
     },
 
@@ -64,12 +66,6 @@ module.exports = function (grunt) {
         template: "{%= src %}"
       },
       'build/application.js' : 'app/js/app.js'
-    },
-
-    open: {
-      server: {
-        url: 'http://localhost:<%= connect.livereload.options.port %>'
-      }
     },
 
     sass: {
@@ -102,13 +98,10 @@ module.exports = function (grunt) {
     }
   });
 
-  grunt.loadNpmTasks('grunt-contrib-livereload');
   grunt.loadNpmTasks('grunt-contrib-connect');
-  grunt.loadNpmTasks('grunt-regarde');
-  grunt.loadNpmTasks('grunt-open');
+  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-ember-templates');
   grunt.loadNpmTasks('grunt-neuter');
-  grunt.loadNpmTasks('grunt-mocha-cli');
   grunt.loadNpmTasks('grunt-devtools');
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-qunit');
@@ -126,16 +119,13 @@ module.exports = function (grunt) {
     grunt.file.write('test/runner.html', grunt.template.process(tmpl, context));
   });
 
-  grunt.renameTask('regarde', 'watch');
-
   grunt.registerTask('test', ['ember_templates','neuter', 'build_test_runner_file', 'qunit']);
 
   grunt.registerTask('server', [
       'ember_templates',
       'neuter',
       'sass',
-      'livereload-start',
-      'connect:livereload',
+      'connect:server',
       'watch'
   ]);
 
