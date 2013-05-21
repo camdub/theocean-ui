@@ -3,6 +3,8 @@ require('../dependencies/jquery/jquery');
 require('../dependencies/handlebars/handlebars.runtime');
 require('../dependencies/ember/ember');
 require('../dependencies/ember-model/ember-model');
+require('../dependencies/ember-query/jquery-deparam');
+require('../dependencies/ember-query/ember-query');
 require('../dependencies/compiled/templates');
 require('../dependencies/jquery.ajax.fake/jquery.ajax.fake');
 require('../dependencies/lunr.js/lunr');
@@ -19,7 +21,7 @@ if(window.TESTING) {
 }
 
 //turn on LOG_BINDINGS
-Ember.LOG_BINDINGS = true;
+//Ember.LOG_BINDINGS = true;
 
 /* Start app */
 window.App = Em.Application.create({
