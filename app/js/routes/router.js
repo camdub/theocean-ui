@@ -22,21 +22,12 @@ App.SearchRoute = Em.Route.extend({
 
   deserializeParams: function(params,controller) {
     if(params.hasOwnProperty('filter')) {
-      controller.set('filters', params.filter.split('|'));
       controller.set('people', App.Person.findAll());
     }
   },
 
   model: function() {
     return JSON.parse(localStorage.getItem('searchterms'));
-  },
-
-  events: {
-    selectSearchItem: function(filterName) {
-      var newParams = this.controller.get('filters');
-      newParams.push(filterName.toLowerCase());
-      this.transitionParams({ filter: newParams.join('|') });
-    }
   }
 });
 

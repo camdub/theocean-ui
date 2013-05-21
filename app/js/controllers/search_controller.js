@@ -1,6 +1,6 @@
 App.SearchController = Em.ArrayController.extend({
 
-  filters: Em.A(),
+  filters: [],
   people: [],
   projects: [],
 
@@ -20,6 +20,10 @@ App.SearchController = Em.ArrayController.extend({
 
   removeFilter: function(item) {
     this.get('filters').removeObject(item.toString());
+  },
+
+  selectSearchItem: function(filterName) {
+    this.get('filters').pushObject(filterName.toLowerCase());
   },
 
   search: Ember.debounce(function(value, context, terms) {

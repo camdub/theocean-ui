@@ -41,7 +41,6 @@ module.exports = function (grunt) {
             return [
               modRewrite([
                 '!\\.js|\\.css$ /index.html [L]',
-                //'^.*\?.*=(.*)$ /index.html?query=$1 [L]',
                 '^/.*$ /index.html'
               ],[]),
               connect.static(options.base)
