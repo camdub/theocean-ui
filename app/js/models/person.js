@@ -38,17 +38,13 @@ App.Person.reopenClass({
 
 App.Person.adapter = Ember.Adapter.create({
   findAll: function(klass, recordArray) {
-    $.getJSON(App.baseURL + "/people", {}, function(data) {
-      Ember.run(function() {
-        return recordArray.load(klass, data.people);
-      });
+    return this.ajax('/people', 'GET').then(function(data) {
+      Ember.run(recordArray, recordArray.load, klass, data.people);
     });
   },
   find: function(record, id) {
-    $.getJSON(App.baseURL + "/people/" + id, {}).then(function(data) {
-      Ember.run(function() {
-        return record.load(id, data);
-      });
+    return this.ajax('/people/' + id, 'GET').then(function(data) {
+      Ember.run(record, record.load, id, data);
     });
   },
   search: function(filters, recordArray, klass) {
