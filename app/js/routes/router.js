@@ -1,7 +1,11 @@
 App.Router.map(function() {
   this.route('search');
+
   this.resource('people');
   this.resource('person', { path: 'people/:person_id'});
+  
+  this.resource('clients');
+  this.resource('client', { path: 'clients/:client_id' });
 });
 
 App.Router.reopen({
@@ -37,8 +41,8 @@ App.PeopleRoute = Em.Route.extend({
   }
 });
 
-App.PersonRoute = Em.Route.extend({  
-  model: function(params) {
-    return App.Person.find(params.person_id);
+App.ClientsRoute = Em.Route.extend({
+  model: function() {
+    return App.Client.findAll();
   }
 });

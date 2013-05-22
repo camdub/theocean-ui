@@ -18,7 +18,7 @@ module.exports = function (grunt) {
           'app/dependencies/**/*.js',
           'app/**/*.js'
         ],
-        tasks: ['neuter']
+        tasks: ['neuter', 'jshint']
       },
       templates: {
         files: [
@@ -41,6 +41,7 @@ module.exports = function (grunt) {
             return [
               modRewrite([
                 '!\\.js|\\.css$ /index.html [L]',
+                '^/.*/.*$ /index.html',
                 '^/.*$ /index.html'
               ],[]),
               connect.static(options.base)
@@ -93,7 +94,8 @@ module.exports = function (grunt) {
     jshint: {
       all: ['app/js/**/*.js', 'test/**/*.js', '!test/support/*.*'],
       options: {
-        jshintrc: '.jshintrc'
+        jshintrc: '.jshintrc',
+        force: true
       }
     }
   });
@@ -125,6 +127,7 @@ module.exports = function (grunt) {
       'ember_templates',
       'neuter',
       'sass',
+      'jshint',
       'connect:server',
       'watch'
   ]);
