@@ -8,3 +8,4 @@ npm-debug.log
 tags
 .idea/
 build/application.css
+test/runner.html

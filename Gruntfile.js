@@ -18,7 +18,7 @@ module.exports = function (grunt) {
           'app/dependencies/**/*.js',
           'app/**/*.js'
         ],
-        tasks: ['neuter', 'jshint']
+        tasks: ['neuter', 'jshint', 'test:unit']
       },
       templates: {
         files: [
@@ -88,7 +88,8 @@ module.exports = function (grunt) {
      * the test runner via the custom task below
      */
     build_test_runner_file: {
-      all: ['test/support/test_helper.js', 'test/**/*_test.js']
+      all: ['test/support/test_helper.js', 'test/**/*_test.js'],
+      unit: ['test/support/test_helper.js', 'test/models/*_test.js']
     },
 
     jshint: {
@@ -121,15 +122,19 @@ module.exports = function (grunt) {
     grunt.file.write('test/runner.html', grunt.template.process(tmpl, context));
   });
 
-  grunt.registerTask('test', ['ember_templates','neuter', 'build_test_runner_file', 'qunit']);
+  grunt.registerTask('test:unit', ['build_test_runner_file:unit', 'qunit']);
+  grunt.registerTask('test', ['ember_templates','neuter', 'build_test_runner_file:all', 'qunit']);
 
   grunt.registerTask('server', [
       'ember_templates',
       'neuter',
       'sass',
       'jshint',
+      'test:unit',
       'connect:server',
       'watch'
   ]);
+
+  grunt.registerTask('default', ['server']);
 
 };

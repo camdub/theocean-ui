@@ -8,10 +8,14 @@ module('App.Person', {
         id: 1,
         firstName: 'Cam',
         lastName: 'Wood'
-      }
+      },
     ];
   },
-  teardown: function() {}
+  teardown: function() {
+    // If we don't clear the cache, the find calls will fail
+    // b/c the person is already loaded
+    App.Person.recordCache = {};
+  }
 });
 
 test('a Person has a fullName', function() {
@@ -22,6 +26,19 @@ test('a Person has a fullName', function() {
   });
   equal(person.get('fullName'), 'Cameron Woodmansee');
 });
+
+test('a Person is loaded from API', function() {
+  expect(2);
+
+  var person = Ember.run(Person, Person.find, 1);
+  stop();
+  
+  person.on('didLoad', function() {
+    start();
+    ok(person.get('isLoaded'));
+    equal(person.get('firstName'), 'Cam');
+  });
+}); 
 
 test('.merge(data) merges with existing records', function() {
   expect(3);

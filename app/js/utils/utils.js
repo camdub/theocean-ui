@@ -35,4 +35,4 @@ Ember._slugify = function(value) {
       .toLowerCase()
       .replace(/[^\w ]+/g,'')
       .replace(/ +/g,'-');
-}
+};
