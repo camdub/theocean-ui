@@ -6,10 +6,6 @@ App.SearchController = Em.ArrayController.extend({
 
   observeParams: ['filter', 'filters.@each'],
 
-  filtersArray: function() {
-    return this.get('filters');
-  }.property('filters.@each'),
-
   peopleTotal: function() {
     return this.get('people').length;
   }.property('people.@each'),
@@ -23,7 +19,7 @@ App.SearchController = Em.ArrayController.extend({
   },
 
   selectSearchItem: function(filterName) {
-    this.get('filters').pushObject(filterName.toLowerCase());
+    this.get('filters').pushObject(filterName);
   },
 
   search: Ember.debounce(function(value, context, terms) {

@@ -20,8 +20,19 @@ Ember.debounce = function(func, wait, immediate) {
 };
 
 Ember.slugify = function(value) {
+  if($.isArray(value)) {
+    return value.map(function(item) {
+      return Ember._slugify(item);
+    }); 
+  }
+  else {
+    return Ember._slugify(value);
+  }
+};
+
+Ember._slugify = function(value) {
   return value
       .toLowerCase()
       .replace(/[^\w ]+/g,'')
       .replace(/ +/g,'-');
-};
+}

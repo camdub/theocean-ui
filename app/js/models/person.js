@@ -48,11 +48,8 @@ App.Person.adapter = Ember.Adapter.create({
     });
   },
   search: function(filters, recordArray, klass) {
-    var query = [];
-    filters.forEach(function(filter) {
-      query.push(Ember.slugify(filter));
-    });
-    return this.ajax('/people?filter=' + query.join(), 'GET').then(function(data) {
+    return this.ajax('/people?filter=' + Ember.slugify(filters).join(), 'GET')
+    .then(function(data) {
       Ember.run(recordArray, recordArray.load, klass, data.people);
     });
   },

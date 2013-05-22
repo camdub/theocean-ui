@@ -21,7 +21,7 @@ App.IndexRoute = Em.Route.extend({
 App.SearchRoute = Em.Route.extend({
   serializeParams: function(controller) {
     var filters = controller.get('filters');
-    return (filters.length === 0) ? {} : { filter: filters.join('|') };
+    return (filters.length === 0) ? {} : { filter: Ember.slugify(filters).join(':') };
   },
 
   deserializeParams: function(params,controller) {

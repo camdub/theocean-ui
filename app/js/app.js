@@ -64,7 +64,6 @@ require('models/client');
 
 /* Controllers */
 require('controllers/search_controller');
-require('controllers/search_filter_controller');
 
 /* Views */
 require('views/searchContainer_view');
