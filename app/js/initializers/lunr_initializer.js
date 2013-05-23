@@ -7,16 +7,15 @@ Ember.Application.initializer({
   name: 'lunr',
   initialize: function(container, application) {
     if(localStorage && !localStorage.getItem('searchterms')) {
-      $.ajax({
-        type:'GET',
-        fake: true,
-        url:'http://theocean.com/search',
-        success:function(data, textStatus, XMLHttpRequest) {
-          localStorage.setItem('searchterms', JSON.stringify(data));
-          data.forEach(function(item) {
-            App.inx.add(item);
-          }, this);
-        }
+      Ember.$.ajax({
+        url: App.baseURL + '/searchterms',
+        method: 'GET',
+        dataType: 'json'
+      }).then(function(data) {
+        localStorage.setItem('searchterms', JSON.stringify(data.terms));
+        data.terms.forEach(function(item) {
+          App.inx.add(item);
+        }, this);
       });  
     } else {
       var items = JSON.parse(localStorage.getItem('searchterms'));

@@ -9,8 +9,6 @@ require('../dependencies/compiled/templates');
 require('../dependencies/jquery.ajax.fake/jquery.ajax.fake');
 require('../dependencies/lunr.js/lunr');
 require('data');
-require('utils/fake_ajax');
-require('utils/utils');
 
 /* Setup for integration tests. Unfortunately, this needs to be
    specified prior to the application creation so it can't be combined
@@ -47,6 +45,9 @@ Ember.KEY_EVENTS = {
   38: 'upArrow'
   // return key is handled already by ember's textfield view
 };
+
+require('utils/fake_ajax');
+require('utils/utils');
 
 /* Initializers
  * this loads the initial search data into the lunr index and local storage
