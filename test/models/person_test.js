@@ -8,7 +8,7 @@ module('App.Person', {
         id: 1,
         firstName: 'Cam',
         lastName: 'Wood'
-      },
+      }
     ];
   },
   teardown: function() {
@@ -32,7 +32,7 @@ test('a Person is loaded from API', function() {
 
   var person = Ember.run(Person, Person.find, 1);
   stop();
-  
+
   person.on('didLoad', function() {
     start();
     ok(person.get('isLoaded'));
