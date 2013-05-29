@@ -6,6 +6,13 @@ App.Person = Ember.Model.extend({
   lastName: attr(),
   level: attr(),
   location: attr(),
+  about: attr(),
+  industries: attr(),
+  mentor: attr(),
+  phone: attr(),
+  pictureUrl: attr(),
+  school: attr(),
+  skills: attr(),
 
   fullName: function() {
     return this.get('firstName') + ' ' + this.get('lastName');

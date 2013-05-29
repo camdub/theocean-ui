@@ -48,6 +48,7 @@ Ember.KEY_EVENTS = {
 
 require('utils/fake_ajax');
 require('utils/utils');
+require('helpers/helpers');
 
 /* Initializers
  * this loads the initial search data into the lunr index and local storage

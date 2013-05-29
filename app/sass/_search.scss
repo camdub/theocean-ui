@@ -3,6 +3,10 @@ $inverse: #fff;
 
 .hide { display: none; }
 
+.search-label {
+  float: right;
+}
+
 span.badge {
 	padding: 0 9px !important;
 	border-radius: 9px;
@@ -20,9 +24,10 @@ span.badge {
 }
 
 ul.results {
-	background-color: #ecf0f1;
-	margin-top: -14px;
-	list-style: none;
+  background-color: #ecf0f1;
+  margin-top: -14px;
+  list-style: none;
+  z-index: 5;
 }
 
 li.result {
