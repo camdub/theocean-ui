@@ -22,20 +22,18 @@ App.SearchController = Em.ArrayController.extend({
     this.get('filters').pushObject(filterName);
   },
 
-  search: Ember.debounce(function(value, context, terms) {
-    if(value === '') { // clear the textbox
-      context.set('content', []);
-    }
-    else {
+  search: Ember.debounce(function(value, context) {
+    context.set('content', []);
+
+    if(value !== '') {
+
       console.time('search');
-      var ids = App.inx.search(value);
-      ids = ids.map(function(obj) {
-        return parseInt(obj.ref, 10);
-      });
+      var results = App.inx.search(value).mapProperty('ref');
       console.timeEnd('search');
-      context.set('content', terms.filter(function(item) {
-        return ids.contains(parseInt(item.id, 10));
-      }));
+
+      results.forEach(function(result) {
+        context.get('content').pushObject(this.get('terms').get(result));
+      }, this);
     }
   }, 300)
 });

@@ -29,10 +29,6 @@ App.SearchRoute = Em.Route.extend({
       controller.set('people', App.Person.search(params.filter));
     }
     else { controller.set('people', []); }
-  },
-
-  model: function() {
-    return JSON.parse(localStorage.getItem('searchterms'));
   }
 });
 

@@ -130,7 +130,6 @@ module.exports = function (grunt) {
       'neuter',
       'sass',
       'jshint',
-      'test:unit',
       'connect:server',
       'watch'
   ]);

@@ -10,6 +10,6 @@ App.SearchInputView = Em.TextField.extend({
     if(Ember.KEY_EVENTS[e.keyCode] === 'escape') {
       this.$().val('');
     }
-    controller.search(this.$().val(), parentView, controller.get('content'));
+    controller.search(this.$().val(), parentView);
   }
 });
