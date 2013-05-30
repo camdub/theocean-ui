@@ -26,7 +26,6 @@ App.SearchController = Em.ArrayController.extend({
     context.set('content', []);
 
     if(value !== '') {
-
       console.time('search');
       var results = App.inx.search(value).mapProperty('ref');
       console.timeEnd('search');
