@@ -7,11 +7,11 @@ App.SearchController = Em.ArrayController.extend({
   observeParams: ['filter', 'filters.@each'],
 
   peopleTotal: function() {
-    return this.get('people').length;
+    return this.get('people').get('length');
   }.property('people.@each'),
 
   projectsTotal: function() {
-    return this.get('projects').length;
+    return this.get('projects').get('length');
   }.property('projects.@each'),
 
   removeFilter: function(item) {
