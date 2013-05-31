@@ -31,10 +31,6 @@ App.SearchRoute = Em.Route.extend({
     else { controller.set('people', []); }
   },
 
-  model: function() {
-    return JSON.parse(localStorage.getItem('searchterms'));
-  },
-
   events: {
     selectSearchItem: function(filter) {
       if(filter.type !== 'person' && filter.type !== 'client') {

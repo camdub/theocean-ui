@@ -37,7 +37,8 @@ if(window.TESTING) {
   App.injectTestHelpers();
 }
 
-App.baseURL = "http://theocean.apiary.io";
+//App.baseURL = "http://theocean.apiary.io";
+App.baseURL = "http://oceanservices-net.cloudapp.net/api";
 
 Ember.KEY_EVENTS = {
   27: 'escape',
