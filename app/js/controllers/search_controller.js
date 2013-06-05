@@ -18,10 +18,6 @@ App.SearchController = Em.ArrayController.extend({
     this.get('filters').removeObject(item.toString());
   },
 
-  selectSearchItem: function(filterName) {
-    this.get('filters').pushObject(filterName);
-  },
-
   search: Ember.debounce(function(value, context) {
     context.set('content', []);
 
