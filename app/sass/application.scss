@@ -1,24 +1,264 @@
-/* This file should only import other stylesheets except for application
- * wide styles and Foundation variable overrides
- */
+@import 'bourbon/bourbon';
+@import 'neat/neat';
+@import 'flat/flat-ui';
+@import 'icon-font';
+@import 'config';
+@import 'nav';
 
-// import foundation styles
-//@import "reset";
-//@import "../dependencies/foundation/scss/foundation/foundation-global";
-//@import "../dependencies/foundation/scss/foundation/components/global";
-//@import "../dependencies/foundation/scss/foundation/components/grid";
-//@import "../dependencies/foundation/scss/foundation/components/top-bar";
+a {
+	text-decoration: none;
+}
 
-// my mixins
-@import "mixins";
+.container {
+	@include outer-container;
+}
 
-// all foundation styles
-@import "../dependencies/foundation/scss/foundation";
+.content {
+	margin-top: 30px;
+	@include span-columns(10);
+	@include shift(1);
+}
 
-// import user styles
-@import "search";
+#{$all-text-inputs-focus} {
+	outline: 0;
+	border-color: $firm;
+}
 
-.top-bar {
-	background-color: #2C3E50;
-	h1 { color: white; }
+.search-input {
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.tagsinput {
+  min-height: 0;
+  border-color: $gray;
+
+  &:hover {
+    cursor: text;
+  }
+
+  input {
+    width: 75px;
+    padding: 4px 5px;
+  }
+
+  .tag {
+    background: $firm;
+    padding-left: 12px;
+    padding-right: 26px;
+
+    &:hover {
+      background-color: scale-color($firm, $lightness: -15%)
+    }
+  }
+
+  .tagsinput-remove-link {
+    padding-top: 6px;
+    opacity: 1;
+
+      &:before {
+      color: #fff;
+      content: "\e00b";
+      font-family: "Flat-UI-Icons";
+    }
+  }
+}
+
+.dropdown-menu {
+  background-color: $base;
+  border: none;
+  display: block;
+  margin-top: 8px;
+  //opacity: 0;
+  padding: 0;
+  //visibility: hidden;
+  width: 100%;
+  border-radius: 6px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  float: left;
+  min-width: 160px;
+  padding: 4px 0 6px;
+  margin: 2px 0 0;
+  list-style: none;
+}
+
+
+// Tabs
+// -----------
+.nav-tabs {
+  border-bottom-width: $nav-tabs-border-width;
+  border-bottom-color: $nav-tabs-border-color;
+  padding-left: 0;
+
+  // With tabs content appended
+  &.nav-append-content {
+    border-bottom: none;
+    margin-bottom: 0;
+    > li {
+      &.active {
+        &:first-child {
+          &:before {
+            background-color: $inverse;
+            border-left: $nav-tabs-border-width solid $nav-tabs-border-color;
+            content: "";
+            height: $nav-border-radius;
+            left: 0;
+            position: absolute;
+            bottom: $nav-tabs-border-width - $nav-border-radius;
+            width: $nav-border-radius;
+            z-index: 2;
+          }
+        }
+      }
+    }
+  }
+
+  // List item
+  > li {
+    margin-bottom: -$nav-tabs-border-width;
+    position: relative;
+    width: 50%;
+
+    // Active link
+    &.active {
+      z-index: 2;
+      > a,
+      > a:hover,
+      > a:focus {
+        border-color: $nav-tabs-border-color;
+        border-bottom-color: $inverse;
+        border-width: $nav-tabs-border-width;
+        color: $nav-tabs-active-color;
+      }
+      .dropdown-toggle,
+      .dropdown-toggle:hover,
+      .dropdown-toggle:focus {
+        color: $nav-tabs-active-color;
+        .caret {
+          border-bottom-color: $nav-tabs-active-color;
+          border-top-color: $nav-tabs-active-color;
+        }
+      }
+    }
+
+    // General link styling
+    > a {
+      border-width: $nav-tabs-border-width;
+      font-weight: 600;
+      padding: 7px 21px 8px;
+      border-radius: $nav-border-radius $nav-border-radius 0 0;
+      color: $nav-tabs-color;
+      text-align: center;
+      //.transition(none);
+
+      &:hover, &:focus {
+        background-color: transparent;
+        border-color: transparent;
+        border-bottom-color: transparent;
+        outline: none;
+        color: $nav-tabs-hover-color;
+      }
+    }
+  }
+}
+
+// Pills
+
+.nav-pills {
+  padding-left: 0;	
+
+  > li {
+  	width: 50%;
+
+    &:first-child {
+      > a {
+        border-left: none;
+        border-radius: 6px 0 0 6px;
+      }
+    }
+    &:last-child {
+      > a {
+        border-radius: 0 6px 6px 0;
+      }
+    }
+    &.active {
+      > a, > a:hover {
+        background-color: $primary-active;
+      }
+    }
+
+    @media (max-width: 480px) {
+      & {
+        float: none;
+        display: block;
+      }
+      &:first-child > a { border-radius: 6px 0 0 6px; }
+      &:last-child > a  { border-radius: 6px 0 0 6px; }
+    }
+
+    > a {
+      text-align: center;
+      background-color: #3498db;
+      border-left: 2px solid $primary-active;
+      color: $inverse;
+      font-size: 16px; /* 16px */
+      font-weight: 500;
+      margin: 0;
+      outline: none;
+      padding: 12px 21px 13px;
+ 	  text-decoration: none;
+      &:hover, &:focus {
+        background-color: $primary-hover;
+      }
+      &:active {
+        background-color: $primary-active;
+      }
+
+      @media (max-width: 480px) {
+        & {
+          border-left: none;
+          display: block;
+        }
+      }
+    }
+  } 
+}
+
+// Search results
+.avatar {
+	height: 50px;
+  vertical-align: middle;
+}
+
+.result-list {
+	list-style: none;
+	padding-left: 0;
+
+	> li {
+		border-top: 2px solid $table-border;
+		padding: 5px;
+		font-size: 16px;
+
+		&:first-child {
+			border-top: none;
+		}
+
+		&:nth-child(even) {
+			background-color: $table-bg-active;
+		}
+
+		&:hover {
+			background-color: tint($firm, 95%);
+			cursor: pointer;
+		}
+
+    span {
+      text-align: right;
+      float: right;
+      margin-top: 15px;
+    }
+	}
 }
