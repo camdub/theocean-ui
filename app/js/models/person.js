@@ -50,7 +50,7 @@ App.Person.adapter = Ember.Adapter.create({
   search: function(filters, recordArray, klass) {
     return this.ajax('/people?filter=' + filters, 'GET')
     .then(function(data) {
-      Ember.run(recordArray, recordArray.load, klass, data.people);
+      Ember.run(recordArray, recordArray.load, klass, data);
     });
   },
   ajax: function(url, params, method) {

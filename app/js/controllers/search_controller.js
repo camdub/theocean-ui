@@ -7,11 +7,11 @@ App.SearchController = Em.ArrayController.extend({
   observeParams: ['filter', 'filters.@each'],
 
   peopleTotal: function() {
-    return this.get('people').length;
+    return this.get('people').get('length');
   }.property('people.@each'),
 
   projectsTotal: function() {
-    return this.get('projects').length;
+    return this.get('projects').get('length');
   }.property('projects.@each'),
 
   removeFilter: function(item) {
@@ -29,6 +29,11 @@ App.SearchController = Em.ArrayController.extend({
       console.time('search');
       var results = App.inx.search(value).mapProperty('ref');
       console.timeEnd('search');
+
+      // Take the top 10 highest matches by score, then sort those
+      // alphabetically
+      results = (results.length > 10) ? results.slice(0, 10) : results;
+      results.sort();
 
       results.forEach(function(result) {
         context.get('content').pushObject(this.get('terms').get(result));

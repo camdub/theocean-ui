@@ -18,7 +18,7 @@ module.exports = function (grunt) {
           'app/dependencies/**/*.js',
           'app/**/*.js'
         ],
-        tasks: ['neuter', 'jshint', 'test:unit']
+        tasks: ['neuter:dev', 'jshint', 'test:unit']
       },
       templates: {
         files: [
@@ -28,7 +28,7 @@ module.exports = function (grunt) {
       },
       css: {
         files: ['app/sass/*.scss'],
-        tasks: ['sass']
+        tasks: ['sass:dev']
       }
     },
 
@@ -61,18 +61,55 @@ module.exports = function (grunt) {
     },
 
     neuter: {
-      options: {
-        includeSourceURL: true,
-        filepathTransform: function(filepath) { return 'app/js/' + filepath; },
-        template: "{%= src %}"
+      dev: {
+        options: {
+          filepathTransform: function(filepath) { return 'app/js/' + filepath; },
+          template: "{%= src %}",
+          includeSourceURL: true
+        },
+        files: {
+          'build/application.js' : 'app/js/app.js'
+        }
       },
-      'build/application.js' : 'app/js/app.js'
+      prod: {
+        options: {
+          filepathTransform: function(filepath) { return 'app/js/' + filepath; },
+          template: "{%= src %}"
+        },
+        files: {
+          'dist/application.js' : 'app/js/app.js'
+        }
+      }
     },
 
     sass: {
-      dist: {
+      prod: {
+        files: {
+          'dist/application.css' : 'app/sass/application.scss'
+        }
+      },
+      dev: {
+        options: {
+          trace: true,
+          style: 'expanded',
+          lineNumbers: true
+        },
         files: {
           'build/application.css' : 'app/sass/application.scss'
+        }
+      }
+    },
+
+    uglify: {
+      prod: {
+        options: {
+          mangle: false,
+          report: 'min',
+          preserveComments: false,
+          banner: "/* The Ocean v0.1 by Pariveda Solutions */\n"
+        },
+        files: {
+          'dist/application.min.js' : ['dist/application.js'],
         }
       }
     },
@@ -109,6 +146,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-qunit');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
 
   grunt.registerMultiTask('build_test_runner_file', 'Creates a test runner file', function() {
     var tmpl = grunt.file.read('test/support/runner.html.tmpl');
@@ -122,18 +160,31 @@ module.exports = function (grunt) {
     grunt.file.write('test/runner.html', grunt.template.process(tmpl, context));
   });
 
+  grunt.registerTask('create_dist_dir', 'Creates folder for production builds', function() {
+    grunt.file.mkdir('./dist');
+  });
+
   grunt.registerTask('test:unit', ['build_test_runner_file:unit', 'qunit']);
   grunt.registerTask('test', ['ember_templates','neuter', 'build_test_runner_file:all', 'qunit']);
 
   grunt.registerTask('server', [
       'ember_templates',
-      'neuter',
-      'sass',
+      'neuter:dev',
+      'sass:dev',
       'jshint',
       'connect:server',
       'watch'
   ]);
 
-  grunt.registerTask('default', ['server']);
+  grunt.registerTask('build', [
+    'ember_templates',
+    'jshint',
+    'create_dist_dir',
+    'neuter:prod',
+    'sass:prod',
+    'uglify:prod' 
+  ]);
+
+  grunt.registerTask('default', ['build']);
 
 };

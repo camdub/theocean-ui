@@ -13,6 +13,7 @@
     "grunt-contrib-jshint": "~0.4.3",
     "grunt-contrib-watch": "~0.4.3",
     "connect-modrewrite": "~0.3.10",
-    "connect": "~2.7.9"
+    "connect": "~2.7.9",
+    "grunt-contrib-uglify": "~0.2.1"
   }
 }
