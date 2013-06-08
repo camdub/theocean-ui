@@ -1,0 +1,62 @@
+.search-input {
+  width: 100%;
+  margin-bottom: 20px;
+  height: 100%;
+}
+
+
+.tagsinput {
+  min-height: 0;
+  border-color: $gray;
+
+  &:hover {
+    cursor: text;
+  }
+
+  .tags-list {
+    display: inline-block;
+  }
+
+  input {
+    width: 75px;
+    height: 25px;
+    padding: 4px 5px;
+  }
+
+  .tag {
+    background: $firm;
+    padding-left: 12px;
+    padding-right: 20px;
+
+    span {
+      padding-right: 4px;
+    }
+
+    &:hover {
+      background-color: scale-color($firm, $lightness: -15%)
+    }
+  }
+
+  .tagsinput-remove-link {
+    padding-top: 6px;
+    opacity: 1;
+
+      &:before {
+      color: #fff;
+      content: "\e00b";
+      font-family: "Flat-UI-Icons";
+    }
+  }
+}
+
+.focused {
+  border-color: $firm;
+}
+
+.termdata {
+  float: right;
+
+  .termtype {
+    padding-left: 4px;
+  }
+}

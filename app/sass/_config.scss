@@ -18,3 +18,5 @@ $nav-tabs-color:         $nav-tabs-active-color;
 //table-border:    mix(@gray, white, 16.5%);
 $table-border: tint($gray, 83.5%);
 $table-bg-active: lighten($base, 69%);
+
+$dropdown-background: mix($inverse, $base, 94%);

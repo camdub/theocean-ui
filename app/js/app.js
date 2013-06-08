@@ -1,6 +1,6 @@
 /* Dependencies */
 require('../dependencies/jquery/jquery');
-require('../dependencies/handlebars/handlebars.runtime');
+require('../dependencies/handlebars/handlebars');
 require('../dependencies/ember/ember');
 require('../dependencies/ember-model/ember-model');
 require('../dependencies/ember-query/jquery-deparam');
@@ -8,6 +8,7 @@ require('../dependencies/ember-query/ember-query');
 require('../dependencies/compiled/templates');
 require('../dependencies/jquery.ajax.fake/jquery.ajax.fake');
 require('../dependencies/lunr.js/lunr');
+require('vendor/jquery.tagsinput');
 require('data');
 
 /* Setup for integration tests. Unfortunately, this needs to be

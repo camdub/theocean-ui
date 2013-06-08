@@ -3,7 +3,9 @@
 @import 'flat/flat-ui';
 @import 'icon-font';
 @import 'config';
+@import 'dropdown';
 @import 'nav';
+@import 'search';
 
 a {
 	text-decoration: none;
@@ -24,70 +26,25 @@ a {
 	border-color: $firm;
 }
 
-.search-input {
-	width: 100%;
-	margin-bottom: 20px;
+.dropdown-arrow {
+  left: 13px;
 }
 
-.tagsinput {
-  min-height: 0;
-  border-color: $gray;
-
-  &:hover {
-    cursor: text;
+.input-icon {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    line-height: 37px;
+    vertical-align: middle;
+    font-size: 20px; /* 20px */
+    color: desaturate(lighten($base, 45%), 15%);
+    background-color: #ffffff;
+    padding: 0 10px;
+    border-radius: 6px;
   }
-
-  input {
-    width: 75px;
-    padding: 4px 5px;
-  }
-
-  .tag {
-    background: $firm;
-    padding-left: 12px;
-    padding-right: 26px;
-
-    &:hover {
-      background-color: scale-color($firm, $lightness: -15%)
-    }
-  }
-
-  .tagsinput-remove-link {
-    padding-top: 6px;
-    opacity: 1;
-
-      &:before {
-      color: #fff;
-      content: "\e00b";
-      font-family: "Flat-UI-Icons";
-    }
-  }
-}
-
-.dropdown-menu {
-  background-color: $base;
-  border: none;
-  display: block;
-  margin-top: 8px;
-  //opacity: 0;
-  padding: 0;
-  //visibility: hidden;
-  width: 100%;
-  border-radius: 6px;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 1000;
-  float: left;
-  min-width: 160px;
-  padding: 4px 0 6px;
-  margin: 2px 0 0;
-  list-style: none;
-}
 
 
 // Tabs
-// -----------
 .nav-tabs {
   border-bottom-width: $nav-tabs-border-width;
   border-bottom-color: $nav-tabs-border-color;
@@ -166,7 +123,6 @@ a {
 }
 
 // Pills
-
 .nav-pills {
   padding-left: 0;	
 
