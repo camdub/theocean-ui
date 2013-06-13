@@ -5,10 +5,10 @@
 
 <ul class="result-list">
 	{{#each people.content}}
-		<li>
-			<img class="avatar" src="http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?f=y&d=mm" alt="profile image" />
+    {{#linkTo person this tagName='li'}}
+			<img class="avatar" {{bindAttr src="image"}} alt="profile image">
 			{{fullName}}
 			<span class="fui-arrow-right"></span>
-		</li>
+		{{/linkTo}}
 	{{/each}}
 </ul>

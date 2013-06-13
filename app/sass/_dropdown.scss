@@ -39,11 +39,11 @@ $zindexDropdown: 1000 !default;
 // The dropdown menu (ul)
 // ----------------------
 .dropdown-menu {
-  position: absolute;
+  //position: absolute;
   top: 100%;
   left: 0;
   z-index: $zindexDropdown;
-  display: none; // none by default, but block on "open" of the menu
+  //display: none; // none by default, but block on "open" of the menu
   float: left;
   min-width: 160px;
   padding: 5px 0;
@@ -134,9 +134,9 @@ $zindexDropdown: 1000 !default;
   border: none;
   display: block;
   margin-top: 8px;
-  opacity: 0;
+  //opacity: 0;
   padding: 0;
-  visibility: hidden;
+  //visibility: hidden;
   width: 100%;
   box-shadow: none;
   @include transition(.25s);

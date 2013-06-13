@@ -11,6 +11,16 @@ a {
 	text-decoration: none;
 }
 
+.hide {
+  opacity: 0;
+  @include transition(.1s);
+}
+
+.show {
+  opacity: 1;
+  @include transition(.1s);
+}
+
 .container {
 	@include outer-container;
 }

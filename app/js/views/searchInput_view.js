@@ -9,13 +9,17 @@ App.SearchInputView = Em.ContainerView.extend({
 
   click: function(e) {
     this.set('focused', true);
-    this.get('childViews')[1].focus();
+    this.get('inputView').focus();
   },
 
   tagsView: Em.View.extend({
     classNames: ['tags-list'],
     templateName: 'tags',
-    filtersBinding: 'controller.filters'
+    filtersBinding: 'controller.filters',
+
+    removeTag: function(tag) {
+      this.get('controller').get('filters').removeObject(tag.toString());
+    }
   }),
 
   inputView: Em.TextField.extend({
@@ -28,17 +32,20 @@ App.SearchInputView = Em.ContainerView.extend({
 
     focusOut: function() {
       this.get('parentView').set('focused', false);
+      this.set('value', '');
     },
 
     keyUp: function(e) {
-      var parentView = this.get('parentView');
+      // parentView of inputView = searchInputView, its parent view
+      // is the container view that we are using for the context
+      var containerView = this.get('parentView').get('parentView');
       var controller = this.get('controller');
 
-      // handle key events
+      // handle specific key events
       if(Ember.KEY_EVENTS[e.keyCode] === 'escape') {
-        this.$().val('');
+        this.set('value', '');
       }
-      controller.search(this.$().val(), parentView);
+      controller.search(this.get('value'), containerView.get('resultView'));
     }
   })
 

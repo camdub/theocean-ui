@@ -1,6 +1,12 @@
 {{#view App.SearchContainerView}}
-<span {{action 'selectSearchItem' view.content}}>{{view.content.name}}</span>
-<span class="search-label">{{filterable view.content.name view.content.type}}</span>
+  <li {{action 'selectSearchItem' view.content}}>
+    <a>
+      {{view.content.name}}
+      <span class="termdata">
+        <span class="termtype">{{view.content.type}}</span>
+      </span>
+    </a>
+  </li>
 {{/view}}
 
 {{partial 'search/filter'}}

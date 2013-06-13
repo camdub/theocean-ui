@@ -26,6 +26,9 @@ App.SearchController = Em.ArrayController.extend({
       var results = App.inx.search(value).mapProperty('ref');
       console.timeEnd('search');
 
+      results = (results.length > 10) ? results.slice(0,10) : results;
+      results.sort(); // alphabetical
+
       results.forEach(function(result) {
         context.get('content').pushObject(this.get('terms').get(result));
       }, this);
