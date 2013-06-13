@@ -8,7 +8,6 @@ require('../dependencies/ember-query/ember-query');
 require('../dependencies/compiled/templates');
 require('../dependencies/jquery.ajax.fake/jquery.ajax.fake');
 require('../dependencies/lunr.js/lunr');
-require('vendor/jquery.tagsinput');
 require('data');
 
 /* Setup for integration tests. Unfortunately, this needs to be
