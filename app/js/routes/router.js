@@ -2,7 +2,7 @@ App.Router.map(function() {
   this.route('search');
 
   //this.resource('people');
-  this.resource('person', { path: 'people/:slug'});
+  this.resource('person', { path: 'people/:id'});
 
   //this.resource('clients');
   this.resource('client', { path: 'clients/:client_id' });
@@ -21,7 +21,7 @@ App.IndexRoute = Em.Route.extend({
 App.SearchRoute = Em.Route.extend({
   serializeParams: function(controller) {
     var filters = controller.get('filters');
-    return (filters.length === 0) ? {} : { filter: Ember.slugify(filters).join() };
+    return (filters.length === 0) ? {} : { filter: filters.join() };
   },
 
   deserializeParams: function(params,controller) {
@@ -37,10 +37,10 @@ App.SearchRoute = Em.Route.extend({
   events: {
     selectSearchItem: function(filter) {
       if(filter.type !== 'Person' && filter.type !== 'Client') {
-        this.controller.get('filters').pushObject(filter.name);
+        this.controller.get('filters').pushObject(filter.id);
       }
       else {
-        this.transitionTo(filter.type.toLowerCase(), filter.name);
+        this.transitionTo(filter.type.toLowerCase(), filter);
       }
     }
   }
@@ -55,11 +55,10 @@ App.PersonController = Em.ObjectController.extend({});
 
 App.PersonRoute = Em.Route.extend({
   setupController: function(controller, model) {
-    var slug = (model.hasOwnProperty('slug')) ? model.slug : model.get('id');
-    controller.set('content', App.Person.find(slug));
+    controller.set('content', App.Person.find(model.id));
   },
   serialize: function(model) {
-    return { slug: model.get('id') };
+    return { id: model.id };
   }
 });
 

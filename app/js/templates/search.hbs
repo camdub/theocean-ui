@@ -1,12 +1,14 @@
 {{#view App.SearchContainerView}}
-  <li {{action 'selectSearchItem' view.content}}>
-    <a>
-      {{view.content.name}}
-      <span class="termdata">
-        <span class="termtype">{{view.content.type}}</span>
-      </span>
-    </a>
-  </li>
+  
+    <li {{action selectSearchItem view.content}}>
+      <a>
+        {{view.content.name}}
+        <span class="termdata">
+          <span class="termtype">{{view.content.type}}</span>
+        </span>
+      </a>
+    </li>
+
 {{/view}}
 
 {{partial 'search/filter'}}
