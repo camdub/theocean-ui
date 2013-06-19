@@ -1,14 +1,24 @@
 <ul class="nav nav-pills">
-    <li class="active"><a href="#">People</a></li>
-    <li><a href="#">Projects</a></li>
+    <li {{bindAttr class="peopleTab:active"}}><a {{action tab}}>People</a></li>
+    <li {{bindAttr class="peopleTab::active"}}><a {{action tab}}>Projects</a></li>
 </ul>
 
 <ul class="result-list">
-	{{#each people.content}}
-    {{#linkTo person this tagName='li'}}
-			<img class="avatar" {{bindAttr src="image"}} alt="profile image">
-			{{fullName}}
-			<span class="fui-arrow-right"></span>
-		{{/linkTo}}
-	{{/each}}
+  {{#if peopleTab}}
+  	{{#each people.content}}
+      {{#linkTo person this tagName='li'}}
+  			<img class="avatar" {{bindAttr src="image"}} alt="profile image">
+  			{{fullName}}
+  			<span class="fui-arrow-right"></span>
+  		{{/linkTo}}
+  	{{/each}}
+  {{else}}
+    {{#each projects.content}}
+      {{#linkTo project this tagName='li'}}
+        <img class="avatar" {{bindAttr src="image"}} alt="profile image">
+        {{name}}
+        <span class="fui-arrow-right"></span>
+      {{/linkTo}}
+    {{/each}}
+  {{/if}}
 </ul>

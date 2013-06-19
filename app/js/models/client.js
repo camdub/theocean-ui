@@ -1,26 +1,10 @@
 attr = Ember.attr;
 
-// App.Clients = Ember.Model.extend({
-// id: attr(),
-// clientName: attr(),
-// industry: attr(),
-// logo: attr()
-// });
-
 App.Client = Ember.Model.extend({
-	id: attr(),
-	clientName: attr(),
-	industry: attr(),
-	logo: attr()
-//	projects: attr()
-		// id: attr(),
-		// projectName: attr(),
-		// location: attr(),
-		// OIC: attr(),
-		// projectManager: attr(),
-		// projectSummary: attr(),
-		// startdate: attr(),
-		// enddate: attr()
+	id: attr('string'),
+	clientName: attr('string'),
+	industry: attr('string'),
+	logo: attr('string')
 });
 
 App.Client.reopenClass({
