@@ -29,7 +29,7 @@ Once all the dependencies have been installed you can start a development server
     
 Which will build development versions of the application into the `build` folder and start the app on `localhost:9001`. 
 
-This application uses livereload and will automatically refresh the browser page when files are changed.
+The `server` task will start a livereload server for you. In order to have livereload refresh your broswer when files are changed, you need to download and install one of the [browser extensions](http://feedback.livereload.com/knowledgebase/articles/86242-how-do-i-install-and-use-the-browser-extensions-). Once installed, clicking on the extension's icon will connect you to the livereload server.
 
 	grunt test
 	

@@ -1,6 +1,6 @@
 /* Dependencies */
 require('../dependencies/jquery/jquery');
-require('../dependencies/handlebars/handlebars.runtime');
+require('../dependencies/handlebars/handlebars');
 require('../dependencies/ember/ember');
 require('../dependencies/ember-model/ember-model');
 require('../dependencies/ember-query/jquery-deparam');
@@ -49,6 +49,7 @@ Ember.KEY_EVENTS = {
 
 require('utils/fake_ajax');
 require('utils/utils');
+require('helpers/helpers');
 
 /* Initializers
  * this loads the initial search data into the lunr index and local storage

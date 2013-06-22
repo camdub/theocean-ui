@@ -40,7 +40,7 @@ module.exports = function (grunt) {
           middleware: function(connect, options) {
             return [
               modRewrite([
-                '!\\.js|\\.css$ /index.html [L]',
+                '!\\.js|\\.css|\\.ttf|\\.svg|\\.woff|\\.eot$ /index.html [L]',
                 '^/.*/.*$ /index.html',
                 '^/.*$ /index.html'
               ],[]),
@@ -133,6 +133,7 @@ module.exports = function (grunt) {
       all: ['app/js/**/*.js', 'test/**/*.js', '!test/support/*.*'],
       options: {
         jshintrc: '.jshintrc',
+        ignores: [ 'app/js/vendor' ],
         force: true
       }
     }

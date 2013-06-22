@@ -6,10 +6,26 @@ App.Person = Ember.Model.extend({
   lastName: attr(),
   level: attr(),
   location: attr(),
+  about: attr(),
+  industries: attr(),
+  mentor: attr(),
+  phone: attr(),
+  pictureUrl: attr(),
+  school: attr(),
+  skills: attr(),
 
   fullName: function() {
     return this.get('firstName') + ' ' + this.get('lastName');
-  }.property('firstName', 'lastName')
+  }.property('firstName', 'lastName'),
+
+  image: function() {
+    if($.isEmptyObject(this.get('pictureUrl'))) {
+      return "http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?f=y&d=mm";
+    }
+    else {
+      return this.get('pictureUrl');
+    }
+  }.property('pictureUrl')
 
 });
 
