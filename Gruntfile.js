@@ -136,6 +136,18 @@ module.exports = function (grunt) {
         ignores: [ 'app/js/vendor' ],
         force: true
       }
+    },
+
+    'ftp-deploy': {
+      build: {
+        auth: {
+          host: 'waws-prod-blu-001.ftp.azurewebsites.windows.net',
+          port: 21,
+          authKey: 'key1'
+        },
+        src: 'build',
+        dest: '/site/wwwroot'
+      }
     }
   });
 
@@ -148,6 +160,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-qunit');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-ftp-deploy');
 
   grunt.registerMultiTask('build_test_runner_file', 'Creates a test runner file', function() {
     var tmpl = grunt.file.read('test/support/runner.html.tmpl');

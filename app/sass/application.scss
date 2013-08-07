@@ -7,6 +7,13 @@
 @import 'nav';
 @import 'search';
 
+header h1 {
+  text-align: center;
+  span {
+    color: $firm;
+  }
+}
+
 a {
 	text-decoration: none;
 }

@@ -1,24 +1,26 @@
-<ul class="nav nav-pills">
-    <li {{bindAttr class="peopleTab:active"}}><a {{action tab}}>People</a></li>
-    <li {{bindAttr class="peopleTab::active"}}><a {{action tab}}>Projects</a></li>
-</ul>
+{{#if people.content}}
+  <ul class="nav nav-pills">
+      <li {{bindAttr class="peopleTab:active"}}><a {{action tab}}>People</a></li>
+      <li {{bindAttr class="peopleTab::active"}}><a {{action tab}}>Projects</a></li>
+  </ul>
 
-<ul class="result-list">
-  {{#if peopleTab}}
-  	{{#each people.content}}
-      {{#linkTo person this tagName='li'}}
-  			<img class="avatar" {{bindAttr src="image"}} alt="profile image">
-  			{{fullName}}
-  			<span class="fui-arrow-right"></span>
-  		{{/linkTo}}
-  	{{/each}}
-  {{else}}
-    {{#each projects.content}}
-      {{#linkTo project this tagName='li'}}
-        <img class="avatar" {{bindAttr src="image"}} alt="profile image">
-        {{name}}
-        <span class="fui-arrow-right"></span>
-      {{/linkTo}}
-    {{/each}}
-  {{/if}}
-</ul>
+  <ul class="result-list">
+    {{#if peopleTab}}
+    	{{#each people.content}}
+        {{#linkTo 'person' this tagName='li'}}
+    			<img class="avatar" {{bindAttr src="image"}} alt="profile image">
+    			{{fullName}}
+    			<span class="fui-arrow-right"></span>
+    		{{/linkTo}}
+    	{{/each}}
+    {{else}}
+      {{#each projects.content}}
+        {{#linkTo 'project' this tagName='li'}}
+          <img class="avatar" {{bindAttr src="image"}} alt="profile image">
+          {{name}}
+          <span class="fui-arrow-right"></span>
+        {{/linkTo}}
+      {{/each}}
+    {{/if}}
+  </ul>
+{{/if}}
