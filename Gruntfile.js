@@ -1,7 +1,10 @@
 'use strict';
 
+
 var modRewrite = require('connect-modrewrite');
 var connect = require('connect');
+var fs = require('fs');
+var url = require('url');
 
 module.exports = function (grunt) {
 
@@ -37,16 +40,7 @@ module.exports = function (grunt) {
         options: {
           port: 9001,
           base: 'build',
-          middleware: function(connect, options) {
-            return [
-              modRewrite([
-                '!\\.js|\\.css|\\.ttf|\\.svg|\\.woff|\\.eot$ /index.html [L]',
-                '^/.*/.*$ /index.html',
-                '^/.*$ /index.html'
-              ],[]),
-              connect.static(options.base)
-            ];
-          }
+          middleware: middleware
         },
       }
     },
@@ -202,3 +196,39 @@ module.exports = function (grunt) {
   grunt.registerTask('default', ['build']);
 
 };
+
+function middleware(connect, options) {
+  return [
+    connect['static'](options.base),
+    connect.directory(options.base),
+    // Remove this middleware to disable catch-all routing.
+    buildWildcardMiddleware(options)
+  ];
+}
+
+function wildcardResponseIsValid(request) {
+  var urlSegments = request.url.split('.'),
+      extension   = urlSegments[urlSegments.length-1];
+  return (
+    ['GET', 'HEAD'].indexOf(request.method.toUpperCase()) > -1 &&
+    (urlSegments.length == 1 || extension.indexOf('htm') == 0 || extension.length > 5)
+  );
+}
+
+function buildWildcardMiddleware(options) {
+  return function(request, response, next) {
+    if (!wildcardResponseIsValid(request)) { return next(); }
+
+    var wildcard     = (options.wildcard || 'index.html'),
+        wildcardPath = options.base + "/" + wildcard;
+
+    fs.readFile(wildcardPath, function(err, data){
+      if (err) { return next('ENOENT' == err.code ? null : err); }
+
+      response.writeHead(200, { 'Content-Type': 'text/html' });
+      response.end(data);
+    });
+  };
+}
+
+
