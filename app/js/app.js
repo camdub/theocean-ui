@@ -38,7 +38,8 @@ if(window.TESTING) {
 }
 
 //App.baseURL = "http://theocean.apiary.io";
-App.baseURL = "http://oceanservices-net.cloudapp.net/api";
+App.baseURL = "http://theocean-services.azurewebsites.net";
+App.key = "18372d52-822c-4ad7-9648-0b924dc45fcd";
 
 Ember.KEY_EVENTS = {
   27: 'escape',

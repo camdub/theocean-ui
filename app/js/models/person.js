@@ -23,7 +23,7 @@ App.Person = Ember.Model.extend({
       return "http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?f=y&d=mm";
     }
     else {
-      return this.get('pictureUrl');
+      return App.baseURL + this.get('pictureUrl');
     }
   }.property('pictureUrl')
 
@@ -54,17 +54,17 @@ App.Person.reopenClass({
 
 App.Person.adapter = Ember.Adapter.create({
   findAll: function(klass, recordArray) {
-    return this.ajax('/people', 'GET').then(function(data) {
+    return this.ajax('/people?accesskey=' +  App.key, 'GET').then(function(data) {
       Ember.run(recordArray, recordArray.load, klass, data.people);
     });
   },
   find: function(record, id) {
-    return this.ajax('/people/' + id, 'GET').then(function(data) {
+    return this.ajax('/people/' + id + '?accesskey=' + App.key, 'GET').then(function(data) {
       Ember.run(record, record.load, id, data);
     });
   },
   search: function(filters, recordArray, klass) {
-    return this.ajax('/people?filter=' + filters, 'GET')
+    return this.ajax('/people?filter=' + filters + '&accesskey=' + App.key, 'GET')
     .then(function(data) {
       Ember.run(recordArray, recordArray.load, klass, data);
     });
