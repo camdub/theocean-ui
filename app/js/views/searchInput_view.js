@@ -16,10 +16,6 @@ App.SearchInputView = Em.ContainerView.extend({
     classNames: ['tags-list'],
     templateName: 'tags',
     filtersBinding: 'controller.filters',
-
-    removeTag: function(tag) {
-      this.get('controller').get('filters').removeObject(tag.toString());
-    }
   }),
 
   inputView: Em.TextField.extend({
@@ -39,7 +35,7 @@ App.SearchInputView = Em.ContainerView.extend({
       // parentView of inputView = searchInputView, its parent view
       // is the container view that we are using for the context
       var containerView = this.get('parentView').get('parentView');
-      var controller = this.get('controller');
+      var controller = this.get('parentView').get('controller');
 
       // handle specific key events
       if(Ember.KEY_EVENTS[e.keyCode] === 'escape') {

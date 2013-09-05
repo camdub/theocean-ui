@@ -5,8 +5,6 @@ App.SearchController = Em.ArrayController.extend({
   projects: [],
   peopleTab: true,
 
-  observeParams: ['filter', 'filters.@each'],
-
   peopleTotal: function() {
     return this.get('people').get('length');
   }.property('people.@each'),
@@ -17,6 +15,13 @@ App.SearchController = Em.ArrayController.extend({
 
   tab: function() {
     this.toggleProperty('peopleTab');
+  },
+
+  actions: {
+    removeTag: function(tag) {
+      this.get('filters').removeObject(tag.toString());
+      this.transitionToRoute({queryParams: { filter: false }});
+    }
   },
 
   search: Ember.debounce(function(value, context) {

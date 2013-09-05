@@ -3,8 +3,7 @@ require('../dependencies/jquery/jquery');
 require('../dependencies/handlebars/handlebars');
 require('../dependencies/ember/ember');
 require('../dependencies/ember-model/ember-model');
-require('../dependencies/ember-query/jquery-deparam');
-require('../dependencies/ember-query/ember-query');
+//require('../dependencies/ember-query-params/ember-query-params');
 require('../dependencies/compiled/templates');
 require('../dependencies/jquery.ajax.fake/jquery.ajax.fake');
 require('../dependencies/lunr.js/lunr');
@@ -22,6 +21,7 @@ if(window.TESTING) {
 //Ember.LOG_BINDINGS = true;
 
 /* Start app */
+ENV = {NEW_MODEL_HOOKS_PARAM_ORDER: true};
 window.App = Em.Application.create({
   LOG_TRANSITIONS: window.TESTING ? false : true,
   rootElement: window.TESTING ? '#ember-testing' : 'body'
