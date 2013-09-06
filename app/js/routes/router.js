@@ -17,17 +17,9 @@ App.IndexRoute = Em.Route.extend({
 });
 
 App.SearchRoute = Em.Route.extend({
-
-  actions: {
-    selectSearchItem: function(filter) {
-      if(filter.type !== 'Person' && filter.type !== 'Client') {
-        this.get('controller').get('filters').pushObject(filter.id);
-        this.transitionTo({queryParams: {filter: filter.id}});
-      }
-      else {
-        this.transitionTo(filter.type.toLowerCase(), filter);
-      }
-    }
+  setupController: function(controller, model) {
+    // handle param changes
+    console.log(this.get('queryParams'));
   }
 });
 

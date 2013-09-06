@@ -11,12 +11,8 @@ App.AutoSuggestComponent = Em.Component.extend({
   query: null,
   selectionIndex: -1,
   focused: false,
+  displayResults: [],
 
-  init: function(){
-    this._super.apply(this, arguments);
-    addObserver(this, 'query', this.queryDidChange);
-    set(this, 'displayResults', Ember.A());
-  },
   didInsertElement: function(){
     Ember.assert('You must supply a source for the autosuggest component', get(this, 'source'));
     Ember.assert('You must supply a destination for the autosuggest component', get(this, 'destination'));
@@ -24,6 +20,21 @@ App.AutoSuggestComponent = Em.Component.extend({
     this.$('ul.suggestions').on('mouseover', 'li', this.mouseOver.bind(this));
     this.$('ul.suggestions').on('mouseout', 'li', this.mouseOut.bind(this));
   },
+
+  willDestroyElement: function() {
+    this.$('ul.suggestions').off('mouseover', 'li', this.mouseOver.bind(this));
+    this.$('ul.suggestions').off('mouseout', 'li', this.mouseOut.bind(this));
+  },
+
+  hasQuery: function(){
+    var query = get(this, 'query');
+
+    if(query && query.length > get(this, 'minChars')){
+      return true;
+    }
+
+    return false;
+  }.property('query'),
 
   queryDidChange: function(){
     var query = get(this, 'query'),
@@ -38,7 +49,7 @@ App.AutoSuggestComponent = Em.Component.extend({
     }
 
     this.processResults(query, this.get('source'));
-  },
+  }.observes('query'),
 
   processResults: function(query, source){
     var self = this,
@@ -71,18 +82,6 @@ App.AutoSuggestComponent = Em.Component.extend({
     this.moveSelection('down');
   },
 
-  hideResults: function(){
-    var displayResults = get(this, 'displayResults');
-
-    set(this, 'selectionIndex', -1);
-
-    if(!get(displayResults, 'length')){
-      this.$('.no-results').addClass('hdn');
-      return;
-    }
-
-    this.$('.results').addClass('hdn');
-  },
 
   actions: {
     addSelection: function(selection){
@@ -94,19 +93,29 @@ App.AutoSuggestComponent = Em.Component.extend({
     },
     removeSelection: function(item){
       get(this, 'destination').removeObject(item);
+    },
+
+    hideResults: function(){
+      var displayResults = get(this, 'displayResults');
+
+      set(this, 'selectionIndex', -1);
+
+      if(!get(displayResults, 'length')){
+        this.$('.no-results').addClass('hdn');
+        return;
+      }
+
+      this.$('.results').addClass('hdn');
+    },
+
+    removeOnBackspace: function() {
+      // called before the actual backspace happens
+      if(this.get('query') === '') {
+        var filters = this.get('destination');
+        this.set('destination', filters.slice(0, -1));
+      }
     }
   },
-
-  hasQuery: Ember.computed(function(){
-    var query = get(this, 'query');
-
-    if(query && query.length > get(this, 'minChars')){
-      //this.positionResults();
-      return true;
-    }
-
-    return false;
-  }).property('query'),
 
   moveSelection: function(direction){
     var selectionIndex = get(this, 'selectionIndex'),
@@ -133,9 +142,7 @@ App.AutoSuggestComponent = Em.Component.extend({
       });
 
       selectionIndex = displayResults.indexOf(selected);
-
       this.$('ul.suggestions li a').removeClass('hover');
-
       this.$('input.autosuggest').focus();
     }
 
@@ -151,18 +158,8 @@ App.AutoSuggestComponent = Em.Component.extend({
     }
 
     var active = get(this, 'displayResults').objectAt(selectionIndex);
-
     set(this, 'selectionIndex', selectionIndex);
-
     set(active, 'active', true);
-  },
-
-  removeOnBackspace: function() {
-    // called before the actual backspace happens
-    if(this.get('query') === '') {
-      var filters = this.get('destination');
-      this.set('destination', filters.slice(0, -1));
-    }
   },
 
   selectActive: function(){
@@ -183,6 +180,8 @@ App.AutoSuggestComponent = Em.Component.extend({
 
     this.send('addSelection', active);
   },
+
+  /* ------- EVENTS ------- */
 
   mouseOver: function(evt){
     var el = this.$(evt.target);
@@ -211,7 +210,6 @@ App.AutoSuggestComponent = Em.Component.extend({
 
   focusOut: function(evt) {
     if(this.get('displayResults').length === 0) {
-      // this.hideResults();
       this.set('focused', false);
     }
   },
@@ -226,11 +224,6 @@ App.AutoSuggestComponent = Em.Component.extend({
 
   mouseOut: function(evt){
     var target = $(evt.target);
-
-    // if(target.parents('ul').hasClass('suggestions')){
-    //   return;
-    // }
-
     this.$('ul.suggestions li a').removeClass('hover');
   },
 
@@ -279,10 +272,10 @@ App.AutoSuggestComponent = Em.Component.extend({
           controller.selectActive(); 
           break;
         case this.ESCAPE:
-          controller.hideResults();
+          controller.send('hideResults');
           break;
         case this.BACKSPACE:
-          controller.removeOnBackspace();
+          controller.send('removeOnBackspace');
           break;
         default:
           console.log(keyCode);

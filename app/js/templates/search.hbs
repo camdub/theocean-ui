@@ -1,14 +1,2 @@
-{{#view App.SearchContainerView}}
-  
-    <li {{action selectSearchItem view.content}}>
-      <a>
-        {{view.content.name}}
-        <span class="termdata">
-          <span class="termtype">{{view.content.type}}</span>
-        </span>
-      </a>
-    </li>
-
-{{/view}}
-{{auto-suggest source=controller destination=tags}}
+{{auto-suggest source=controller destination=filters}}
 {{partial 'search/filter'}}
