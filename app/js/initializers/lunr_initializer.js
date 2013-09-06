@@ -11,7 +11,7 @@ App.initializer({
 
     if(!localStorage.getItem('searchterms')) {
       App.deferReadiness();
-      Ember.$.getJSON(App.baseURL + '/searchterms').then(function(data) {
+      Ember.$.getJSON(App.baseURL + '/searchterms?accesskey=' + App.key).then(function(data) {
 
         data.forEach(function(item) {
           App.inx.add(item); // create search index

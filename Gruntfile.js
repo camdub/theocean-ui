@@ -71,7 +71,7 @@ module.exports = function (grunt) {
           template: "{%= src %}"
         },
         files: {
-          'dist/application.js' : 'app/js/app.js'
+          'build/application.js' : 'app/js/app.js'
         }
       }
     },
@@ -149,7 +149,6 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-ember-templates');
   grunt.loadNpmTasks('grunt-neuter');
-  grunt.loadNpmTasks('grunt-devtools');
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-qunit');
   grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -192,6 +191,8 @@ module.exports = function (grunt) {
     'sass:prod',
     'uglify:prod' 
   ]);
+
+  grunt.registerTask('deploy', ['neuter:prod', 'ember_templates', 'ftp-deploy']);
 
   grunt.registerTask('default', ['build']);
 

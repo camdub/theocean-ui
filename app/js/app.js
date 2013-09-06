@@ -3,11 +3,8 @@ require('../dependencies/jquery/jquery');
 require('../dependencies/handlebars/handlebars');
 require('../dependencies/ember/ember');
 require('../dependencies/ember-model/ember-model');
-//require('../dependencies/ember-query-params/ember-query-params');
 require('../dependencies/compiled/templates');
-require('../dependencies/jquery.ajax.fake/jquery.ajax.fake');
 require('../dependencies/lunr.js/lunr');
-require('data');
 
 /* Setup for integration tests. Unfortunately, this needs to be
    specified prior to the application creation so it can't be combined
@@ -48,8 +45,6 @@ Ember.KEY_EVENTS = {
   // return key is handled already by ember's textfield view
 };
 
-require('utils/fake_ajax');
-require('utils/utils');
 require('helpers/helpers');
 
 /* Initializers
