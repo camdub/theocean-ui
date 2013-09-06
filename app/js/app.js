@@ -38,13 +38,6 @@ if(window.TESTING) {
 App.baseURL = "http://theocean-services.azurewebsites.net";
 App.key = "18372d52-822c-4ad7-9648-0b924dc45fcd";
 
-Ember.KEY_EVENTS = {
-  27: 'escape',
-  40: 'downArrow',
-  38: 'upArrow'
-  // return key is handled already by ember's textfield view
-};
-
 require('helpers/helpers');
 
 /* Initializers

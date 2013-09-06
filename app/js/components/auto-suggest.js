@@ -100,11 +100,7 @@ App.AutoSuggestComponent = Em.Component.extend({
 
       set(this, 'selectionIndex', -1);
 
-      if(!get(displayResults, 'length')){
-        this.$('.no-results').addClass('hdn');
-        return;
-      }
-
+      this.set('query', '');
       this.$('.results').addClass('hdn');
     },
 
@@ -209,9 +205,8 @@ App.AutoSuggestComponent = Em.Component.extend({
   },
 
   focusOut: function(evt) {
-    if(this.get('displayResults').length === 0) {
-      this.set('focused', false);
-    }
+    this.send('hideResults');
+    this.set('focused', false);
   },
 
   focusIn: function(evt) {
