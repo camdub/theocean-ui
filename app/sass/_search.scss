@@ -1,8 +1,113 @@
+/* New component css */
+
+ul.selections, ul.suggestions { list-style-type: none; }
+
+.hover {
+  background: mix($firm, black, 85%);
+  color: $inverse;
+}
+
+.no-results {
+  color: $inverse;
+  padding: 5px;
+
+  &:hover {
+    background-color: $base;
+  }
+}
+
+ul.selections{
+  margin: 0;
+  padding: 0;
+  border: none;
+  overflow: hidden;
+  border: 2px solid $gray;
+  border-radius: 6px;
+  padding: 6px 1px 1px 6px;
+  margin: 0;
+  overflow: auto;
+  background-color: #fff;
+  cursor: text;
+}
+
+.focused {
+  border-color: $firm !important;
+}
+
+ul.selections input {
+  border: none;
+  margin: 0px;
+  outline: 0px;
+  height: 25px;
+  font-size: 14px;
+  padding: 4px 5px;
+  margin: 0 5px 5px 0;  
+}
+
+.tag {
+  background: $firm;
+  padding-left: 12px;
+  padding-right: 20px;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  overflow: hidden;
+  padding: 4px 13px 4px 19px;
+  position: relative;
+  vertical-align: middle;
+  display: inline-block;
+  zoom: 1;
+  -webkit-transition: 0.14s linear;
+  -moz-transition: 0.14s linear;
+  -o-transition: 0.14s linear;
+  transition: 0.14s linear;
+  -webkit-backface-visibility: hidden;
+  padding-left: 12px;
+  padding-right: 20px;
+
+  span {
+    padding-right: 4px;
+  }
+
+  &:hover {
+    background-color: scale-color($firm, $lightness: -15%)
+  }
+}
+
+.tagsinput-remove-link {
+  padding-top: 6px;
+  opacity: 1;
+
+    &:before {
+    color: #fff;
+    content: "\e00b";
+    font-family: "Flat-UI-Icons";
+  }
+}
+
+ul.suggestions {
+  @extend .dropdown-menu;
+  @extend .dropdown-inverse;
+
+  .result {
+    color: white;
+    margin: 0 4px -2px;
+  }
+}
+
+li.selection { float: left; }
+
+/* End component css */
+
 .search-input {
   width: 100%;
   //margin-bottom: 20px;
   height: 100%;
 }
+
+.hdn { display: none }
 
 .results {
   cursor: pointer;

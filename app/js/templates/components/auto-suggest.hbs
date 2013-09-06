@@ -1,0 +1,28 @@
+<ul {{bind-attr class=':selections focused'}}>
+  {{#each destination}}
+    <li class="selection">
+      <span {{action removeSelection this}} class="tag">
+        <span>{{id}}</span>
+        <a class="tagsinput-remove-link"></a>
+      </span>
+    </li>
+  {{/each}}
+  <li>{{view view.autosuggest valueBinding=query class='autosuggest'}}</li>
+</ul>
+
+<div {{bind-attr class=':results hasQuery::hdn'}}>
+  <ul class='suggestions'>
+    {{#each displayResults}}
+      <li {{action addSelection this}} {{bind-attr class=":result active"}}>
+        <a>
+          <span class="term">{{name}}</span>
+          <span class="termdata">
+            <span class="termtype">{{type}}</span>
+          </span>
+        </a>
+      </li>
+    {{else}}
+      <li class='no-results'>No Results.</li>
+    {{/each}}
+  </ul>
+</div>

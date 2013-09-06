@@ -3,7 +3,16 @@ App.SearchController = Em.ArrayController.extend({
   filters: [],
   people: [],
   projects: [],
+  tags: Em.A(),
   peopleTab: true,
+
+  tagsChanged: function(context) {
+    var results = false;
+    if(this.get('tags').length !== 0) {
+      results = this.get('tags').mapBy('id').toArray().join('-');
+    }
+    this.transitionToRoute({queryParams: { filter: results }});
+  }.observes('tags.@each'),
 
   peopleTotal: function() {
     return this.get('people').get('length');

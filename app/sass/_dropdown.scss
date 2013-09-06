@@ -194,7 +194,7 @@ $zindexDropdown: 1000 !default;
       @include clearfix();
       @include transition(background-color 0.25s);
 
-      &:hover,
+      /*&:hover,
       &:active,
       &:focus {
         background: mix($inverse, $base, 85%);
@@ -211,7 +211,7 @@ $zindexDropdown: 1000 !default;
           background: mix($inverse, $base, 66%);
           color: $inverse;
         }
-      }
+      }*/
 
       &:before {
         float: right;
@@ -342,7 +342,7 @@ $zindexDropdown: 1000 !default;
       color: $inverse;
       padding: 5px 11px 7px;
 
-      &:hover,
+      /*&:hover,
       &:active,
       &:focus {
         background: mix($firm, black, 85%);
@@ -354,7 +354,7 @@ $zindexDropdown: 1000 !default;
         &:focus {
           background: mix($base, $inverse, 75%);
         }
-      }
+      }*/
     }
     .divider {
       background-color: mix($base, white, 85%);

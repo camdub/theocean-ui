@@ -57,6 +57,8 @@ require('helpers/helpers');
  */
 require('initializers/lunr_initializer');
 
+require('components/auto-suggest');
+
 /* Routes
  * Currently all of them in this file
  */
