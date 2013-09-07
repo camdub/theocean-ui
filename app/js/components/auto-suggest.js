@@ -205,8 +205,10 @@ App.AutoSuggestComponent = Em.Component.extend({
   },
 
   focusOut: function(evt) {
-    this.send('hideResults');
-    this.set('focused', false);
+    if(this.get('displayResults').length === 0) {
+      this.set('focused', false);
+    }
+    this.get("childViews")[0].$().blur();
   },
 
   focusIn: function(evt) {
