@@ -11,3 +11,4 @@ build/application.css
 test/runner.html
 dist/*.*
 *.sketch
+.ftppass
