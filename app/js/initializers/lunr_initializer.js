@@ -3,8 +3,8 @@ App.inx = lunr(function() {
   this.ref('id');
 });
 
-App.initializer({
-  name: 'search index',
+Em.Application.initializer({
+  name: 'search',
   initialize: function(container, application) {
 
     var content = Ember.Map.create(); // map for easy filtering
