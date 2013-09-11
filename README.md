@@ -1,79 +1,41 @@
-# The Ocean
+# Ember App Kit [![Build Status](https://travis-ci.org/stefanpenner/ember-app-kit.png?branch=master)](https://travis-ci.org/stefanpenner/ember-app-kit)
+The goal Ember App Kit is to be the foundation for your ambitious web applications built in Ember. It's intended to be used either on its own or as the base scaffolding for generators built on for Ember applications, including [Ember Tools](https://github.com/rpflorence/ember-tools), [generator-ember](https://github.com/yeoman/generator-ember), and a hypothetical official executable at some point in the future.
 
-## Contributing
+This project has been extracted out of several real world applications, and is actively used. Currently it covers the basics fairly well, but much still needs to be done. As we learn and as more contributors join in it continues to evolve. So if you notice something that seems lame, it likely is, so submit an issue or PR!
 
-Once you have met all system dependencies (see below), run 
+We welcome ideas and experiments. 
 
-    npm install && bower install
+### List of Active Experiments
+-  CJS aligned branch [https://github.com/stefanpenner/ember-app-kit/tree/cjs]
+-  es6-transpiler-v2 branch [https://github.com/stefanpenner/ember-app-kit/tree/es6-transpiler-v2]
 
-This will install necessary dependencies for the application. 
+For usage information, please see the [getting started guide](https://github.com/stefanpenner/ember-app-kit/wiki/Getting-Started).
 
-NPM will install its dependencies into the `node_modules` folder and Bower will install into `app/dependencies`.
+## Features
 
-Since Ember-model (see below) does not have a bower config, you'll need to download Ember-model manually and put it in `app/dependencies/ember-model`.
+- (relatively) Sane project structure
+- ES6 module transpiler support (easy, future-proof modules)
+- Module system-aware resolver
+- Simple ember-testing example
+- Testing via QUnit, Ember Testing, and Karma
+- Linting source via JSHint (including module syntax)
+- Project compilation & minification for easy deploys
+- Catch-all index.html for easy reloading of pushState router apps
+- Optional CoffeeScript, SASS, and LESS support
+- Optional support for package management via [bower](https://github.com/bower/bower)
 
-### Libaries in Use
+## Future goals
 
-- [Ember.js](http://emberjs.com) awesome JS MV* framework. See guides on the website for a getting started video. Also recommended to read the guides through.
-- [Ember Model](https://github.com/ebryn/ember-model) until Ember-data is more stable
-- [Lunr.js](http://lunrjs.com/) for indexed search on the client (might replace this)
-- [QUnit](http://qunitjs.com/) for testing and phantomjs to run the tests on the command line.
-- [Sinon](http://sinonjs.org/) for mocks and stubs in tests
-- [Foundation](http://foundation.zurb.com/docs/) for mobile-first and base styles
+- Source maps for transpiled modules
+- Better support for usage in generators
+- easier to install 3rd party packages
+- faster more intelligent builds
 
-### Grunt Tasks
+Think anything else is missing? Feel free to open an issue (or, even better, a PR)! Discussion and feedback is always appreciated.
 
-Once all the dependencies have been installed you can start a development server with
 
-    grunt server
-    
-Which will build development versions of the application into the `build` folder and start the app on `localhost:9001`. 
+## Special Thanks
 
-The `server` task will start a livereload server for you. In order to have livereload refresh your broswer when files are changed, you need to download and install one of the [browser extensions](http://feedback.livereload.com/knowledgebase/articles/86242-how-do-i-install-and-use-the-browser-extensions-). Once installed, clicking on the extension's icon will connect you to the livereload server.
-
-	grunt test
-	
-will run the tests for this application, but the server task will do this as well in the process of serving your application.
-
-We are enforcing style with JSHint. To see what rules are enforced see the `.jshintrc` file and the [docs](http://www.jshint.com/docs/) for JSHint. This runs automatically with the `server` and `test` tasks but if you want to run jshint stand alone you can do that too with
-
-	grunt jshint
-	
-It would be good to add this as a git precommit/prepush hook so that we enforce code style on all commits.
-
-There also is a [grunt chrome plugin](https://chrome.google.com/webstore/detail/grunt-devtools/fbiodiodggnlakggeeckkjccjhhjndnb) that allows you to run grunt tasks from the development console. If you want to use that plugin, run
-
-	grunt devtools
-	
-and then open the extension in your browser development console.
-
-## Dependencies
-To build this project you need to have Node and Ruby installed. 
-
-### Node.js 
-
-You can download and install Node from [here](http://nodejs.org). It will also install npm (the package manager).
-
-### Ruby
-
-Ruby is required for this project only because we are using [Sass](http://sass-lang.com/), the CSS preprocessor. You don't need to know any Ruby (or Node.js) to work on this project.
-
-If you are on Mac OS you already have Ruby installed. 
-
-The best way to install Ruby on Windows is via the [RubyInstaller for Windows](http://rubyinstaller.org/downloads/). Any version is fine, but Ruby 2.0 is very new and you might run into issues (I recommend just installing 1.9.3).
-
-Make sure you add Ruby to your PATH as in the screenshot below:
-
-![Add Ruby to PATH](http://cdn.impressivewebs.com/2012-08/sass-step-1.jpg)
-
-Once Ruby is installed, open the cmd prompt and run
-
-	gem install sass
-	
-This will install the sass pre-processor so that the grunt server task can compile your css.
-
-### Windows Users
-
-You also need to have msysgit installed for Bower to work. Check the option below:
-
-![msysgit configuration for Windows](http://f.cl.ly/items/2V2O3i1p3R2F1r2v0a12/mysgit.png)
+Some ideas in ember-app-kit originated in work by Yapp Labs (@yapplabs) with McGraw-Hill Education Labs (@mhelabs)
+on [yapplabs/glazier](https://github.com/yapplabs/glazier).
+Thanks to Yapp and MHE for supporting the Ember ecosystem!

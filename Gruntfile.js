@@ -1,235 +1,78 @@
-'use strict';
-
-
-var modRewrite = require('connect-modrewrite');
-var connect = require('connect');
-var fs = require('fs');
-var url = require('url');
-
-module.exports = function (grunt) {
-
-  grunt.initConfig({
+module.exports = function(grunt) {
+  var config = {
     pkg: grunt.file.readJSON('package.json'),
+    env: process.env,
+  };
 
-    watch: {
-      options: {
-        livereload: true,
-      },
-      js: {
-        files: [
-          'build/index.html',
-          'app/dependencies/**/*.js',
-          'app/**/*.js'
-        ],
-        tasks: ['neuter:dev', 'jshint', 'test:unit']
-      },
-      templates: {
-        files: [
-          'app/js/templates/**/*.hbs'
-        ],
-        tasks: ['ember_templates']
-      },
-      css: {
-        files: ['app/sass/*.scss'],
-        tasks: ['sass:dev']
-      }
-    },
+  grunt.util._.extend(config, loadConfig('./tasks/options/'));
 
-    connect: {
-      server: {
-        options: {
-          port: 9001,
-          base: 'build',
-          middleware: middleware
-        },
-      }
-    },
+  grunt.initConfig(config);
 
-    ember_templates: {
-      options: {
-        templateName: function(sourceFile) {
-          return sourceFile.replace(/app\/js\/templates\//, '');
-        }
-      },
-      'app/dependencies/compiled/templates.js' : ['app/js/templates/**/*.hbs']
-    },
+  require('load-grunt-tasks')(grunt);
+  grunt.loadTasks('tasks');
 
-    neuter: {
-      dev: {
-        options: {
-          filepathTransform: function(filepath) { return 'app/js/' + filepath; },
-          template: "{%= src %}",
-          includeSourceURL: true
-        },
-        files: {
-          'build/application.js' : 'app/js/app.js'
-        }
-      },
-      prod: {
-        options: {
-          filepathTransform: function(filepath) { return 'app/js/' + filepath; },
-          template: "{%= src %}"
-        },
-        files: {
-          'build/application.js' : 'app/js/app.js'
-        }
-      }
-    },
+  grunt.registerTask('default', "Build (in debug mode) & test your application.", ['test']);
+  grunt.registerTask('build',   [
+                     'clean:build',
+                     'lock',
+                     'copy:prepare',
+                     'transpile',
+                     'jshint',
+                     'copy:stage',
+                     // Uncomment line below & `npm install --save-dev grunt-sass` for SASS (SCSS only) support.
+                     // or run `npm install --save-dev grunt-contrib-sass` for SCSS/SASS support (may be slower).
+                     'sass:compile',
+                     'concat_sourcemap',
+                     'unlock' ]);
 
-    sass: {
-      prod: {
-        files: {
-          'dist/application.css' : 'app/sass/application.scss'
-        }
-      },
-      dev: {
-        options: {
-          trace: true,
-          style: 'expanded',
-          lineNumbers: true
-        },
-        files: {
-          'build/application.css' : 'app/sass/application.scss'
-        }
-      }
-    },
+  grunt.registerTask('build:debug', "Build a development-friendly version of your app.", [
+                     'build',
+                     'emberTemplates:debug',
+                     'copy:vendor' ]);
 
-    uglify: {
-      prod: {
-        options: {
-          mangle: false,
-          report: 'min',
-          preserveComments: false,
-          banner: "/* The Ocean v0.1 by Pariveda Solutions */\n"
-        },
-        files: {
-          'dist/application.min.js' : ['dist/application.js'],
-        }
-      }
-    },
+  grunt.registerTask('build:dist', "Build a minified & production-ready version of your app.", [
+                     'build',
+                     'clean:release',
+                     'emberTemplates:dist',
+                     'dom_munger:distEmber',
+                     'dom_munger:distHandlebars',
+                     'useminPrepare',
+                     'concat',
+                     'uglify',
+                     'copy:dist',
+                     'rev',
+                     'usemin' ]);
 
-    /* Runs all .html files in the test dir through PhantomJS and prints
-       results in the terminal
-     */
-    qunit: {
-      all: ['test/**/*.html']
-    },
+  grunt.registerTask('test', "Run your apps's tests once. Uses Google Chrome by default. Logs coverage output to tmp/public/coverage.", [
+                     'build:debug', 'karma:test' ]);
 
-    /* Finds all <name>_test.js files in the test folder load them into
-     * the test runner via the custom task below
-     */
-    build_test_runner_file: {
-      all: ['test/support/test_helper.js', 'test/**/*_test.js'],
-      unit: ['test/support/test_helper.js', 'test/models/*_test.js']
-    },
+  grunt.registerTask('test:ci', "Run your app's tests in PhantomJS. For use in continuous integration (i.e. Travis CI).", [
+                     'build:debug', 'karma:ci' ]);
 
-    jshint: {
-      all: ['app/js/**/*.js', 'test/**/*.js', '!test/support/*.*'],
-      options: {
-        jshintrc: '.jshintrc',
-        ignores: [ 'app/js/vendor' ],
-        force: true
-      }
-    },
+  grunt.registerTask('test:browsers', "Run your app's tests in multiple browsers (see tasks/options/karma.js for configuration).", [
+                     'build:debug', 'karma:browsers' ]);
 
-    'ftp-deploy': {
-      build: {
-        auth: {
-          host: 'waws-prod-blu-001.ftp.azurewebsites.windows.net',
-          port: 21,
-          authKey: 'key1'
-        },
-        src: 'build',
-        dest: '/site/wwwroot'
-      }
-    }
-  });
+  grunt.registerTask('test:server', "Start a Karma test server. Automatically reruns your tests when files change and logs the results to the terminal.", [
+                     'build:debug', 'karma:server', 'connect:server', 'watch:test']);
 
-  grunt.loadNpmTasks('grunt-contrib-connect');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-ember-templates');
-  grunt.loadNpmTasks('grunt-neuter');
-  grunt.loadNpmTasks('grunt-contrib-sass');
-  grunt.loadNpmTasks('grunt-contrib-qunit');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-ftp-deploy');
-
-  grunt.registerMultiTask('build_test_runner_file', 'Creates a test runner file', function() {
-    var tmpl = grunt.file.read('test/support/runner.html.tmpl');
-    var context = {
-      data: {
-        files: this.filesSrc.map(function(fileSrc) {
-          return fileSrc.replace('test/', '');
-        })
-      }
-    };
-    grunt.file.write('test/runner.html', grunt.template.process(tmpl, context));
-  });
-
-  grunt.registerTask('create_dist_dir', 'Creates folder for production builds', function() {
-    grunt.file.mkdir('./dist');
-  });
-
-  grunt.registerTask('test:unit', ['build_test_runner_file:unit', 'qunit']);
-  grunt.registerTask('test', ['ember_templates','neuter', 'build_test_runner_file:all', 'qunit']);
-
-  grunt.registerTask('server', [
-      'ember_templates',
-      'neuter:dev',
-      'sass:dev',
-      'jshint',
-      'connect:server',
-      'watch'
-  ]);
-
-  grunt.registerTask('build', [
-    'ember_templates',
-    'jshint',
-    'create_dist_dir',
-    'neuter:prod',
-    'sass:prod',
-    'uglify:prod' 
-  ]);
-
-  grunt.registerTask('deploy', ['neuter:prod', 'ember_templates', 'ftp-deploy']);
-
-  grunt.registerTask('default', ['build']);
-
+  grunt.registerTask('server', "Run your server in development mode, auto-rebuilding when files change.",
+                     ['build:debug', 'connect:server', 'watch:main']);
+  grunt.registerTask('server:dist', "Build and preview production (minified) assets.",
+                     ['build:dist', 'connect:dist:keepalive']);
 };
 
-function middleware(connect, options) {
-  return [
-    connect['static'](options.base),
-    connect.directory(options.base),
-    // Remove this middleware to disable catch-all routing.
-    buildWildcardMiddleware(options)
-  ];
+
+// TODO: extract this out
+function loadConfig(path) {
+  var glob = require('glob');
+  var object = {};
+  var key;
+
+  glob.sync('*', {cwd: path}).forEach(function(option) {
+    key = option.replace(/\.js$/,'');
+    object[key] = require(path + option);
+  });
+
+  return object;
 }
-
-function wildcardResponseIsValid(request) {
-  var urlSegments = request.url.split('.'),
-      extension   = urlSegments[urlSegments.length-1];
-  return (
-    ['GET', 'HEAD'].indexOf(request.method.toUpperCase()) > -1 &&
-    (urlSegments.length == 1 || extension.indexOf('htm') == 0 || extension.length > 5)
-  );
-}
-
-function buildWildcardMiddleware(options) {
-  return function(request, response, next) {
-    if (!wildcardResponseIsValid(request)) { return next(); }
-
-    var wildcard     = (options.wildcard || 'index.html'),
-        wildcardPath = options.base + "/" + wildcard;
-
-    fs.readFile(wildcardPath, function(err, data){
-      if (err) { return next('ENOENT' == err.code ? null : err); }
-
-      response.writeHead(200, { 'Content-Type': 'text/html' });
-      response.end(data);
-    });
-  };
-}
-
 

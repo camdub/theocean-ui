@@ -1,14 +1,16 @@
-node_modules
-build/application.js
-app/dependencies
-app/dependencies/compiled/*.*
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/dist
+/tmp
+
+# dependencies
+/node_modules
+/vendor/*
+!/vendor/loader.js
+
+# misc
+/.sass-cache
+/connect.lock
+/libpeerconnection.log
 .DS_Store
-.sass-cache
-npm-debug.log
-tags
-.idea/
-build/application.css
-test/runner.html
-dist/*.*
-*.sketch
-.ftppass
