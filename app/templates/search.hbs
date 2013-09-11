@@ -1,1 +1,11 @@
 {{auto-suggest source=controller destination=filters}}
+
+{{#if people}}
+<ul>
+{{#each people}}
+  <li>{{firstName}} {{lastName}}</li>
+{{/each}}
+</ul>
+{{else}}
+  {{view 'spinner'}}
+{{/if}}

@@ -14,6 +14,7 @@ App.inx = lunr(function() {
 });
 
 import __ from 'ocean/initializers/lunr-initializer';
+import SpinnerView from 'ocean/views/spinner';
 
 import routes from 'ocean/routes';
 App.Router.reopen({ location: 'history' });
