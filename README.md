@@ -1,41 +1,41 @@
-# Ember App Kit [![Build Status](https://travis-ci.org/stefanpenner/ember-app-kit.png?branch=master)](https://travis-ci.org/stefanpenner/ember-app-kit)
-The goal Ember App Kit is to be the foundation for your ambitious web applications built in Ember. It's intended to be used either on its own or as the base scaffolding for generators built on for Ember applications, including [Ember Tools](https://github.com/rpflorence/ember-tools), [generator-ember](https://github.com/yeoman/generator-ember), and a hypothetical official executable at some point in the future.
+# The Ocean
 
-This project has been extracted out of several real world applications, and is actively used. Currently it covers the basics fairly well, but much still needs to be done. As we learn and as more contributors join in it continues to evolve. So if you notice something that seems lame, it likely is, so submit an issue or PR!
+## Getting Started
 
-We welcome ideas and experiments. 
+Before jumping in, you should complete the [step-by-step tutorial]() featured on the Ember guides.
 
-### List of Active Experiments
--  CJS aligned branch [https://github.com/stefanpenner/ember-app-kit/tree/cjs]
--  es6-transpiler-v2 branch [https://github.com/stefanpenner/ember-app-kit/tree/es6-transpiler-v2]
+Built on top of ember-app-kit. See [its getting started guide](http://iamstef.net/ember-app-kit/) for more information on how it works (and by extention, how our build process works).
 
-For usage information, please see the [getting started guide](https://github.com/stefanpenner/ember-app-kit/wiki/Getting-Started).
+The Ocean uses query parameters for filtering on some of the pages. This feature is currently an Ember beta feature. The documentation for this feature is not on the ember website, but can be found on this [pull request](https://github.com/emberjs/ember.js/pull/3182). Because of this we are using the canary/beta builds of Ember until this feature is released.
 
-## Features
+**See the [wiki]() for detailed documentaion of how the application works.**
 
-- (relatively) Sane project structure
-- ES6 module transpiler support (easy, future-proof modules)
-- Module system-aware resolver
-- Simple ember-testing example
-- Testing via QUnit, Ember Testing, and Karma
-- Linting source via JSHint (including module syntax)
-- Project compilation & minification for easy deploys
-- Catch-all index.html for easy reloading of pushState router apps
-- Optional CoffeeScript, SASS, and LESS support
-- Optional support for package management via [bower](https://github.com/bower/bower)
+### Libraries
 
-## Future goals
+- [Ember Model]() - assits with data layer, provides much more limited set of features than [ember-data](), the "official" data library for ember. We are using ember-model for two reasons:
+	1. The Ocean is primarily read-only, so we don't need some of the nice features ember-data includes to keep data in sync.
+	2. ember-data is still in beta, and documentation is severly lacking.
+- [Lunr.js]() - full-text search in the browser.
+- [QUnit]() - JS testing library used to test ember core, so is more suited to ember testing than some others.
+- [Bootstrap]() - front-end CSS framework written in LESS
+	- [Flat UI]() - Flat theme built on top of bootstrap
 
-- Source maps for transpiled modules
-- Better support for usage in generators
-- easier to install 3rd party packages
-- faster more intelligent builds
-
-Think anything else is missing? Feel free to open an issue (or, even better, a PR)! Discussion and feedback is always appreciated.
+Because of issues faced previously with [Bower]() not working correctly, we are not using a front-end package management system. Additional libraries should be dropped into their own folder under `vendor` and added to `public/index.html`.
 
 
-## Special Thanks
+## Contributing
 
-Some ideas in ember-app-kit originated in work by Yapp Labs (@yapplabs) with McGraw-Hill Education Labs (@mhelabs)
-on [yapplabs/glazier](https://github.com/yapplabs/glazier).
-Thanks to Yapp and MHE for supporting the Ember ecosystem!
+Once you have met all system dependencies (see below), run 
+
+    npm install
+
+This will install all necessary node.js dependencies for the application. 
+
+NPM will install its dependencies into the `node_modules` folder.
+
+### Dependencies
+
+The only dependency for this project is Node.js. To get Node.js visit [nodejs.org](http://nodejs.org). It will also install npm (the package manager).
+
+
+
