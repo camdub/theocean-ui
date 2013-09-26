@@ -1,9 +1,11 @@
 import Resolver from 'resolver';
+
+Ember.FEATURES['query-params'] = true;
 var App = Ember.Application.create({
   LOG_ACTIVE_GENERATION: true,
   LOG_VIEW_LOOKUPS: true,
   modulePrefix: 'ocean',
-  Resolver: Resolver
+  Resolver: Resolver,
 });
 
 App.baseURL = "http://theocean-services.azurewebsites.net";

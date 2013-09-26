@@ -1,9 +1,9 @@
 import Person from 'ocean/models/person';
+import OAuth from 'ocean/models/oauth';
 
 var SearchRoute = Em.Route.extend({
   setupController: function(controller, model) {
-    // handle param changes
-    controller.set('people', Person.findAll());
+    console.log(this.get('queryParams'));
   }
 });
 
