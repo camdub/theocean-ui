@@ -125,7 +125,7 @@ var AutoSuggestComponent = Em.Component.extend({
     searchPath = get(this, 'searchPath'),
     hoverEl;
 
-    displayResults.setEach('active', false); 
+    displayResults.setEach('active', false);
 
     if(!displayResultsLength){
       set(this, 'selectionIndex', -1);
@@ -208,7 +208,7 @@ var AutoSuggestComponent = Em.Component.extend({
   },
 
   focusOut: function(evt) {
-    this.send('hideResults');
+    //this.send('hideResults');
     this.set('focused', false);
   },
 
@@ -239,11 +239,11 @@ var AutoSuggestComponent = Em.Component.extend({
       this._super.apply(this, arguments);
 
       var allowedKeyCodes = Ember.A([
-        this.KEY_UP, 
-        this.KEY_DOWN, 
-        this.COMMA, 
-        this.TAB, 
-        this.ENTER, 
+        this.KEY_UP,
+        this.KEY_DOWN,
+        this.COMMA,
+        this.TAB,
+        this.ENTER,
         this.ESCAPE,
         this.BACKSPACE
       ]);
@@ -267,7 +267,7 @@ var AutoSuggestComponent = Em.Component.extend({
           controller.moveSelection('down');
           break;
         case this.ENTER:
-          controller.selectActive(); 
+          controller.selectActive();
           break;
         case this.ESCAPE:
           controller.send('hideResults');
