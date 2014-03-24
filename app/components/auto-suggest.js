@@ -1,12 +1,10 @@
-import App from 'ocean/app';
-
 var get = Ember.get,
     set = Ember.set,
     setEach = Ember.setEach,
     addObserver = Ember.addObserver,
     removeObserver = Ember.removeObserver;
 
-var AutoSuggestComponent = Em.Component.extend({
+export default Em.Component.extend({
 
   classNameBindings: [':autosuggest'],
   minChars: 0,
@@ -58,28 +56,13 @@ var AutoSuggestComponent = Em.Component.extend({
     var self = this,
     displayResults = get(this, 'displayResults');
 
-    console.time('search');
-    var results = App.inx.search(query.toLowerCase()).mapProperty('ref');
-    console.timeEnd('search');
-
-    // Take the top 10 highest matches by score, then sort those
-    // alphabetically
-    results = (results.length > 10) ? results.slice(0, 10) : results;
-    results.sort().filter(function(item) {
-      return !this.get('destination').contains(item);
-    }, this);
-
-    if(get(results, 'length') === 0){
-      return displayResults.clear();
+    displayResults.clear();
+    var results = this.get('source').search(query);
+    if(results.length === 0) {
+      return;
     }
 
-    displayResults.clear();
-    results.forEach(function(result) {
-      var result_obj = this.get('source').get('terms').get(result);
-      if(!this.get('destination').contains(result_obj)) {
-        displayResults.pushObject(result_obj);
-      }
-    }, this);
+    displayResults.pushObjects(results);
 
     this.set('selectionIndex', -1);
     this.moveSelection('down');
@@ -281,5 +264,3 @@ var AutoSuggestComponent = Em.Component.extend({
     },
   })
 });
-
-export default AutoSuggestComponent;
