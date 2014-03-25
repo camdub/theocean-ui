@@ -9,7 +9,6 @@ export default Em.Object.extend({
     this.set("isAuthenticating", true);
     return this.get("adapter").open(this)
       .then(function(user) {
-        debugger
         session.setProperties({
           isAuthenticated: true,
           currentUser: user
@@ -20,5 +19,19 @@ export default Em.Object.extend({
       }).finally(function () {
         session.set("isAuthenticating", false);
       });
+  },
+
+  close: function() {
+    var session = this;
+    return this.get('adapter').close(this).then(function() {
+      session.setProperties({
+        isAuthenticated: false,
+        currentUser: null
+      });
+    });
+  },
+
+  checkToken: function() {
+    return this.get('adapter').get('authToken');
   }
 });

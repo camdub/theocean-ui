@@ -1,33 +1,68 @@
+import app from 'appkit/app';
+
 export default Em.Object.extend({
+
+  close: function(session) {
+    debugger
+    this.store.deleteRecord(session.get('currentUser'));
+    this.store.deleteRecord(this.store.all('session').get('firstObject'));
+    return Em.RSVP.resolve();
+  },
+
   open: function () {
     var auth = this;
     var authService = this.container.lookup('service:azure');
+    var authToken = this.get('authToken');
 
-    return authService.open().then(function(accessToken) {
-      return authService.getUser(accessToken).then(function(userData) {
-        var user = auth.get('store').createRecord('user', userData);
-        var session = auth.get('store').createRecord('session', {
-          user: user,
-          key: accessToken
-        });
-        auth.set('authToken', accessToken);
-        debugger
-        return session.get('user');
+    // if a token exists, use that to create a session,
+    // otherwise authenticate via the service
+    if(!Em.isEmpty(authToken)) {
+      return authService.getUser(authToken).then(function(userData) {
+        return auth.createSessionRecords(userData, auth, authToken).get('user');
       });
+    }
+    else {
+      return authService.open().then(function(accessToken) {
+
+        return authService.getUser(accessToken).then(function(userData) {
+          auth.set('authToken', accessToken);
+          var session = auth.createSessionRecords(userData, auth, accessToken);
+          return session.get('user');
+        });
+      });
+    }
+  },
+
+  createSessionRecords: function(userData, auth, token) {
+    var store = auth.get('store');
+    var user = store.createRecord('user', userData);
+    return store.createRecord('session', {
+      user: user,
+      key: token
     });
   },
 
   authToken: function (key, value) {
-    // setter
+    // setter with expiration of 1 month
+    var record;
     if(arguments.length > 1) {
       if(Em.isEmpty(value)) {
-        localStorage.removeItem("authToken");
+        localStorage.removeItem(key);
       } else {
-        localStorage.setItem("authToken", value);
+        var expiration = new Date().getTime() + App.TOKEN_EXPIRATION;
+        record = { authToken: value, timeStamp: expiration };
+        localStorage.setItem(key, JSON.stringify(record));
       }
     // getter
     } else {
-      localStorage.getItem("authToken");
+      record = JSON.parse(localStorage.getItem(key));
+      if(record && new Date().getTime() < record.timeStamp) {
+        return record.authToken;
+      }
+      else {
+        localStorage.removeItem(key);
+        return '';
+      }
     }
   }.property(),
 
