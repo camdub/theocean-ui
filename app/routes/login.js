@@ -1,7 +1,17 @@
 export default Ember.Route.extend({
   actions: {
     login: function() {
-      this.get('session').open();
+      var session = this.get('session'),
+          route = this;
+      session.open()
+        .then(function() {
+            var lastTransition = session.get('afterRedirect');
+            if(lastTransition) {
+              lastTransition.retry();
+            } else {
+              route.transitionTo('index');
+            }
+        });
     }
   }
 });

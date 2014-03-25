@@ -1,5 +1,10 @@
 <div class="container">
-  <header><h1>The Ocea<span>n</span></h1></header>
+  <header><h1>The Ocea<span>n</span></h1>
+    {{#if session.currentUser}}
+        {{session.currentUser.fullName}} |
+        Logout
+    {{/if}}
+  </header>
   <div class="content">
     {{outlet}}
   </div>

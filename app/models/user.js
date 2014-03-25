@@ -1,7 +1,6 @@
 var attr = DS.attr;
 
 export default DS.Model.extend({
-    id: attr('string'),
     firstName: attr('string'),
     lastName: attr('string'),
     level: attr('string'),
@@ -10,4 +9,8 @@ export default DS.Model.extend({
     phone: attr('string'),
     hireDate: attr('date'),
     email: attr('string'),
+
+    fullName: function() {
+        return this.get('firstName') + ' ' + this.get('lastName');
+    }.property('firstName', 'lastName')
 });

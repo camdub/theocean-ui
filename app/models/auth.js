@@ -3,22 +3,27 @@ export default Em.Object.extend({
     var auth = this;
     var authService = this.container.lookup('service:azure');
 
-    return authService.open().then(function(data) {
-      console.log(data);
-      debugger
-      authService.getUser(data).then(function(user) {
+    return authService.open().then(function(accessToken) {
+      return authService.getUser(accessToken).then(function(userData) {
+        var user = auth.get('store').createRecord('user', userData);
+        var session = auth.get('store').createRecord('session', {
+          user: user,
+          key: accessToken
+        });
+        auth.set('authToken', accessToken);
         debugger
+        return session.get('user');
       });
     });
   },
 
-  authToken: function (a, c) {
+  authToken: function (key, value) {
     // setter
     if(arguments.length > 1) {
-      if(Em.isEmpty(c)) {
+      if(Em.isEmpty(value)) {
         localStorage.removeItem("authToken");
       } else {
-        localStorage.setItem("authToken", c);
+        localStorage.setItem("authToken", value);
       }
     // getter
     } else {
