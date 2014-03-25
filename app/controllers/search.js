@@ -1,7 +1,7 @@
 export default Em.ArrayController.extend({
 
   queryParams: ['filters'],
-  filters: null,
+  filters: [],
 
   search: function(query) {
     console.time('search');

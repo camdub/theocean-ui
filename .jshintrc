@@ -35,7 +35,8 @@
     "click",
     "find",
     "localStorage",
-    "lunr"
+    "lunr",
+    "DS"
   ],
   "node" : false,
   "browser" : false,

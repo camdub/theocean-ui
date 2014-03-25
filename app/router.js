@@ -3,6 +3,7 @@ Router.reopen({ location: 'history' });
 
 Router.map(function() {
   this.route('search');
+  this.route('login');
 });
 
 export default Router;

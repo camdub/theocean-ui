@@ -13,6 +13,7 @@ var App = Ember.Application.extend({
 App.baseURL = "http://theocean-services.azurewebsites.net";
 App.key = "18372d52-822c-4ad7-9648-0b924dc45fcd";
 
+import __ from 'appkit/initializers/auth-initializer';
 import __ from 'appkit/initializers/lunr-initializer';
 
 export default App;
