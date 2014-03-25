@@ -3,7 +3,6 @@ import app from 'appkit/app';
 export default Em.Object.extend({
 
   close: function(session) {
-    debugger
     this.store.deleteRecord(session.get('currentUser'));
     this.store.deleteRecord(this.store.all('session').get('firstObject'));
     return Em.RSVP.resolve();
