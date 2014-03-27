@@ -1,7 +1,7 @@
 import { test, moduleFor } from 'ember-qunit';
-import User from 'appkit/models/user';
+import Person from 'appkit/models/person';
 
-moduleFor('model:user', 'Unit - User', {}, function(container, context) {
+moduleFor('model:user', 'Unit - Person', {}, function(container, context) {
     container.register('store:main', DS.Store);
     var OceanTestAdapter = DS.FixtureAdapter.extend({
         queryFixtures: function(fixtures, query, type) {
@@ -19,7 +19,7 @@ moduleFor('model:user', 'Unit - User', {}, function(container, context) {
     context.__setup_properties__.store = function() {
         return container.lookup('store:main');
     };
-    User.FIXTURES = [
+    Person.FIXTURES = [
         {
             id: 'cameron-woodmansee',
             firstName: 'Cameron',
@@ -31,22 +31,22 @@ moduleFor('model:user', 'Unit - User', {}, function(container, context) {
     ];
 });
 
-test("User is a valid ember-data Model", function () {
+test("Person is a valid ember-data Model", function () {
     expect(3);
     var store = this.store();
     Ember.run(function() {
         var user = store.createRecord('user',{firstName: 'Anthony', lastName: 'Yu'});
         ok(user);
         ok(user instanceof DS.Model);
-        ok(user instanceof User);
+        ok(user instanceof Person);
     });
 });
 
-test('Summary User is reloaded to a full user', function() {
+test('Summary Person is reloaded to a full user', function() {
     expect(2);
 
     stop();
-    var u = this.store().find(User, {id: 'cameron-woodmansee'}).then(function(results) {
+    var u = this.store().find(Person, {id: 'cameron-woodmansee'}).then(function(results) {
         start();
         var result = results.get('firstObject');
         equal(result.get('firstName'), 'Cameron');

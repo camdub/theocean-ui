@@ -1,10 +1,13 @@
 {{auto-suggest source=controller destination=filters}}
 
-{{#if people}}
-<ul>
-{{#each people}}
-  <li>{{firstName}} {{lastName}}</li>
-{{/each}}
-</ul>
-{{else}}
+{{#if filters}}
+    <div class="people">
+        <ul>
+            {{#each people}}
+                <li>{{firstName}} {{lastName}}</li>
+            {{else}}
+                <li>No Results</li>
+            {{/each}}
+        </ul>
+    </div>
 {{/if}}

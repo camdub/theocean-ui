@@ -9,6 +9,7 @@ export default DS.Model.extend({
     phone: attr('string'),
     hireDate: attr('date'),
     email: attr('string'),
+    pictureUrl: attr('string'),
 
     fullName: function() {
         return this.get('firstName') + ' ' + this.get('lastName');
