@@ -31,6 +31,17 @@ moduleFor('model:user', 'Unit - User', {}, function(container, context) {
     ];
 });
 
+test("User is a valid ember-data Model", function () {
+    expect(3);
+    var store = this.store();
+    Ember.run(function() {
+        var user = store.createRecord('user',{firstName: 'Anthony', lastName: 'Yu'});
+        ok(user);
+        ok(user instanceof DS.Model);
+        ok(user instanceof User);
+    });
+});
+
 test('Summary User is reloaded to a full user', function() {
     expect(2);
 
