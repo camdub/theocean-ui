@@ -1,3 +1,5 @@
+var env = window.ENV;
+
 export default Em.Application.initializer({
   name: 'search',
   initialize: function(container, app) {
@@ -10,7 +12,7 @@ export default Em.Application.initializer({
 
     if(!localStorage.getItem('searchterms')) {
       app.deferReadiness();
-      Ember.$.getJSON(app.baseURL + '/searchterms?accesskey=' + app.key).then(function(data) {
+      Ember.$.getJSON(env.serviceUrl + '/searchterms?accesskey=' + app.key).then(function(data) {
 
         data.forEach(function(item) {
           idx.add(item); // create search index

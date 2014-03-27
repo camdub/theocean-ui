@@ -8,7 +8,6 @@
 // window.ENV = {FEATURES: {'with-controller': true}};
 
 window.ENV = {
-    FEATURES: {'query-params-new' : true},
     authUrl: 'https://pariveda-access.azurewebsites.net/key?app=TheOcean',
     serviceUrl: 'http://theocean-services.azurewebsites.net'
 };
