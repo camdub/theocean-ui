@@ -7,10 +7,14 @@
       </span>
     </li>
   {{/each}}
-  <li>{{view view.autosuggest valueBinding='query' class='autosuggest'}}</li>
+  <li class="searchbox">
+    {{view view.autosuggest valueBinding='query' class='autosuggest'}}
+{{!--     <span class="input-group-btn"><button class="btn"><span class="fui-search"></span></button></span>
+  </li> --}}
 </ul>
 
 <div {{bind-attr class=':results hasQuery::hdn'}}>
+  <div class="overlay" {{action 'hideResults'}}></div>
   <ul class='suggestions'>
     {{#each displayResults}}
       <li {{action addSelection this}} {{bind-attr class=":result active"}}>

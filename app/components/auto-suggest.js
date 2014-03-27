@@ -115,7 +115,7 @@ export default Em.Component.extend({
       return;
     }
 
-    hoverEl = this.$('li.result > a.hover');
+    hoverEl = this.$('li.result.hover');
 
     if(hoverEl.length){
       var text = Ember.$('.term', hoverEl).text(),
@@ -124,7 +124,7 @@ export default Em.Component.extend({
       });
 
       selectionIndex = displayResults.indexOf(selected);
-      this.$('ul.suggestions li a').removeClass('hover');
+      this.$('ul.suggestions li').removeClass('hover');
       this.$('input.autosuggest').focus();
     }
 
@@ -181,11 +181,11 @@ export default Em.Component.extend({
       return;
     }
 
-    this.$('ul.suggestions li a').removeClass('hover');
+    this.$('ul.suggestions li').removeClass('hover');
 
-    // only want hover on this object's a
-    if(el.prop('tagName').toLowerCase() === 'span') {
-      el = el.parent('a');
+    var prop = el.prop('tagName').toLowerCase();
+    if(prop === 'span' || prop === 'a') {
+      el = el.parents('li.result');
     }
     el.addClass('hover');
   },
@@ -205,7 +205,7 @@ export default Em.Component.extend({
 
   mouseOut: function(evt){
     var target = $(evt.target);
-    this.$('ul.suggestions li a').removeClass('hover');
+    this.$('ul.suggestions li').removeClass('hover');
   },
 
   autosuggest: Ember.TextField.extend({

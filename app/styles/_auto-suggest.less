@@ -1,0 +1,142 @@
+@ui-font-size: @font-size-base * 0.8;
+
+ul.suggestions {
+    &:extend(.dropdown-menu);
+    &:extend(.dropdown-inverse);
+    list-style-type: none;
+    position: relative;
+    visibility: visible;
+    opacity: 1;
+    color: @inverse;
+    float: none;
+    font-size: @ui-font-size;
+
+    li.result {
+        margin: 0 5px;
+        border-radius: 4px;
+        padding: 3px 0;
+        cursor: pointer;
+    }
+
+    li > a {
+        &:extend(.dropdown-menu li > a);
+        color: @inverse;
+    }
+}
+
+.hdn { display: none; }
+
+ul.selections {
+    list-style-type: none;
+    margin: 0;
+    overflow: hidden;
+    border: 2px solid @gray;
+    border-radius: 6px;
+    padding: 3px 1px 1px 4px;
+    background-color: @inverse;
+    cursor: text;
+    width: 100%;
+    display: inline-block;
+
+    .input-group-btn .btn {
+        border: 0;
+        color: @gray;
+    }
+
+    input {
+        border: none;
+        margin: 0;
+        outline: 0;
+        height: 25px;
+        padding: 4px 5px;
+        margin: 0 5px 5px 0;
+        font-size: @ui-font-size;
+        display: inline;
+    }
+
+    .selection {
+        display: inline;
+    }
+
+    .searchbox {
+        display: inline;
+    }
+}
+
+.focused {
+    border-color: @peter-river !important;
+}
+
+.no-results {
+    color: @inverse;
+    padding: 5px;
+
+    &:hover {
+        background-color: @brand-primary;
+    }
+}
+
+.tag {
+    background: @peter-river;
+    padding-left: 12px;
+    padding-right: 20px;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    margin-right: 5px;
+    overflow: hidden;
+    padding: 4px 13px 4px 19px;
+    position: relative;
+    vertical-align: middle;
+    display: inline-block;
+    zoom: 1;
+    -webkit-transition: 0.14s linear;
+    -moz-transition: 0.14s linear;
+    -o-transition: 0.14s linear;
+    transition: 0.14s linear;
+    -webkit-backface-visibility: hidden;
+    padding-left: 12px;
+    padding-right: 20px;
+    font-size: @ui-font-size;
+
+    span {
+        padding-right: 4px;
+    }
+
+    &:hover {
+        background-color: darken(@peter-river, 5%);
+    }
+}
+
+.tagsinput-remove-link {
+    padding-top: 6px;
+    opacity: 1;
+
+    &:before {
+        color: #fff;
+        content: "\e00b";
+        font-family: "Flat-UI-Icons";
+    }
+}
+
+.termdata {
+    float: right;
+    padding-right: 15px;
+
+    .termtype {
+        padding-left: 4px;
+    }
+}
+
+.hover, .active {
+    background: @peter-river;
+    color: @inverse;
+}
+
+.overlay {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
