@@ -3,8 +3,11 @@
   <div class="navbar navbar-default" role="navigation">
       <div class="container-fluid">
           <div class="navbar-header"><a href="#" class="navbar-brand">The Ocean</a></div>
+          <ul class="nav navbar-nav">
+            <li>{{#link-to 'search'}}Search{{/link-to}}</li>
+          </ul>
           <ul class="nav navbar-nav navbar-right">
-              <li><a href="#">{{session.currentUser.fullName}}</a></li>
+              <li>{{#link-to 'person' session.currentUser}}{{session.currentUser.fullName}}{{/link-to}}</a></li>
               <li><a href="#" {{action 'logout'}}>Logout</a></li>
           </ul>
       </div> <!-- /container-fluid -->

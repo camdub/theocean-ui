@@ -24,12 +24,12 @@ export default Em.Route.extend({
   beforeModel: function(transition) {
     var session = this.get('session');
     if(!session.get('isAuthenticated')) {
-
+      session.set('afterRedirect', transition);
       if(Em.isEmpty(session.checkToken())) {
-        session.set('afterRedirect', transition);
         this.transitionTo('login');
       }
       else {
+        transition.abort();
         transition.send('login');
       }
     }

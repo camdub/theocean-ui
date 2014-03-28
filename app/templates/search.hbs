@@ -1,13 +1,26 @@
 {{auto-suggest source=controller destination=filters}}
 
 {{#if filters}}
-    <div class="people">
+
+    {{#tab-view}}
+      {{#tab-pane name="People"}}
         <ul>
             {{#each people}}
-                <li>{{firstName}} {{lastName}}</li>
+                <li>{{#link-to 'person' this}}{{firstName}} {{lastName}}{{/link-to}}</li>
             {{else}}
                 <li>No Results</li>
             {{/each}}
         </ul>
-    </div>
+      {{/tab-pane}}
+
+      {{#tab-pane name="Clients"}}
+        <ul>
+            {{#each clients}}
+                <li>{{name}}</li>
+            {{else}}
+                <li>No Results</li>
+            {{/each}}
+        </ul>
+      {{/tab-pane}}
+    {{/tab-view}}
 {{/if}}

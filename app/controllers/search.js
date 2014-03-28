@@ -1,10 +1,12 @@
 import Person from 'appkit/models/person';
+import Client from 'appkit/models/client';
 
 export default Em.ArrayController.extend({
 
   //queryParams: ['filters'],
   filters: [],
   people: [],
+  clients: [],
 
   // if the filter is a person or client obj, we want to go directly
   // to that profile
@@ -13,9 +15,10 @@ export default Em.ArrayController.extend({
     if(newest &&
         (newest.type !== 'Person' || newest.type !== 'Client')) {
       var params = this.get('filters').mapBy('id').join();
-      console.log(params);
-      var results = this.store.find(Person, {filter: params});
-      this.set('people', results);
+      var r = this.store.find('person', {filter: params});
+      var p = this.store.find('client', {filter: params});
+      this.set('people', r);
+      this.set('clients', p);
     }
   }.observes('filters.@each'),
 

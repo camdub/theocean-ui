@@ -1,0 +1,9 @@
+<ul class="nav nav-pills">
+    {{#each pane in panes}}
+        {{#tab-tab paneId=pane.paneId}}<a>{{pane.name}}</a>{{/tab-tab}}
+    {{/each}}
+</ul>
+
+<div class="tab-content">
+    {{yield}}
+</div>

@@ -4,6 +4,7 @@ Router.reopen({ location: 'history' });
 Router.map(function() {
   this.route('search');
   this.route('login');
+  this.route('person', {path: '/people/:person_id'});
 });
 
 export default Router;

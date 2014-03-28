@@ -3,7 +3,7 @@ module.exports = function(server) {
     // see README in this directory for an example
 
     server.namespace('/api', function() {
-      server.get('/people/:id', function(req, res) {
+      server.get('/people/:person_id', function(req, res) {
         res.send({
           'person' : {
             'id': "cameron-woodmansee",
@@ -31,12 +31,12 @@ module.exports = function(server) {
         res.send({
           'people' : [
             {
-              id: "aaron-boswell",
-              url: "/people/aaron-boswell",
-              firstName: "Aaron",
-              lastName: "Boswell",
-              pictureUrl: "/people/aaron-boswell/image",
-              level: "V11",
+              id: "cameron-woodmansee",
+              url: "/people/cameron-woodmansee",
+              firstName: "Cameron",
+              lastName: "Woodmansee",
+              pictureUrl: "",
+              level: "C2",
               location: "Dallas"
             },
             {
@@ -49,6 +49,31 @@ module.exports = function(server) {
               location: "Dallas"
             }
           ]
+        });
+      });
+
+      server.get('/clients', function(req, res) {
+        res.send({
+          'clients' : [{
+            id: "2020-companies",
+            url: "/clients/2020-companies",
+            name: "20/20 Companies"
+          },
+          {
+            id: "3degrees",
+            url: "/clients/3degrees",
+            name: "3Degrees"
+          },
+          {
+            id: "3won",
+            url: "/clients/3won",
+            name: "3WON"
+          },
+          {
+            id: "7-eleven-inc",
+            url: "/clients/7-eleven-inc",
+            name: "7-Eleven, Inc."
+          }]
         });
       });
 
