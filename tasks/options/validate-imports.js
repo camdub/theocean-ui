@@ -5,6 +5,7 @@ module.exports = {
     whitelist: {
       'ember/resolver': ['default'],
       'ember-qunit': ['moduleForComponent', 'moduleFor', 'moduleForModel', 'test', 'default'],
+      'moment':['moment']
     }
   },
 

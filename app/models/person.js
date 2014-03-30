@@ -7,9 +7,10 @@ export default DS.Model.extend({
     location: attr('string'),
     active: attr('boolean'),
     phone: attr('string'),
-    hireDate: attr('date'),
+    hireDate: attr('isodate'),
     email: attr('string'),
     pictureUrl: attr('string'),
+    experiences: DS.hasMany('experience'),
 
     fullName: function() {
         return this.get('firstName') + ' ' + this.get('lastName');
