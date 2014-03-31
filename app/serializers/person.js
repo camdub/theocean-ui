@@ -1,4 +1,16 @@
 export default DS.RESTSerializer.extend({
+    extractMeta: function(store, type, payload) {
+      if(payload && payload.total) {
+        store.metaForType(type, {
+          total: payload.total,
+          offset: payload.offset,
+          limit: payload.limit
+        });
+        delete payload.total;
+        delete payload.offset;
+        delete payload.limit;
+      }
+    },
     // sideload experiences
     // TODO: sideload metor, clients, projects
     normalizePayload: function(type, payload) {

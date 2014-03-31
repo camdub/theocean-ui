@@ -15,8 +15,9 @@ export default Em.ArrayController.extend({
     if(newest &&
         (newest.type !== 'Person' || newest.type !== 'Client')) {
       var params = this.get('filters').mapBy('id').join();
-      var r = this.store.find('person', {filter: params});
-      var p = this.store.find('client', {filter: params});
+      var opts = {filter: params, limit: 10};
+      var r = this.store.find('person', opts);
+      var p = this.store.find('client', opts);
       this.set('people', r);
       this.set('clients', p);
     }
