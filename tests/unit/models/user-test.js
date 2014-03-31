@@ -1,7 +1,7 @@
 import { test, moduleFor } from 'ember-qunit';
 import Person from 'appkit/models/person';
 
-moduleFor('model:user', 'Unit - Person', {}, function(container, context) {
+moduleFor('model:person', 'Unit - Person', {}, function(container, context) {
     container.register('store:main', DS.Store);
     var OceanTestAdapter = DS.FixtureAdapter.extend({
         queryFixtures: function(fixtures, query, type) {
@@ -31,17 +31,6 @@ moduleFor('model:user', 'Unit - Person', {}, function(container, context) {
     ];
 });
 
-test("Person is a valid ember-data Model", function () {
-    expect(3);
-    var store = this.store();
-    Ember.run(function() {
-        var user = store.createRecord('user',{firstName: 'Anthony', lastName: 'Yu'});
-        ok(user);
-        ok(user instanceof DS.Model);
-        ok(user instanceof Person);
-    });
-});
-
 test('Summary Person is reloaded to a full user', function() {
     expect(2);
 
@@ -57,6 +46,3 @@ test('Summary Person is reloaded to a full user', function() {
         });
     });
 });
-
-
-
