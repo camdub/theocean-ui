@@ -73,7 +73,7 @@ export default Em.Component.extend({
     addSelection: function(selection){
       set(this, 'query', '');
       if(!this.get('destination').contains(selection)) {
-        get(this, 'destination').pushObject(selection);
+        get(this, 'source').addFilter(selection);
       }
       set(this, 'selectionIndex', -1);
     },

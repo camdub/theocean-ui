@@ -8,12 +8,9 @@ export default Em.ArrayController.extend({
   people: [],
   clients: [],
 
-  // if the filter is a person or client obj, we want to go directly
-  // to that profile
   filtersChanged: function() {
     var newest = this.get('filters').get('lastObject');
-    if(newest &&
-        (newest.type !== 'Person' || newest.type !== 'Client')) {
+    if(newest) {
       var params = this.get('filters').mapBy('id').join();
       var opts = {filter: params, limit: 10};
       var r = this.store.find('person', opts);
@@ -22,6 +19,18 @@ export default Em.ArrayController.extend({
       this.set('clients', p);
     }
   }.observes('filters.@each'),
+
+  // if the filter is a person or client obj, we want to go directly
+  // to that profile
+  addFilter: function(item) {
+    var type = item.type.toLowerCase();
+    if(type === 'person' || type === 'client') {
+      this.transitionToRoute(type, item.id);
+    }
+    else {
+      this.get('filters').pushObject(item);
+    }
+  },
 
   search: function(query) {
     console.time('search');

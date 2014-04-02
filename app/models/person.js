@@ -1,4 +1,5 @@
-var attr = DS.attr;
+var attr = DS.attr,
+    env = window.ENV;
 
 export default DS.Model.extend({
     firstName: attr('string'),
@@ -21,6 +22,6 @@ export default DS.Model.extend({
             // URL for a general user pic from avatar service
             return "http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?f=y&d=mm&s=150";
         }
-        return this.get('pictureUrl');
+        return env.serviceUrl + this.get('pictureUrl');
     }.property('pictureUrl')
 });
