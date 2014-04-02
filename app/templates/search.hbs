@@ -1,19 +1,24 @@
 {{auto-suggest source=controller destination=filters}}
 
 {{#if filters}}
-
     {{#tab-view}}
-      {{#tab-pane name="People"}}
-        <ul>
+      {{#tab-pane name="People" count='10'}}
+        <ul class="result-list">
             {{#each people}}
-                <li>{{#link-to 'person' this}}{{firstName}} {{lastName}}{{/link-to}}</li>
+                <li class="search-result" {{action 'view' this 'person'}}>
+                  {{profile-img size='sm' image=profileImage}}
+                  {{#link-to 'person' this}}{{firstName}} {{lastName}}{{/link-to}}
+                  <p class="small">
+                    {{location}} &#151; {{level}} <!-- ascii dash -->
+                  </p>
+                </li>
             {{else}}
                 <li>No Results</li>
             {{/each}}
         </ul>
       {{/tab-pane}}
 
-      {{#tab-pane name="Clients"}}
+      {{#tab-pane name="Clients" count='5'}}
         <ul>
             {{#each clients}}
                 <li>{{name}}</li>

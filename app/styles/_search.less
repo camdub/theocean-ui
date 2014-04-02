@@ -1,0 +1,36 @@
+@import '_auto-suggest.less';
+
+.search-result {
+  padding: 5px;
+  padding-left: 8px;
+
+  p.small {
+    margin-bottom: 0px;
+  }
+
+  &:last-of-type {
+    border: none;
+  }
+
+  &:hover {
+    background-color: @table-bg-active;
+    cursor: pointer;
+  }
+
+  border-bottom: 2px solid @clouds;
+  .profile-img {
+    float: left;
+    margin-right: 10px;
+    margin-top: 5px;
+  }
+}
+
+.search-count-badge {
+  margin-left: 5px;
+  font-size: 12px;
+}
+
+.result-list {
+  list-style: none;
+  padding-left: 0;
+}

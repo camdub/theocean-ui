@@ -1,6 +1,6 @@
 @import '../../vendor/bootstrap/less/bootstrap.less';
 @import 'flat-ui/flat-ui.less';
-@import '_auto-suggest.less';
+@import '_search.less';
 @import '_fonts.less';
 
 body {
@@ -43,4 +43,28 @@ body {
     margin-bottom: 0;
     font-size: 14px;
   }
+}
+
+.nav-tab {
+  width: 50%;
+  text-align: center;
+}
+
+.circle-crop(@size) {
+  overflow: hidden;
+  border-radius: 50%;
+  height: @size;
+  width: @size;
+
+  > img {
+    width: @size;
+  }
+}
+
+.profile-img.sm {
+  .circle-crop(50px);
+}
+
+.profile-img.lg {
+  .circle-crop(150px);
 }

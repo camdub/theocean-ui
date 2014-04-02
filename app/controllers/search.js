@@ -2,11 +2,17 @@ import Person from 'appkit/models/person';
 import Client from 'appkit/models/client';
 
 export default Em.ArrayController.extend({
-
+  // TODO: create lazy loading profile image component
   //queryParams: ['filters'],
   filters: [],
   people: [],
   clients: [],
+
+  actions: {
+    view: function(item, type) {
+      this.transitionToRoute(type, item);
+    }
+  },
 
   filtersChanged: function() {
     var newest = this.get('filters').get('lastObject');
