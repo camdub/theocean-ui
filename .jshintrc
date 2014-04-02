@@ -36,7 +36,10 @@
     "find",
     "localStorage",
     "lunr",
-    "DS"
+    "DS",
+    "moment",
+    "ic",
+    "Image"
   ],
   "node" : false,
   "browser" : false,

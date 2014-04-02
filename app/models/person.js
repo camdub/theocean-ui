@@ -18,9 +18,8 @@ export default DS.Model.extend({
     }.property('firstName', 'lastName'),
 
     profileImage: function() {
-        if(Em.isEmpty(this.get('pictureUrl'))) {
-            // URL for a general user pic from avatar service
-            return "http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?f=y&d=mm&s=150";
+        if(this.get('hasProfileImage')) {
+            return '';
         }
         return env.serviceUrl + this.get('pictureUrl');
     }.property('pictureUrl')

@@ -12,11 +12,11 @@ export default DS.RESTSerializer.extend({
       }
     },
     // sideload experiences
-    // TODO: sideload metor, clients, projects
+    // TODO: sideload mentor, clients, projects
     normalizePayload: function(type, payload) {
         var typeKey = type.typeKey;
         // single item in payload
-        if (typeof payload[typeKey] != "undefined"){
+        if (typeof payload[typeKey] !== 'undefined'){
             type.eachRelationship(function(key, relationship) {
                 var related = payload[typeKey][key],
                     type = relationship.type;
@@ -28,7 +28,7 @@ export default DS.RESTSerializer.extend({
                             sideloadArr = payload[sideloadKey] || [],
                             id = item['id'];
 
-                        if(sideloadArr.findBy('id', id) != undefined)
+                        if(sideloadArr.findBy('id', id) !== undefined)
                             return payload;
 
                         item['user'] = payload[typeKey]['id'];
