@@ -18,7 +18,7 @@ export default DS.Model.extend({
     }.property('firstName', 'lastName'),
 
     profileImage: function() {
-        if(this.get('hasProfileImage')) {
+        if(Em.isEmpty(this.get('pictureUrl'))) {
             return '';
         }
         return env.serviceUrl + this.get('pictureUrl');

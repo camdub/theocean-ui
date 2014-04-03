@@ -34,3 +34,26 @@
   list-style: none;
   padding-left: 0;
 }
+
+.pagination {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%;
+
+  ul {
+    display: inline-block;
+  }
+}
+
+.pagination a { cursor: pointer; }
+
+// for some reason there is an extra border here
+.pagination ul li.previous > a { border-right: none; }
+
+.disabled {
+  a:hover {
+    background-color: @pagination-color !important;
+    cursor: not-allowed;
+  }
+}

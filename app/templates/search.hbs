@@ -4,7 +4,7 @@
     {{#tab-view}}
       {{#tab-pane name="People" count='10'}}
         <ul class="result-list">
-            {{#each people}}
+            {{#each people.paginatedContent}}
                 <li class="search-result" {{action 'view' this 'person'}}>
                   {{profile-img size='sm' image=profileImage}}
                   {{#link-to 'person' this}}{{firstName}} {{lastName}}{{/link-to}}
@@ -16,6 +16,7 @@
                 <li>No Results</li>
             {{/each}}
         </ul>
+        {{pagination-links page=peopleCtrl.page pages=peopleCtrl.pages}}
       {{/tab-pane}}
 
       {{#tab-pane name="Clients" count='5'}}

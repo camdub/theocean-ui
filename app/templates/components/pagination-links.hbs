@@ -1,0 +1,15 @@
+{{#if showPagination}}
+  <div class="pagination">
+      <ul>
+        <li {{bind-attr class=":previous hasPrevious::disabled"}}>
+          <a {{action goToPreviousPage}} class="fui-arrow-left"></a>
+        </li>
+        {{#each pageNumber in visiblePages}}
+          {{pagination-page page=pageNumber currentPage=page}}
+        {{/each}}
+        <li {{bind-attr class=":next hasNext::disabled"}}>
+          <a {{action goToNextPage}} class="fui-arrow-right"></a>
+        </li>
+      </ul>
+  </div>
+{{/if}}

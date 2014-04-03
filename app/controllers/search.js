@@ -3,10 +3,11 @@ import Client from 'appkit/models/client';
 
 export default Em.ArrayController.extend({
   // TODO: create lazy loading profile image component
-  //queryParams: ['filters'],
+  needs: ['people','clients'],
+  peopleCtrl: Em.computed.alias('controllers.people'),
+  people: Em.computed.alias('controllers.people'),
+  clientsCtrl: Em.computed.alias('controllers.clients.content'),
   filters: [],
-  people: [],
-  clients: [],
 
   actions: {
     view: function(item, type) {
@@ -21,7 +22,7 @@ export default Em.ArrayController.extend({
       var opts = {filter: params, limit: 10};
       var r = this.store.find('person', opts);
       var p = this.store.find('client', opts);
-      this.set('people', r);
+      this.set('people.content', r);
       this.set('clients', p);
     }
   }.observes('filters.@each'),
