@@ -2,9 +2,11 @@ export default Em.Route.extend({
   actions: {
     login: function() {
       var session = this.get('session'),
-      route = this;
+          index = this.get('search-index'),
+          route = this;
 
       session.open().then(function() {
+        index.setup();
         var lastTransition = session.get('afterRedirect');
         if(lastTransition && !route.router.isActive('login')) {
           lastTransition.retry();

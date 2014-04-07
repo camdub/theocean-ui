@@ -39,7 +39,8 @@
     "DS",
     "moment",
     "ic",
-    "Image"
+    "Image",
+    "Spinner"
   ],
   "node" : false,
   "browser" : false,

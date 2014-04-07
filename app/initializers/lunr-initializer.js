@@ -1,3 +1,4 @@
+import SearchIndex from 'appkit/models/search-index';
 var env = window.ENV;
 
 export default Em.Application.initializer({
@@ -10,29 +11,13 @@ export default Em.Application.initializer({
       this.ref('id');
     });
 
-    if(!localStorage.getItem('searchterms')) {
-      app.deferReadiness();
-      Ember.$.getJSON(env.serviceUrl + '/searchterms?accesskey=' + app.key).then(function(data) {
+    container.register('search:terms', map, {instantiate: false});
+    container.register('search:lunrindex', idx, {instantiate: false});
+    container.register('search:searchindex', SearchIndex);
 
-        data.forEach(function(item) {
-          idx.add(item); // create search index
-          map.set(item.id, item); // populate map
-        });
-
-        app.advanceReadiness(); // GO TIME!
-        localStorage.setItem('searchterms', JSON.stringify(data)); // cache
-      });
-    } else {
-      var data = JSON.parse(localStorage.getItem('searchterms'));
-      data.forEach(function(item) {
-        idx.add(item);
-        map.set(item.id, item);
-      });
-    }
-
-    container.register('data:searchterms', map, { instantiate: false, singleton: true });
-    container.injection('controller:search', 'searchterms', 'data:searchterms');
-    container.register('data:searchindex', idx, { instantiate: false, singleton: true });
-    container.injection('controller:search', 'searchidx', 'data:searchindex');
+    app.inject('search:searchindex', 'index', 'search:lunrindex');
+    app.inject('search:searchindex', 'terms', 'search:terms');
+    app.inject('route', 'search-index', 'search:searchindex');
+    app.inject('controller:search', 'search-index', 'search:searchindex');
   }
 });

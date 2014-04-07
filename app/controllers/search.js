@@ -35,7 +35,7 @@ export default Em.ArrayController.extend({
 
   search: function(query) {
     console.time('search');
-    var initial = this.get('searchidx').search(query.toLowerCase());
+    var initial = this.get('search-index.index').search(query.toLowerCase());
     console.timeEnd('search');
     initial = initial.mapProperty('ref');
 
@@ -50,7 +50,7 @@ export default Em.ArrayController.extend({
     // get matching item from pre-populated map
     var results = [];
     top.forEach(function(result) {
-      var obj = this.get('searchterms').get(result);
+      var obj = this.get('search-index.terms').get(result);
       results.pushObject(obj);
     }, this);
     return results;
