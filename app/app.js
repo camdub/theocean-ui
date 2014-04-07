@@ -6,7 +6,6 @@ var App = Ember.Application.extend({
   LOG_TRANSITIONS: true,
   LOG_TRANSITIONS_INTERNAL: true,
   LOG_VIEW_LOOKUPS: true,
-  TOKEN_EXPIRATION: 1000 * 604800 * 4, // 1 month
   modulePrefix: 'appkit',
   Resolver: Resolver['default']
 });

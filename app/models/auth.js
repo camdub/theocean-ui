@@ -1,4 +1,4 @@
-import app from 'appkit/app';
+var env = window.ENV;
 
 export default Em.Object.extend({
 
@@ -48,7 +48,7 @@ export default Em.Object.extend({
       if(Em.isEmpty(value)) {
         localStorage.removeItem(key);
       } else {
-        var expiration = new Date().getTime() + App.TOKEN_EXPIRATION;
+        var expiration = new Date().getTime() + env.TOKEN_EXPIRATION;
         record = { authToken: value, timeStamp: expiration };
         localStorage.setItem(key, JSON.stringify(record));
       }
