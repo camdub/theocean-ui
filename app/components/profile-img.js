@@ -4,9 +4,11 @@ export default Em.Component.extend({
     var image = this.get('image');
     if(image !== '') {
       var img = new Image();
-      var _this = this;
+      var selector = this.$('.profile-img img');
       img.onload = function() {
-        _this.$('.profile-img img').replaceWith(img);
+        // make sure this component is still in DOM
+        if(selector)
+          selector.replaceWith(img);
       };
       img.src = image;
     }

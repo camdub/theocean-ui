@@ -32,7 +32,7 @@ export default Em.Mixin.create({
   },
 
   limit: function() {
-    return this.get('perPage') * 2;
+    return this.get('perPage') * 0;
   }.property('perPage'),
 
   total: function() {
