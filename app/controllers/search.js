@@ -2,11 +2,10 @@ import Person from 'appkit/models/person';
 import Client from 'appkit/models/client';
 
 export default Em.ArrayController.extend({
-  // TODO: create lazy loading profile image component
+
   needs: ['people','clients'],
-  peopleCtrl: Em.computed.alias('controllers.people'),
   people: Em.computed.alias('controllers.people'),
-  clientsCtrl: Em.computed.alias('controllers.clients.content'),
+  clients: Em.computed.alias('controllers.clients'),
   filters: [],
 
   actions: {
@@ -16,16 +15,11 @@ export default Em.ArrayController.extend({
   },
 
   filtersChanged: function() {
-    var newest = this.get('filters').get('lastObject');
-    if(newest) {
+    if(this.get('filters').get('length') > 0) {
       var params = this.get('filters').mapBy('id').join();
-      var opts = {filter: params, limit: 10};
-      var r = this.store.find('person', opts);
-      var p = this.store.find('client', opts);
-      this.set('people.content', r);
-      this.set('clients', p);
+      this.get('people').search({filter: params});
     }
-  }.observes('filters.@each'),
+  }.observes('filters.[]'),
 
   // if the filter is a person or client obj, we want to go directly
   // to that profile

@@ -1,9 +1,10 @@
 {{auto-suggest source=controller destination=filters}}
 
 {{#if filters}}
-    {{#tab-view}}
-      {{#tab-pane name="People" count='10'}}
-        <ul class="result-list">
+    {{#tab-view count=people.total}}
+      {{#tab-pane name="People"}}
+        {{#if people.results}}
+          <ul class="result-list">
             {{#each people.paginatedContent}}
                 <li class="search-result" {{action 'view' this 'person'}}>
                   {{profile-img size='sm' image=profileImage}}
@@ -15,8 +16,13 @@
             {{else}}
                 <li>No Results</li>
             {{/each}}
-        </ul>
-        {{pagination-links page=peopleCtrl.page pages=peopleCtrl.pages}}
+          </ul>
+        {{else}}
+          <div class="result-list">
+            {{loading-spinner}}
+          </div>
+        {{/if}}
+        {{pagination-links page=people.page pages=people.pages}}
       {{/tab-pane}}
 
       {{#tab-pane name="Clients" count='5'}}

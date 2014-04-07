@@ -1,5 +1,9 @@
 @import '_auto-suggest.less';
 
+.tab-content {
+  min-height: 480px;
+}
+
 .search-result {
   padding: 5px;
   padding-left: 8px;
@@ -33,6 +37,7 @@
 .result-list {
   list-style: none;
   padding-left: 0;
+  min-height: 363px;
 }
 
 .pagination {
@@ -43,17 +48,25 @@
 
   ul {
     display: inline-block;
+    background-color: @brand-secondary;
   }
 }
 
 .pagination a { cursor: pointer; }
+.pagination .page-desc {
+  padding: 0 10px;
+}
 
-// for some reason there is an extra border here
-.pagination ul li.previous > a { border-right: none; }
+.pagination .next a, .pagination .previous a {
+  background-color: @peter-river;
+  &:hover {
+    background-color: @btn-primary-hover-bg;
+  }
+}
 
 .disabled {
   a:hover {
-    background-color: @pagination-color !important;
+    background-color: @peter-river !important;
     cursor: not-allowed;
   }
 }

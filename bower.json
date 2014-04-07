@@ -12,7 +12,8 @@
     "ember-testing-httpRespond": "~0.1.1",
     "loader.js": "git://github.com/stefanpenner/loader.js",
     "bootstrap": "~3.1.1",
-    "momentjs": "~2.5.1"
+    "momentjs": "~2.5.1",
+    "spin.js": "~2.0.0"
   },
   "resolutions": {
     "ember": "~1.5.0"

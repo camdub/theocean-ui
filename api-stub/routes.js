@@ -74,7 +74,7 @@ module.exports = function(server) {
 
 
       server.get('/people', function(req, res) {
-//        console.log(req);
+       console.log(req.query);
         res.send({
           'people' : [
 //            {"id":"aaron-boswell","url":"/people/aaron-boswell","firstName":"Aaron","lastName":"Boswell","pictureUrl":"","level":"V11","location":"Dallas"},{"id":"abbas-lotia","url":"/people/abbas-lotia","firstName":"Abbas","lastName":"Lotia","pictureUrl":"/people/abbas-lotia/image","level":"M1","location":"Dallas"},{"id":"abhay-shah","url":"/people/abhay-shah","firstName":"Abhay","lastName":"Shah","pictureUrl":"/people/abhay-shah/image","level":"M2","location":"Dallas"},{"id":"adrian-thomas","url":"/people/adrian-thomas","firstName":"Adrian","lastName":"Thomas","pictureUrl":"/people/adrian-thomas/image","level":"M1","location":"Dallas"},{"id":"alan-volk","url":"/people/alan-volk","firstName":"Alan","lastName":"Volk","pictureUrl":"/people/alan-volk/image","level":"M2","location":"Dallas"}
