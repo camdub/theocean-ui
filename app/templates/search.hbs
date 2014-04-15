@@ -1,9 +1,9 @@
 {{auto-suggest source=controller destination=filters}}
-
+<!-- TODO: break into smaller pieces using 'render' and 'partial' -->
 {{#if filters}}
     {{#tab-view}}
       {{#tab-pane name="People" count=people.total}}
-        {{#if people.results}}
+        {{#if people.hasResults}}
           <ul class="result-list">
             {{#each people.paginatedContent}}
                 <li class="search-result" {{action 'view' this 'person'}}>

@@ -1,3 +1,4 @@
+// TODO: break this into two mixins, one for search and one for pages
 export default Em.Mixin.create({
   pages: function() {
     if(this.get('length') === 0) return 0;
@@ -36,8 +37,15 @@ export default Em.Mixin.create({
   }.property('perPage'),
 
   total: function() {
-    return this.store.metadataFor(this.get('modelType')).total;
+    if(Em.isEmpty(this.get('content')))
+      return 0;
+    else
+      return this.store.metadataFor(this.get('modelType')).total;
   }.property('content.[]'),
+
+  hasResults: function() {
+    return !Em.isEmpty(this.get('results.content')) || this.get('results.isFulfilled');
+  }.property('results', 'results.[]'),
 
   length: Em.computed.alias('content.length'),
 
