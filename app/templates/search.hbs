@@ -1,8 +1,8 @@
 {{auto-suggest source=controller destination=filters}}
 
 {{#if filters}}
-    {{#tab-view count=people.total}}
-      {{#tab-pane name="People"}}
+    {{#tab-view}}
+      {{#tab-pane name="People" count=people.total}}
         {{#if people.results}}
           <ul class="result-list">
             {{#each people.paginatedContent}}
