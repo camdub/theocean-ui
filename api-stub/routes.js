@@ -77,11 +77,62 @@ module.exports = function(server) {
         about: "",
         industries: null,
         skills: null
-      }
+      },
+      'cameron-woodmansee' : { 'person' : {
+          "id": "cameron-woodmansee",
+          "url": "/people/cameron-woodmansee",
+          "firstName": "Cameron",
+          "lastName": "Woodmansee",
+          "pictureUrl": null,
+          "level": "Consultant",
+          "cohort": "C2",
+          "location": "New York",
+          "active": true,
+          "phone": "646.942.3798",
+          "mentor": {
+              "id": "anthony-yu",
+              "url": "/people/anthony-yu",
+              "firstName": "Anthony",
+              "lastName": "Yu"
+          },
+          "hireDate": "2012-05-14T00:00:00",
+          "termDate": null,
+          "email": "Cameron.Woodmansee@parivedasolutions.com",
+          "birthday": "",
+          "school": "",
+          "about": "",
+          "industries": null,
+          "skills": null,
+          "experience": [
+            {
+                "id": 16784,
+                "url": "/people/cameron-woodmansee/experience/16784",
+                "role": null,
+                "start": "2013-07-22T00:00:00",
+                "end": "2014-01-24T00:00:00",
+                "title": null,
+                "skills": [],
+                "summary": null,
+                "type": "ClientProject",
+                "project": {
+                  "id": "nyl016-pcs-vb-interface-replacement",
+                  "url": "/projects/nyl016-pcs-vb-interface-replacement",
+                  "name": "PCS VB Interface Replacement",
+                  "client": {
+                      "id": "new-york-life",
+                      "url": "/clients/new-york-life",
+                      "name": "New York Life",
+                      "logoUrl": null
+                  }
+              }
+            }
+          ]
+      } }
     };
 
     server.namespace('/api', function() {
       server.get('/people/:id', function(req, res) {
+        console.log(req.params['id']);
         res.send(people[req.params['id']]);
       });
 

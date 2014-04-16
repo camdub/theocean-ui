@@ -37,6 +37,20 @@ export default DS.RESTSerializer.extend({
                         related[index] = item.id;
                     }, this);
                 }
+                if(related && key === 'mentor') {
+                  debugger
+                  var sideloadKey = key,
+                      sideloadArr = payload[sideloadKey] || [],
+                      id = related['id'];
+
+                  if(sideloadArr.findBy('id', id) !== undefined)
+                      return payload;
+
+                  related['person'] = payload[typeKey]['id'];
+                  sideloadArr.push(related);
+                  payload['people'] = sideloadArr;
+                  payload[typeKey]['mentor'] = related.id;
+                }
             });
         }
         return payload;

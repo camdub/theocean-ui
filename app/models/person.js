@@ -12,6 +12,7 @@ export default DS.Model.extend({
     email: attr('string'),
     pictureUrl: attr('string'),
     experiences: DS.hasMany('experience'),
+    mentor: DS.belongsTo('person'),
 
     fullName: function() {
         return this.get('firstName') + ' ' + this.get('lastName');
