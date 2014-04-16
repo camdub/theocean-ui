@@ -11,48 +11,36 @@ export default DS.RESTSerializer.extend({
       delete payload.offset;
       delete payload.limit;
     },
-    // sideload experiences
-    // TODO: sideload mentor, clients, projects
-    normalizePayload: function(type, payload) {
-        var typeKey = type.typeKey;
-        // single item in payload
-        if (typeof payload[typeKey] !== 'undefined'){
-            type.eachRelationship(function(key, relationship) {
-                var related = payload[typeKey][key],
-                    type = relationship.type;
+    extractSingle: function(store, type, payload, id, requestType) {
+      var experience = payload.person.experience;
+      var mentor = payload.person.mentor;
 
-                // for now just handle experiences
-                if(related && key === 'experiences') {
-                    related.forEach(function(item, index) {
-                        var sideloadKey = key,
-                            sideloadArr = payload[sideloadKey] || [],
-                            id = item['id'];
+      var projects = [];
+      var clients = [];
+      experience.forEach(function(exp) {
+        projects.push(exp.project);
+        clients.push(exp.project.client);
+        exp.project.client = exp.project.client.id;
+        exp.project = exp.project.id;
+      });
 
-                        if(sideloadArr.findBy('id', id) !== undefined)
-                            return payload;
-
-                        item['user'] = payload[typeKey]['id'];
-                        sideloadArr.push(item);
-                        payload[sideloadKey] = sideloadArr;
-                        related[index] = item.id;
-                    }, this);
-                }
-                if(related && key === 'mentor') {
-                  debugger
-                  var sideloadKey = key,
-                      sideloadArr = payload[sideloadKey] || [],
-                      id = related['id'];
-
-                  if(sideloadArr.findBy('id', id) !== undefined)
-                      return payload;
-
-                  related['person'] = payload[typeKey]['id'];
-                  sideloadArr.push(related);
-                  payload['people'] = sideloadArr;
-                  payload[typeKey]['mentor'] = related.id;
-                }
-            });
+      payload = {
+        person: payload.person.id,
+        people: [ payload.person, mentor ],
+        experience: experience,
+        projects: projects,
+        clients: clients
+      };
+      return this._super(store, type, payload, payload.people[0].id, requestType);
+    },
+    normalizeHash: {
+      people: function(hash) {
+        if(hash.mentor)
+          hash.mentor = hash.mentor.id;
+        if(hash.experience) {
+          hash.experience = hash.experience.mapBy('id');
         }
-        return payload;
+        return hash;
+      }
     }
 });

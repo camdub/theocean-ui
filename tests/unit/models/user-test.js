@@ -4,7 +4,7 @@ import IsoDateTransform from 'appkit/transforms/isodate';
 import Person from 'appkit/models/person';
 
 moduleForModel('person', 'Unit - Person', {
-  needs: ['model:experience'],
+  needs: ['model:experience', 'serializer:experience'],
   setup: function() {
     this.container.register('adapter:application', DS.RESTAdapter.extend({
       namespace: 'api'
@@ -15,6 +15,8 @@ moduleForModel('person', 'Unit - Person', {
     this.container.register('transform:string', DS.StringTransform);
     this.container.register('transform:boolean', DS.BooleanTransform);
     this.container.register('transform:isodate', IsoDateTransform);
+
+    Em.Inflector.inflector.irregular('experience', 'experience');
   }
 });
 

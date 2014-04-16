@@ -6,7 +6,7 @@
     <h4>{{fullName}}</h4>
     <p>{{location}} - {{level}}</p>
     <p>Employee since {{display-date hireDate}}</p>
-    <p>Mentored by <a href="#">Hector Martinez</a></p>
+    <p>Mentored by {{#link-to 'person' mentor}}{{mentor.fullName}}{{/link-to}}</p>
     <p>{{mail-to email}}</p>
     <p>{{phone}}</p>
   </div>
@@ -17,7 +17,7 @@
 
 Projects:
 <ul>
-{{#each experiences}}
-    {{type}}
+{{#each experience}}
+    {{project.name}} - {{project.client.name}}
 {{/each}}
 </ul>
