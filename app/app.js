@@ -12,5 +12,6 @@ var App = Ember.Application.extend({
 
 import __ from 'appkit/initializers/auth-initializer';
 import __ from 'appkit/initializers/lunr-initializer';
+Em.Inflector.inflector.irregular('experience', 'experience');
 
 export default App;

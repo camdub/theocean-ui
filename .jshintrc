@@ -40,7 +40,8 @@
     "moment",
     "ic",
     "Image",
-    "Spinner"
+    "Spinner",
+    "fakehr"
   ],
   "node" : false,
   "browser" : false,

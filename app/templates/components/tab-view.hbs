@@ -1,7 +1,7 @@
 <ul class="nav nav-tabs nav-append-content">
     {{#each pane in panes}}
         {{#tab-tab paneId=pane.paneId}}
-          <a>{{pane.name}} <span class="search-count-badge label label-primary">{{count}}</span></a>
+          <a>{{pane.name}} <span class="search-count-badge label label-primary">{{pane.count}}</span></a>
         {{/tab-tab}}
     {{/each}}
 </ul>

@@ -25,7 +25,7 @@ export default Em.Route.extend({
 
   beforeModel: function(transition) {
     var session = this.get('session');
-    if(!session.get('isAuthenticated')) {
+    if(!session.get('isAuthenticated') && !Em.testing) {
       session.set('afterRedirect', transition);
       if(Em.isEmpty(session.checkToken())) {
         this.transitionTo('login');
