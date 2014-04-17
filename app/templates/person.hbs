@@ -18,6 +18,6 @@
 Projects:
 <ul>
 {{#each experience}}
-    {{project.name}} - {{project.client.name}}
+    {{project.name}} - {{#link-to 'client' project.client}}{{project.client.name}}{{/link-to}}
 {{/each}}
 </ul>

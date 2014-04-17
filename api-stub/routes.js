@@ -180,5 +180,27 @@ module.exports = function(server) {
         });
       });
 
+      server.get('/clients/new-york-life', function(req, res) {
+        res.send({
+          id: "new-york-life",
+          url: "/clients/new-york-life",
+          name: "New York Life",
+          logoUrl: null,
+          industry: "Finance and Insurance",
+          projects: [
+            {
+              id: "nyl015-pcs-partnership-app-suppt",
+              url: "/projects/nyl015-pcs-partnership-app-suppt",
+              name: "PCS Partnership App Suppt"
+            },
+            {
+              id: "nyl016-pcs-vb-interface-replacement",
+              url: "/projects/nyl016-pcs-vb-interface-replacement",
+              name: "PCS VB Interface Replacement"
+            }
+          ]
+        });
+      });
+
     });
 };
