@@ -27,8 +27,7 @@ module.exports = function(server) {
         about: "<div>&nbsp;</div>",
         industries: null,
         skills: null,
-        experiences: [ 16812 ]},
-        experiences: [
+        experience: [
           {
             id: 16812,
             url: "/people/aaron-boswell/experience/16812",
@@ -127,7 +126,7 @@ module.exports = function(server) {
               }
             }
           ]
-      } }
+      } }}
     };
 
     server.namespace('/api', function() {
