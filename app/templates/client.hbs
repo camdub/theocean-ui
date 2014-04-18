@@ -4,13 +4,13 @@
 <ul class="client-list">
   <li class="header">
 	Project
-	<span class="project-datecol">Dates</span>
+<!-- 	<span class="project-datecol">Dates</span> -->
   </li>
   {{#each projects}}
     <li>
-	  <span class="project-name">{{#link-to 'client' this}}{{name}}{{/link-to}}</span>
-	  <!--<span class="project-datecol project-dates">{{start}} - {{start}}</span>-->
-      <span class="project-datecol project-dates">September 2013 - September 2014</span>
+	    <span class="project-name">{{#link-to 'project' this}}{{name}}{{/link-to}}</span>
+	    <!--<span class="project-datecol project-dates">{{start}} - {{start}}</span>-->
+      <!--<span class="project-datecol project-dates">September 2013 - September 2014</span> -->
     </li>
   {{/each}}
 </ul>
