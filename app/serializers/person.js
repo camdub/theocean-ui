@@ -12,8 +12,8 @@ export default DS.RESTSerializer.extend({
       delete payload.limit;
     },
     extractSingle: function(store, type, payload, id, requestType) {
-      var experience = payload.person.experience;
-      var mentor = payload.person.mentor;
+      var experience = payload.experience;
+      var mentor = payload.mentor;
 
       var projects = [];
       var clients = [];
@@ -25,8 +25,8 @@ export default DS.RESTSerializer.extend({
       });
 
       payload = {
-        person: payload.person.id,
-        people: [ payload.person, mentor ],
+        person: payload.id,
+        people: [ payload, mentor ],
         experience: experience,
         projects: projects,
         clients: clients

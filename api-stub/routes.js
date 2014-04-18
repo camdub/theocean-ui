@@ -78,7 +78,7 @@ module.exports = function(server) {
         industries: null,
         skills: null
       },
-      'cameron-woodmansee' : { 'person' : {
+      'cameron-woodmansee' : {
           "id": "cameron-woodmansee",
           "url": "/people/cameron-woodmansee",
           "firstName": "Cameron",
@@ -127,7 +127,7 @@ module.exports = function(server) {
               }
             }
           ]
-      } }
+      }
     };
 
     server.namespace('/api', function() {

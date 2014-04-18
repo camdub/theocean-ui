@@ -232,5 +232,11 @@ module.exports = function(grunt) {
     grunt.file.mkdir('tmp/result');
   });
 
+  // Deploy to Azure
+  grunt.registerTask('deploy', "Deploy this application to Azure", [
+    'dist',
+    'ftp-deploy'
+  ]);
+
   grunt.initConfig(config);
 };

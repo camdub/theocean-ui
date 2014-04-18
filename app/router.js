@@ -6,6 +6,7 @@ Router.map(function() {
   this.route('login');
   this.route('person', { path: '/people/:person_id' });
   this.route('client', { path: '/clients/:client_id' });
+  this.route('project', { path: '/projects/:project_id' })
 });
 
 export default Router;
