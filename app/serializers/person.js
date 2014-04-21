@@ -18,6 +18,7 @@ export default DS.RESTSerializer.extend({
       var projects = [];
       var clients = [];
       experience.forEach(function(exp) {
+        exp.person = payload.id;
         projects.push(exp.project);
         clients.push(exp.project.client);
         exp.project.client = exp.project.client.id;

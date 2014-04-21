@@ -5,12 +5,14 @@ export default DS.Model.extend({
     firstName: attr('string'),
     lastName: attr('string'),
     level: attr('string'),
+    cohort: attr('string'),
     location: attr('string'),
     active: attr('boolean'),
     phone: attr('string'),
     hireDate: attr('isodate'),
     email: attr('string'),
     pictureUrl: attr('string'),
+    industries: attr(), // pojo
     experience: DS.hasMany('experience'),
     mentor: DS.belongsTo('person'),
 

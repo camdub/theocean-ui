@@ -1,0 +1,14 @@
+<div class="panel-heading">
+  <h4 class="panel-title">
+    <span class="accordion-toggle collapsed">
+      {{view.project.name}}
+      {{#link-to 'project' view.project}}<span class="fui-exit"></span>{{/link-to}}
+      &#151;
+      {{view.project.client.name}}
+      {{#link-to 'client' view.project.client}}<span class="fui-exit"></span>{{/link-to}}
+    </span>
+  </h4>
+</div>
+<div class="panel-collapse collapse">
+  <div class="panel-body">{{yield}}</div>
+</div>
