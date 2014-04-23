@@ -1,0 +1,47 @@
+#sidebar {
+  .profile-img {
+    float: left;
+  }
+  .team {
+    span {
+      margin-left: 15px;
+    }
+  }
+}
+
+.logo {
+  width: 150px;
+}
+
+.empty {
+  font-weight: 700;
+  font-size: 14px;
+  color: @gray;
+}
+
+// TODO: change 'active' class for autocomplete. Interferes with ember's active links
+.project-info {
+  h4  {
+    margin-bottom: 5px;
+  }
+  h5 {
+    margin-top: 5px;
+  }
+
+  p {
+    margin-bottom: 0;
+    font-size: 16px;
+  }
+  .active {
+    background: none;
+    color: @link-color;
+    &:hover { color: @link-hover-color; }
+  }
+}
+
+.summary {
+  margin-top: 30px;
+  p {
+    font-size: 14px;
+  }
+}

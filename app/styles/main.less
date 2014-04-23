@@ -1,11 +1,19 @@
 @import '../../vendor/bootstrap/less/bootstrap.less';
 @import 'flat-ui/flat-ui.less';
 @import '_search.less';
+@import '_client.less';
+@import '_person.less';
+@import '_project.less';
 @import '_fonts.less';
 
-body {
-    padding: 20px 0;
-    margin-bottom: 50px;
+body, html {
+    //padding: 20px 0;
+    //margin-bottom: 50px;
+    height: 100%;
+}
+
+h5 {
+	font-size: 18px;
 }
 
 .container {
@@ -16,14 +24,29 @@ body {
     margin-bottom: 20px;
 }
 
+.container {
+  min-height: 100%;
+  margin-bottom: 50px;
+  margin-top: 20px;
+}
+
+.container:after {
+  content: "";
+  display: block;
+  height: 50px;
+}
+
 #footer {
-    position: absolute;
+    //position: absolute;
     bottom: 0;
     width: 100%;
     height: 50px;
 
     .row {
         margin-top: -12px;
+        margin-right: auto;
+        margin-left: auto;
+        width: 970px;
     }
 }
 
@@ -42,12 +65,6 @@ body {
 }
 
 .profile { border-radius: 150px; }
-.personal-info {
-  p {
-    margin-bottom: 0;
-    font-size: 14px;
-  }
-}
 
 .nav-tab {
   width: 50%;
@@ -67,6 +84,10 @@ body {
 
 .profile-img.sm {
   .circle-crop(50px);
+}
+
+.profile-img.xs {
+  .circle-crop(30px);
 }
 
 .profile-img.lg {

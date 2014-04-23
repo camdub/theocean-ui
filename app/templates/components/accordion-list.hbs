@@ -1,0 +1,17 @@
+{{#each experiences}}
+  {{#view 'accordion-item' project=project}}
+    <a href="#" class="edit">edit <span class="fui-new"></span></a>
+    <p class="nav-header">Summary</p>
+    <p class="summary">
+      {{#if summary}}{{summary}}{{else}}<em>None</em>{{/if}}
+<!--       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vestibulum, nulla nec viverra ultrices, lacus leo hendrerit nisi, non porta libero nulla quis ligula. Proin eu turpis a lectus ornare placerat id sed dolor. Morbi volutpat posuere neque id sagittis. Etiam elementum pharetra lobortis. -->
+    </p>
+
+    <p>
+      <span class="nav-header">Skills:</span> <em>none</em>
+<!--       <span class="badge">java</span>
+      <span class="badge">spring</span> -->
+    </p>
+    <p><span class="nav-header">Dates:</span> {{display-date start format="LL"}} - {{display-date start format="LL"}}</p>
+  {{/view}}
+{{/each}}

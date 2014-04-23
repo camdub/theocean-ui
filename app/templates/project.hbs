@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-md-8">
+    <div class="row">
+      <div class="col-md-3">
+        <img {{bind-attr src="client.clientLogo"}} alt="" class="logo" />
+      </div>
+      <div class="project-info col-md-9">
+        <h4>{{name}}</h4>
+        <h5>{{#link-to 'client' client}}{{client.name}}{{/link-to}}</h5>
+        <p>{{display-date start format="LL"}} &#151; {{display-date end format="LL"}}</p>
+        <p>
+          {{#link-to 'person' oic}}{{oic.fullName}}{{/link-to}} OIC
+        </p>
+      </div>
+    </div>
+    <div class="summary">
+      <h5>Summary</h5>
+      <p>
+        {{summary}}
+      </p>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div id="sidebar">
+      <ul class="nav nav-list nav-list-vivid team">
+        <li class="nav-header">Team</li>
+        {{#each people}}
+          <li>
+            {{profile-img size='xs' image=profileImage}}
+            {{#link-to 'person' this}}
+              <span>{{fullName}} - {{cohort}}</span>
+            {{/link-to}}
+          </li>
+          {{else}}
+          <li class="empty"><em>None</em></li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+
+</div>

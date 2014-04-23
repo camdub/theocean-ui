@@ -1,0 +1,37 @@
+ul.client-list {
+  clear: right;
+  list-style: none;
+  padding: 10px;
+
+  li.header {
+    border-bottom: medium solid #ecf0f1;
+    font-size: 18px;
+    font-weight: bold;
+  }
+}
+
+ul.client-list li {
+  border-bottom: thin solid #ecf0f1;
+  padding: 5px 8px;
+
+  &:nth-of-type(even) {
+    background-color: @table-bg-active;
+  }
+  &:last-of-type {
+    border-bottom: none;
+  }
+}
+
+.client-logo {
+  float: right;
+}
+
+.project-datecol {
+  float: right;
+  width: 250px;
+}
+
+.project-dates {
+  font-size: 16px;
+  font-weight: bold;
+}

@@ -1,3 +1,5 @@
+import token from 'appkit/utils/get-token';
+
 var attr = DS.attr,
     env = window.ENV;
 
@@ -5,13 +7,16 @@ export default DS.Model.extend({
     firstName: attr('string'),
     lastName: attr('string'),
     level: attr('string'),
+    cohort: attr('string'),
     location: attr('string'),
     active: attr('boolean'),
     phone: attr('string'),
     hireDate: attr('isodate'),
     email: attr('string'),
     pictureUrl: attr('string'),
-    experiences: DS.hasMany('experience'),
+    industries: attr(), // pojo
+    experience: DS.hasMany('experience'),
+    mentor: DS.belongsTo('person'),
 
     fullName: function() {
         return this.get('firstName') + ' ' + this.get('lastName');
@@ -21,6 +26,6 @@ export default DS.Model.extend({
         if(Em.isEmpty(this.get('pictureUrl'))) {
             return '';
         }
-        return env.serviceUrl + this.get('pictureUrl');
+        return env.serviceUrl + this.get('pictureUrl') + '?accesskey=' + token();
     }.property('pictureUrl')
 });

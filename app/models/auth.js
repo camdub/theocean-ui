@@ -34,7 +34,7 @@ export default Em.Object.extend({
 
   createSessionRecords: function(userData, auth, token) {
     var store = auth.get('store');
-    var user = store.createRecord('person', userData);
+    var user = store.push('person', userData);
     return store.createRecord('session', {
       user: user,
       key: token

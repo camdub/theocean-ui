@@ -1,23 +1,32 @@
 <div class="row">
-  <div class="col-md-2">
-    {{profile-img size='lg' image=profileImage}}
+  <div class="col-md-8">
+  <div class="row">
+    <div class="col-md-3">
+      {{profile-img size='lg' image=profileImage}}
+    </div>
+    <div class="personal-info col-md-9">
+      <h4>{{fullName}}</h4>
+      <p>{{location}} &#151; {{cohort}}</p>
+      <p>Employee since {{display-date hireDate}}</p>
+      <p>Mentored by {{#link-to 'person' mentor}}{{mentor.fullName}}{{/link-to}}</p>
+      <p>{{mail-to email}}</p>
+      <p>{{phone}}</p>
+    </div>
   </div>
-  <div class="personal-info col-md-6">
-    <h4>{{fullName}}</h4>
-    <p>{{location}} - {{level}}</p>
-    <p>Employee since {{display-date hireDate}}</p>
-    <p>Mentored by <a href="#">Hector Martinez</a></p>
-    <p>{{mail-to email}}</p>
-    <p>{{phone}}</p>
-  </div>
-  <div class="col-md-4">
+
+  <h5>Client Projects</h5>
+  {{accordion-list experiences=experience}}
+</div>
+
+<div class="col-md-4">
+  <div id="sidebar">
+    <ul class="nav nav-list nav-list-vivid">
+      <li class="nav-header">Industries</li>
+      {{#each industries}}
+        <li><a href="#">{{name}} <span class="badge pull-right">{{weight}}</span></a></li>
+      {{/each}}
+    </ul>
   </div>
 </div>
 
-
-Projects:
-<ul>
-{{#each experiences}}
-    {{type}}
-{{/each}}
-</ul>
+</div>

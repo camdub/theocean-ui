@@ -25,7 +25,7 @@ export default Em.Application.initializer({
     if(token && window.opener) {
       // don't continue with app, we are just a popup
       app.deferReadiness();
-      window.opener.postMessage('setAccessToken:'+token, 'http://localhost:8000');
+      window.opener.postMessage('setAccessToken:'+token, window.location.origin);
     }
   }
 
