@@ -1,5 +1,7 @@
+import token from 'appkit/utils/get-token';
+
 var attr = DS.attr,
-	env = window.ENV,
+		env = window.ENV,
     hasMany = DS.hasMany;
 
 export default DS.Model.extend({
@@ -11,6 +13,6 @@ export default DS.Model.extend({
         if(Em.isEmpty(this.get('logoUrl'))) {
             return '/assets/images/default-client.png';
         }
-        return env.serviceUrl + this.get('logoUrl');
+        return env.serviceUrl + this.get('logoUrl') + '?accesskey=' + token();
     }.property('logoUrl')
 });

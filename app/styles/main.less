@@ -3,6 +3,7 @@
 @import '_search.less';
 @import '_client.less';
 @import '_person.less';
+@import '_project.less';
 @import '_fonts.less';
 
 body, html {
@@ -60,12 +61,6 @@ h5 {
 }
 
 .profile { border-radius: 150px; }
-.personal-info {
-  p {
-    margin-bottom: 0;
-    font-size: 14px;
-  }
-}
 
 .nav-tab {
   width: 50%;
@@ -85,6 +80,10 @@ h5 {
 
 .profile-img.sm {
   .circle-crop(50px);
+}
+
+.profile-img.xs {
+  .circle-crop(30px);
 }
 
 .profile-img.lg {

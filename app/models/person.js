@@ -1,3 +1,5 @@
+import token from 'appkit/utils/get-token';
+
 var attr = DS.attr,
     env = window.ENV;
 
@@ -24,6 +26,6 @@ export default DS.Model.extend({
         if(Em.isEmpty(this.get('pictureUrl'))) {
             return '';
         }
-        return env.serviceUrl + this.get('pictureUrl');
+        return env.serviceUrl + this.get('pictureUrl') + '?accesskey=' + token();
     }.property('pictureUrl')
 });

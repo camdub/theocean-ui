@@ -1,5 +1,6 @@
 var attr = DS.attr,
-    belongsTo = DS.belongsTo;
+    belongsTo = DS.belongsTo,
+    hasMany = DS.hasMany;
 
 export default DS.Model.extend({
   name: attr('string'),
@@ -9,5 +10,6 @@ export default DS.Model.extend({
   summary: attr('string'),
   oic: belongsTo('person'),
   location: attr('string'),
-  client: belongsTo('client')
+  client: belongsTo('client'),
+  people: hasMany('person')
 });

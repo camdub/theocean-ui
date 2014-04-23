@@ -2,10 +2,10 @@
   <h4 class="panel-title">
     <span class="accordion-toggle collapsed">
       {{view.project.name}}
-      {{#link-to 'project' view.project}}<span class="fui-exit"></span>{{/link-to}}
+      {{#link-to 'project' view.project.client view.project}} &nbsp;<span class="fui-export"></span>{{/link-to}}
       &#151;
       {{view.project.client.name}}
-      {{#link-to 'client' view.project.client}}<span class="fui-exit"></span>{{/link-to}}
+      {{#link-to 'client' view.project.client}} &nbsp;<span class="fui-export"></span>{{/link-to}}
     </span>
   </h4>
 </div>

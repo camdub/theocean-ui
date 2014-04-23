@@ -5,8 +5,9 @@ Router.map(function() {
   this.route('search');
   this.route('login');
   this.route('person', { path: '/people/:person_id' });
-  this.route('client', { path: '/clients/:client_id' });
-  this.route('project', { path: '/projects/:project_id' })
+  this.resource('client', { path: '/clients/:client_id' }, function() {
+    this.resource('project', { path: '/projects/:project_id' });
+  });
 });
 
 export default Router;
