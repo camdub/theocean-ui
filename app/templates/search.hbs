@@ -7,7 +7,7 @@
           <ul class="result-list">
             {{#each people.paginatedContent}}
                 <li class="search-result" {{action 'view' this 'person'}}>
-                  {{profile-img size='sm' image=profileImage}}
+                  {{profile-img size='sm' image=profileImage type='person'}}
                   {{#link-to 'person' this}}{{firstName}} {{lastName}}{{/link-to}}
                   <p class="small">
                     {{location}} &#151; {{cohort}} <!-- ascii dash -->
@@ -29,8 +29,8 @@
         {{#if clients.hasResults}}
         <ul class="result-list">
             {{#each clients.paginatedContent}}
-                <li class="search-result" {{action 'view' this 'client'}}>
-                  <img class="client-img" {{bind-attr src="clientLogo" alt="name"}} />
+                <li class="search-result client-result" {{action 'view' this 'client'}}>
+                  {{profile-img size='sm' type='client'}}
                   {{#link-to 'client' this}}{{name}}{{/link-to}}
                 </li>
             {{else}}

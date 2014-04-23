@@ -4,17 +4,24 @@
   min-height: 480px;
 }
 
+.tab-view {
+  position: absolute;
+  top: 140px;
+  width: 97%;
+}
+
 .search-result {
   padding: 5px;
   padding-left: 8px;
+  height: 71px;
 
   p.small {
     margin-bottom: 0px;
   }
-  
-  img.client-img {
-    max-width: 105px;
-	padding-right: 10px;
+
+  .client img {
+    max-height: 50px;
+	  padding-right: 10px;
   }
 
   &:last-of-type {
@@ -27,11 +34,15 @@
   }
 
   border-bottom: 2px solid @clouds;
-  .profile-img {
+  .person, .client {
     float: left;
     margin-right: 10px;
     margin-top: 5px;
   }
+}
+
+.client-result a {
+  margin-top: 10px;
 }
 
 .search-count-badge {

@@ -16,6 +16,10 @@ h5 {
 	font-size: 18px;
 }
 
+.container {
+    position: relative;
+}
+
 .navbar {
     margin-bottom: 20px;
 }
@@ -78,14 +82,26 @@ h5 {
   }
 }
 
-.profile-img.sm {
-  .circle-crop(50px);
+.sm {
+  max-height: 50px;
+  &.person {
+    .circle-crop(50px);
+  }
 }
 
-.profile-img.xs {
-  .circle-crop(30px);
+.xs {
+  max-height: 30px;
+  &.person {
+    .circle-crop(30px);
+  }
 }
 
-.profile-img.lg {
-  .circle-crop(150px);
+.lg {
+  max-height: 120px;
+  &.person {
+    .circle-crop(120px);
+  }
+  &.client {
+    max-height: 100px;
+  }
 }
