@@ -30,7 +30,7 @@
         <ul class="result-list">
             {{#each clients.paginatedContent}}
                 <li class="search-result" {{action 'view' this 'client'}}>
-                  <img {{bind-attr src="clientLogo" alt="name"}} />
+                  <img class="client-img" {{bind-attr src="clientLogo" alt="name"}} />
                   {{#link-to 'client' this}}{{name}}{{/link-to}}
                 </li>
             {{else}}
