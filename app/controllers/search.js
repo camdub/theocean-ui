@@ -18,6 +18,7 @@ export default Em.ArrayController.extend({
     if(this.get('filters').get('length') > 0) {
       var params = this.get('filters').mapBy('id').join();
       this.get('people').search({filter: params});
+      this.get('clients').search({filter: params});
     }
   }.observes('filters.[]'),
 

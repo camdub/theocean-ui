@@ -1,4 +1,17 @@
 export default DS.RESTSerializer.extend({
+  extractMeta: function(store, type, payload) {
+    if(!Em.isEmpty(payload.clients)) {
+      store.metaForType(type, {
+        total: payload.total,
+        offset: payload.offset,
+        limit: payload.limit
+      });
+    }
+    delete payload.total;
+    delete payload.offset;
+    delete payload.limit;
+  },
+
   extractSingle: function(store, type, payload, id, requestType) {
     var projects = payload.projects;
 

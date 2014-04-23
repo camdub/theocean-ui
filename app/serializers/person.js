@@ -11,6 +11,7 @@ export default DS.RESTSerializer.extend({
       delete payload.offset;
       delete payload.limit;
     },
+
     extractSingle: function(store, type, payload, id, requestType) {
       var experience = payload.experience;
       var mentor = payload.mentor;
