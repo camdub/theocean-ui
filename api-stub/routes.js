@@ -38,6 +38,27 @@ module.exports = function(server) {
           }
         ]
       },
+      'david-dansereau' : {
+        //person: {
+          id: "david-dansereau",
+          url: "/people/david-dansereau",
+          firstName: "David",
+          lastName: "Dansereau",
+          pictureUrl: "",
+          level: "M1",
+          location: "New York",
+          active: true,
+          phone: "817.988.9363",
+          hireDate: "2011-09-01T00:00:00",
+          termDate: null,
+          email: "david.dansereau@parivedasolutions.com",
+          birthday: "12/15",
+          school: "Texas A&M University",
+          about: "<div>&nbsp;</div>",
+          industries: null,
+          skills: null,
+        //}
+      },
       'abbas-lotia' : {
         id: "abbas-lotia",
         url: "/people/abbas-lotia",
@@ -69,6 +90,8 @@ module.exports = function(server) {
       server.get('/people/:id', function(req, res) {
         var person = {'person':{}};
         person['person'] = people[req.params['id']];
+        /*console.log(person);
+        console.log(req.params['id']);*/
         res.send(person);
       });
 
