@@ -2,7 +2,7 @@
   <div class="col-md-8">
     <div class="row">
       <div class="col-md-3">
-        <img {{bind-attr src="client.clientLogo"}} alt="" class="logo" />
+        {{profile-img size='lg' type='client'}}
       </div>
       <div class="project-info col-md-9">
         <h4>{{name}}</h4>
@@ -26,8 +26,8 @@
       <ul class="nav nav-list nav-list-vivid team">
         <li class="nav-header">Team</li>
         {{#each people}}
-          <li>
-            {{profile-img size='xs' image=profileImage}}
+          <li class="team-person">
+            {{profile-img size='xs' image=profileImage type='person'}}
             {{#link-to 'person' this}}
               <span>{{fullName}} - {{cohort}}</span>
             {{/link-to}}

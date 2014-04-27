@@ -1,5 +1,4 @@
 export default Em.View.extend({
-  defaultTemplate: Ember.Handlebars.compile('{{view.content}}'),
   layoutName: 'components/accordion-layout',
   classNames: 'panel panel-ocean',
   title: function() {

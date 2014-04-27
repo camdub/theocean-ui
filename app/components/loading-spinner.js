@@ -18,6 +18,7 @@ export default Em.Component.extend({
 
   showSpinner: function() {
     var target = this.get('element');
+    target = $('body')[0];
     this.spinner = new Spinner({
         lines    : this.get('lines'),
         length   : this.get('length'),
