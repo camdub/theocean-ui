@@ -7,5 +7,6 @@ export default DS.Model.extend({
     start: attr('isodate'),
     end: attr('isodate'),
     type: attr('string'),
+	industry: attr(),
     project: belongsTo('project')
 });

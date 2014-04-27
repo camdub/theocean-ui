@@ -23,7 +23,7 @@
     <ul class="nav nav-list nav-list-vivid">
       <li class="nav-header">Industries</li>
       {{#each industries}}
-        <li><a href="#">{{name}} <span class="badge pull-right">{{weight}}</span></a></li>
+        <li><a href="#" {{bind-attr class="id"}} {{action 'highlight' id}}>{{name}} <span class="badge pull-right">{{weight}}</span></a></li>
       {{/each}}
     </ul>
   </div>
