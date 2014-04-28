@@ -11,7 +11,7 @@ export default DS.Model.extend({
     projects: hasMany('project'),
     clientLogo: function() {
         if(Em.isEmpty(this.get('logoUrl'))) {
-            return '/assets/images/building.svg';
+            return '';
         }
         return env.serviceUrl + this.get('logoUrl') + '?accesskey=' + token();
     }.property('logoUrl')

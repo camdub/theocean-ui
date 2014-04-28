@@ -11,17 +11,25 @@
   color: @asbestos;
 }
 
-#sidebar .nav > li > a:hover, #sidebar .nav > li > a:focus {
-  background-color: transparent;
-}
 
-.highlighted {
-  background-color: #A1AEBB !important;
+
+#sidebar .nav > li.active > a:hover {
+  background-color: @brand-secondary !important;
 }
 
 .panel-ocean .panel-heading {
   background-color: white;
   border: 2px solid mix(@brand-primary, white, 19%);
+
+  &.active {
+    background-color: mix(@brand-secondary, white, 1%);
+    border-color: @brand-secondary;
+    color: @text-color;
+
+    & + .panel-collapse .panel-body {
+      border-color: @brand-secondary;
+    }
+  }
 
   h4 {
     font-size: 16px;
