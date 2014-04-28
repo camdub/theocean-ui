@@ -45,7 +45,7 @@ export default Em.ArrayController.extend({
     }
 
     // take top 10 matches and sort alphabetically
-    var top = initial.slice(0,10).sort();
+    var top = initial.slice(0,15);
 
     // remove terms that are already selected and
     // get matching item from pre-populated map
