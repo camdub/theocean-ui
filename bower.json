@@ -14,7 +14,8 @@
     "bootstrap": "~3.1.1",
     "momentjs": "~2.5.1",
     "spin.js": "~2.0.0",
-    "lunr.js": "~0.5.2"
+    "lunr.js": "~0.5.2",
+    "caliper-ember": "~0.0.3"
   },
   "resolutions": {
     "ember": "~1.5.0"

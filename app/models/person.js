@@ -11,6 +11,7 @@ export default DS.Model.extend({
     location: attr('string'),
     active: attr('boolean'),
     phone: attr('string'),
+    school: attr('string'),
     hireDate: attr('isodate'),
     email: attr('string'),
     pictureUrl: attr('string'),

@@ -8,6 +8,7 @@
       <h4>{{fullName}}</h4>
       <p>{{location}} &#151; {{cohort}}</p>
       <p>Employee since {{display-date hireDate}}</p>
+      {{#if school}}<p>Graduated from {{school}}</p>{{/if}}
       <p>Mentored by {{#link-to 'person' mentor}}{{mentor.fullName}}{{/link-to}}</p>
       <p>{{mail-to email}}</p>
       <p>{{phone}}</p>

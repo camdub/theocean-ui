@@ -1,27 +1,33 @@
 export default Em.View.extend({
+
   layoutName: 'components/accordion-layout',
   classNames: 'panel panel-ocean',
+
   title: function() {
     return this.get('project.name');
   }.property('project'),
+
   project: null,
   index: 0,
   isActive: false,
   content: Ember.computed.alias('parentView.content'),
-  isActiveDidChange: Ember.observer(function() {
+
+  isActiveDidChange: function() {
     this.set('isActive', this.get('parentView.activeIndex') === this.get('index'));
     if (this.get('isActive')) {
       return this.show();
     } else {
       return this.hide();
     }
-  }, 'parentView.activeIndex'),
+  }.observes('parentView.activeIndex'),
+
   didInsertElement: function() {
     var index;
     index = this.get('parentView').$('.panel').index(this.$());
     this.set('index', index);
     return this.isActiveDidChange();
   },
+
   click: function() {
     if (this.get('isActive')) {
       return this.set('parentView.activeIndex', null);
@@ -29,6 +35,7 @@ export default Em.View.extend({
       return this.set('parentView.activeIndex', this.get('index'));
     }
   },
+
   hide: function() {
     var $accordionBody;
     $accordionBody = this.$('.panel-collapse');
@@ -40,6 +47,7 @@ export default Em.View.extend({
       };
     })(this));
   },
+
   show: function() {
     var $accordionBody;
     $accordionBody = this.$('.panel-collapse');
