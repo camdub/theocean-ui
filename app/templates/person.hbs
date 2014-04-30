@@ -9,14 +9,18 @@
       <p>{{location}} &#151; {{cohort}}</p>
       <p>Employee since {{display-date hireDate}}</p>
       {{#if school}}<p>Graduated from {{school}}</p>{{/if}}
-      <p>Mentored by {{#link-to 'person' mentor}}{{mentor.fullName}}{{/link-to}}</p>
+      {{#if mentor}}<p>Mentored by {{#link-to 'person' mentor}}{{mentor.fullName}}{{/link-to}}</p>{{/if}}
       <p>{{mail-to email}}</p>
       <p>{{phone}}</p>
     </div>
   </div>
 
   <h5>Client Projects</h5>
-  {{accordion-list experiences=experience}}
+  {{#if experience}}
+    {{accordion-list experiences=experience}}
+  {{else}}
+    <em>None</em>
+  {{/if}}
 </div>
 
 <div class="col-md-4">
@@ -25,6 +29,8 @@
       <li class="nav-header">Industries</li>
       {{#each industries}}
         <li><a href="#" {{bind-attr class="id"}} {{action 'highlight' id}}>{{name}} <span class="badge pull-right">{{weight}}</span></a></li>
+      {{else}}
+        <li><em>None</em></li>
       {{/each}}
     </ul>
   </div>
