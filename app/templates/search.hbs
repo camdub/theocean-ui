@@ -1,54 +1,15 @@
 {{auto-suggest source=controller destination=filters}}
-<!-- TODO: break into smaller pieces using 'render' and 'partial' -->
+
 {{#if filters}}
     {{#tab-view}}
+
       {{#tab-pane name="People" count=people.total}}
-        {{#if people.hasResults}}
-          <div class="row">
-            {{#each grid}}
-              <ul class="result-list col-md-6 col-sm-1">
-                {{#each this}}
-                  <li class="search-result" {{action 'view' this 'person'}}>
-                    {{profile-img size='sm' image=profileImage type='person'}}
-                    {{#link-to 'person' this}}{{firstName}} {{lastName}}{{/link-to}}
-                    <p class="small">
-                      {{location}} &#151; {{cohort}} <!-- ascii dash -->
-                    </p>
-                  </li>
-                {{else}}
-                  <li>No Results</li>
-                {{/each}}
-              </ul>
-            {{/each}}
-          </div>
-        {{else}}
-          <div class="result-list">
-            {{loading-spinner}}
-          </div>
-        {{/if}}
-
-        {{pagination-links page=people.page pages=people.pages}}
-
+        {{render 'people'}}
       {{/tab-pane}}
 
       {{#tab-pane name="Clients" count=clients.total}}
-        {{#if clients.hasResults}}
-        <ul class="result-list">
-            {{#each clients.paginatedContent}}
-                <li class="search-result client-result" {{action 'view' this 'client'}}>
-                  {{profile-img size='sm' type='client'}}
-                  {{#link-to 'client' this}}{{name}}{{/link-to}}
-                </li>
-            {{else}}
-                <li>No Results</li>
-            {{/each}}
-        </ul>
-        {{else}}
-          <div class="result-list">
-            {{loading-spinner}}
-          </div>
-        {{/if}}
-        {{pagination-links page=clients.page pages=clients.pages}}
+        {{render 'clients'}}
       {{/tab-pane}}
+
     {{/tab-view}}
 {{/if}}

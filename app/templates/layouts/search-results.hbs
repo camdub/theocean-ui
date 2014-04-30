@@ -1,0 +1,19 @@
+{{#if hasResults}}
+  <div class="row">
+    {{#each grid}}
+      <ul class="result-list col-md-6 col-sm-1">
+        {{#each this}}
+          {{yield}}
+        {{else}}
+          <li>No Results</li>
+        {{/each}}
+      </ul>
+    {{/each}}
+  </div>
+{{else}}
+  <div class="result-list">
+    {{loading-spinner}}
+  </div>
+{{/if}}
+
+{{pagination-links page=page pages=pages}}
