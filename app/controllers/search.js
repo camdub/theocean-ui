@@ -17,6 +17,7 @@ export default Em.ArrayController.extend({
   filtersChanged: function() {
     if(this.get('filters').get('length') > 0) {
       var params = this.get('filters').mapBy('id').join();
+      mixpanel.track('search', {'query': params});
       this.get('people').search({filter: params});
       this.get('clients').search({filter: params});
     }
@@ -27,6 +28,7 @@ export default Em.ArrayController.extend({
   addFilter: function(item) {
     var type = item.type.toLowerCase();
     if(type === 'person' || type === 'client') {
+      mixpanel.track('search', {'query': item.id});
       this.transitionToRoute(type, item.id);
     }
     else {
