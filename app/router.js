@@ -12,7 +12,9 @@ Router.map(function() {
 
 Router.reopen({
   notifyAnalytics: function() {
-    return mixpanel.track('pageview', {'url': this.get('url')});
+    if(window.mixpanel) {
+      return mixpanel.track('pageview', {'url': this.get('url')});
+    }
   }.on('didTransition')
 });
 

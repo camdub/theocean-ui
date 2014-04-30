@@ -9,7 +9,9 @@ export default Em.Object.extend({
     this.set("isAuthenticating", true);
     return this.get("adapter").open(this)
       .then(function(user) {
-        session.analyticsUserInit(user);
+        if(window.mixpanel) {
+          session.analyticsUserInit(user);
+        }
         session.setProperties({
           isAuthenticated: true,
           currentUser: user
