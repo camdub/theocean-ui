@@ -9,6 +9,9 @@ export default Em.Object.extend({
     this.set("isAuthenticating", true);
     return this.get("adapter").open(this)
       .then(function(user) {
+        if(window.mixpanel) {
+          session.analyticsUserInit(user);
+        }
         session.setProperties({
           isAuthenticated: true,
           currentUser: user
@@ -19,6 +22,19 @@ export default Em.Object.extend({
       }).finally(function () {
         session.set("isAuthenticating", false);
       });
+  },
+
+  analyticsUserInit: function(user) {
+    var date = new Date();
+    mixpanel.identify(user.get('id'));
+    mixpanel.people.set({
+      '$first_name' : user.get('firstName'),
+      '$last_name' : user.get('lastName'),
+      'last_login' : date.toISOString(),
+      'cohort_level' : user.get('level'),
+      'office' : user.get('location'),
+      '$email' : user.get('email')
+    });
   },
 
   close: function() {

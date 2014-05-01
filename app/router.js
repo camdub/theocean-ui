@@ -10,4 +10,12 @@ Router.map(function() {
   });
 });
 
+Router.reopen({
+  notifyAnalytics: function() {
+    if(window.mixpanel) {
+      return mixpanel.track('pageview', {'url': this.get('url')});
+    }
+  }.on('didTransition')
+});
+
 export default Router;

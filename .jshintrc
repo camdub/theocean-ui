@@ -41,7 +41,7 @@
     "ic",
     "Image",
     "Spinner",
-    "fakehr"
+    "mixpanel"
   ],
   "node" : false,
   "browser" : false,
