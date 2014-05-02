@@ -121,7 +121,7 @@ fi
 if [ -e "$DEPLOYMENT_SOURCE/bower.json" ]; then
   eval $NPM_CMD install bower
   exitWithMessageOnError "installing bower failed"
-  ./node_modules/.bin/bower install
+  ./node_modules/.bin/bower install -f
   exitWithMessageOnError "bower failed"
 fi
 
