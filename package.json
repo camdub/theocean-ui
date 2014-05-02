@@ -10,6 +10,7 @@
     "doc": "doc",
     "test": "test"
   },
+  "engine" : "node 0.10.26",
   "scripts": {
     "start": "grunt server",
     "build": "grunt build:debug",
