@@ -18,6 +18,6 @@
     "caliper-ember": "~0.0.3"
   },
   "resolutions": {
-    "ember": "~1.5.0"
+    "ember": "~1.5.1"
   }
 }
