@@ -77,7 +77,7 @@ selectNodeVersion () {
       NODE_EXE=`cat "$DEPLOYMENT_TEMP/__nodeVersion.tmp"`
       exitWithMessageOnError "getting node version failed"
     fi
-    
+
     if [[ -e "$DEPLOYMENT_TEMP/.tmp" ]]; then
       NPM_JS_PATH=`cat "$DEPLOYMENT_TEMP/__npmVersion.tmp"`
       exitWithMessageOnError "getting npm version failed"
@@ -121,7 +121,6 @@ fi
 if [ -e "$DEPLOYMENT_SOURCE/bower.json" ]; then
   eval $NPM_CMD install bower
   exitWithMessageOnError "installing bower failed"
-  $NPM_CMD -g update bower
   ./node_modules/.bin/bower install -f
   exitWithMessageOnError "bower failed"
 fi

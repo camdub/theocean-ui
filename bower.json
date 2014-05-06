@@ -3,19 +3,21 @@
   "dependencies": {
     "handlebars": "~1.1.2",
     "jquery": "~1.9.1",
-    "qunit": "~1.12.0",
-    "ember-qunit": "https://github.com/rpflorence/ember-qunit.git#master",
     "ember": "http://builds.emberjs.com/beta/ember.js",
     "ember-data": "~1.0.0-beta.7",
     "ember-resolver": "git://github.com/stefanpenner/ember-jj-abrams-resolver.git#master",
     "ic-ajax": "~0.3.0",
-    "ember-testing-httpRespond": "~0.1.1",
     "loader.js": "git://github.com/stefanpenner/loader.js",
     "bootstrap": "~3.1.1",
     "momentjs": "~2.5.1",
     "spin.js": "~2.0.0",
     "lunr.js": "~0.5.2",
     "caliper-ember": "~0.0.3"
+  },
+  "devDependencies" : {
+    "qunit": "~1.12.0",
+    "ember-qunit": "https://github.com/rpflorence/ember-qunit.git#master",
+    "ember-testing-httpRespond": "~0.1.1"
   },
   "resolutions": {
     "ember": "~1.5.1"
