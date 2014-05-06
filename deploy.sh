@@ -113,9 +113,9 @@ fi
 
 # 3. Install bower packages
 if [ -e "$DEPLOYMENT_SOURCE/bower.json" ]; then
-  eval $NPM_CMD install bower@1.2.6
+  eval $NPM_CMD install -g bower@1.2.6
   exitWithMessageOnError "installing bower failed"
-  ./node_modules/bower/bin/bower install -fp
+  bower install -fp
   exitWithMessageOnError "bower failed"
 fi
 
