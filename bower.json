@@ -3,7 +3,8 @@
   "dependencies": {
     "handlebars": "~1.1.2",
     "jquery": "~1.9.1",
-    "ember": "http://builds.emberjs.com/stable/ember.js",
+    "ember": "http://builds.emberjs.com/canary/ember.js",
+    "ember-prod" : "http://builds.emberjs.com/canary/ember.prod.js",
     "ember-data": "~1.0.0-beta.7",
     "ember-resolver": "git://github.com/stefanpenner/ember-jj-abrams-resolver.git#master",
     "ic-ajax": "~0.3.0",
@@ -20,6 +21,6 @@
     "ember-testing-httpRespond": "~0.1.1"
   },
   "resolutions": {
-    "ember": "~1.5.0"
+    "ember": "e-tag:c80637cd1"
   }
 }

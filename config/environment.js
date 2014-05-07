@@ -10,5 +10,8 @@
 window.ENV = {
     authUrl: 'https://pariveda-access.azurewebsites.net/key?app=TheOcean',
     serviceUrl: 'http://theocean-services.azurewebsites.net',
-    TOKEN_EXPIRATION: 1000 * 604800 * 4 // 1 month
+    TOKEN_EXPIRATION: 1000 * 604800 * 4, // 1 month
+    FEATURES: {
+      'query-params-new': true
+    }
 };

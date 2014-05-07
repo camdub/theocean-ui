@@ -6,7 +6,21 @@ export default Em.ArrayController.extend({
   needs: ['people','clients'],
   people: Em.computed.alias('controllers.people'),
   clients: Em.computed.alias('controllers.clients'),
+
+  queryParams: ['filterString:filter'],
   filters: [],
+
+  filterString: function(key, value, prev) {
+    console.log(this.get('filters').mapBy('id').join());
+    if(value) {
+      value.split(',').forEach(function(filter) {
+        var filter = this.get('search-index.terms').get(filter);
+        if(!this.get('filters').contains(filter))
+          this.get('filters').pushObject(filter);
+      }, this);
+    }
+    return this.get('filters').mapBy('id').join();
+  }.property('filters.@each'),
 
   actions: {
     view: function(item, type) {
@@ -17,14 +31,14 @@ export default Em.ArrayController.extend({
   // TOOD: make a DI mixpanel proxy obj that does the if(window.mixpanel) check
   filtersChanged: function() {
     if(this.get('filters').get('length') > 0) {
-      var params = this.get('filters').mapBy('id').join();
+      var params = this.get('filterString');
       if(window.mixpanel) {
         mixpanel.track('search', {'query': params});
       }
       this.get('people').search({filter: params});
       this.get('clients').search({filter: params});
     }
-  }.observes('filters.[]'),
+  }.observes('filters.@each'),
 
   // if the filter is a person or client obj, we want to go directly
   // to that profile
