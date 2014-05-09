@@ -9,6 +9,18 @@ export default Em.ObjectController.extend({
     return this.get('filters').join();
   }.property('filters.@each'),
 
+  filteredExperience: function() {
+    var exps = this.get('model.experience'),
+        filters = this.get('filters');
+
+    if(Em.isEmpty(filters)) {
+      return exps;
+    }
+    return exps.filter(function(exp) {
+      return filters.contains(exp.get('industry.id'));
+    }, this);
+  }.property('filters.@each'),
+
   actions: {
     highlight: function(industry) {
       if(this.get('filters').contains(industry)) {

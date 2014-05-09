@@ -1,39 +1,72 @@
 <div class="row">
   <div class="col-md-8">
-  <div class="row">
-    <div class="col-md-3">
-      {{profile-img size='lg' image=profileImage type='person'}}
+    <div class="row">
+      <div class="col-md-3">
+        {{profile-img size='lg' image=profileImage type='person'}}
+      </div>
+      <div class="personal-info col-md-9">
+        <h4>{{fullName}}</h4>
+        <p>{{location}} &#151; {{cohort}}</p>
+        <p>Employee since {{display-date hireDate}}</p>
+        {{#if school}}<p>Graduated from {{school}}</p>{{/if}}
+        {{#if mentor}}<p>Mentored by {{#link-to 'person' mentor}}{{mentor.fullName}}{{/link-to}}</p>{{/if}}
+        <p>{{mail-to email}}</p>
+        <p>{{phone}}</p>
+      </div>
     </div>
-    <div class="personal-info col-md-9">
-      <h4>{{fullName}}</h4>
-      <p>{{location}} &#151; {{cohort}}</p>
-      <p>Employee since {{display-date hireDate}}</p>
-      {{#if school}}<p>Graduated from {{school}}</p>{{/if}}
-      {{#if mentor}}<p>Mentored by {{#link-to 'person' mentor}}{{mentor.fullName}}{{/link-to}}</p>{{/if}}
-      <p>{{mail-to email}}</p>
-      <p>{{phone}}</p>
+
+    <h5>
+      Client Projects &nbsp;<span class="badge">{{filteredExperience.length}} matches</span> / <span class="badge badge-primary">{{experience.length}}</span>
+      <span class="pull-right">
+        <small><a href=""><strong>expand all</strong></a> / <a href="">collapse all</a></small>
+      </span>
+    </h5>
+    {{#each filteredExperience}}
+      <div class="experience">
+        <div {{bind-attr class=":panel-heading industry.id"}}>
+          <h4 class="panel-title">
+              <div id="name">
+                {{#link-to 'project' project.client project}}{{project.name}}{{/link-to}}
+                &#151;
+                {{#link-to 'client' project.client}}{{project.client.name}}{{/link-to}}
+                <p id="project-dates">
+                  {{display-date start format="MMMM YYYY"}} &#151; {{display-date end format="MMMM YYYY"}}
+                </p>
+              </div>
+          </h4>
+          <span>{{industry.name}}</span>
+        </div>
+        <div class="panel-collapse">
+          <div class="panel-body">
+            <a href="#" class="edit">edit <span class="fui-new"></span></a>
+            <p class="summary">
+              {{#if summary}}{{summary}}{{/if}}
+              Lorem ipsum dolor sit amet, at sit doctus mentitum, sit eu eius harum maiestatis. Essent lucilius gubergren mea eu. Labitur accommodare per id, sea at dicat democritum efficiendi. Fugit feugait sit id, diam torquatos eu has, consul scaevola apeirian nec at. Ipsum aliquid ne sea, eam modus clita in, per mutat impedit ceteros te.
+            </p>
+            <p>
+              <span class="badge">java</span>
+              <span class="badge">spring</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    {{else}}
+      <em>None</em>
+    {{/each}}
+
+  </div><!-- end col-8 -->
+
+  <div class="col-md-4">
+    <div id="sidebar">
+      <ul class="nav nav-list nav-list-vivid">
+        <li class="nav-header">Industries</li>
+        {{#each industries}}
+          <li><a href="#" {{bind-attr class="id"}} {{action 'highlight' id}}>{{name}} <span class="badge pull-right">{{weight}}</span></a></li>
+        {{else}}
+          <li><em>None</em></li>
+        {{/each}}
+      </ul>
     </div>
   </div>
-
-  <h5>Client Projects</h5>
-  {{#if experience}}
-    {{accordion-list experiences=experience filters=filters}}
-  {{else}}
-    <em>None</em>
-  {{/if}}
-</div>
-
-<div class="col-md-4">
-  <div id="sidebar">
-    <ul class="nav nav-list nav-list-vivid">
-      <li class="nav-header">Industries</li>
-      {{#each industries}}
-        <li><a href="#" {{bind-attr class="id"}} {{action 'highlight' id}}>{{name}} <span class="badge pull-right">{{weight}}</span></a></li>
-      {{else}}
-        <li><em>None</em></li>
-      {{/each}}
-    </ul>
-  </div>
-</div>
 
 </div>

@@ -74,8 +74,22 @@
   box-shadow: none;
   -webkit-box-shadow: none;
 }
+.experience {
+  border-top: 2px solid @table-border-color;
+
+  &:nth-of-type(2n+1) {
+    background-color: @table-bg-active;
+  }
+}
+
+h5 .badge { background-color: @brand-secondary; }
+.panel-heading span {
+  font-size: 14px;
+  color: @gray;
+}
 
 .panel-body {
+  padding-top: 0;
   em {
     color: mix(@brand-primary, white, 40%);
   }
