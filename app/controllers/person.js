@@ -21,6 +21,10 @@ export default Em.ObjectController.extend({
     }, this);
   }.property('filters.@each'),
 
+  showMatchBadge: function() {
+    return !(this.get('filteredExperience.length') === this.get('model.experience.length'));
+  }.property('filteredExperience', 'model.experience'),
+
   actions: {
     highlight: function(industry) {
       if(this.get('filters').contains(industry)) {

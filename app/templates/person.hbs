@@ -16,7 +16,11 @@
     </div>
 
     <h5>
-      Client Projects &nbsp;<span class="badge">{{filteredExperience.length}} matches</span> / <span class="badge badge-primary">{{experience.length}}</span>
+      Client Projects &nbsp;
+      {{#if showMatchBadge}}
+       <span class="badge">{{filteredExperience.length}} matches</span> /
+      {{/if}}
+      <span class="badge badge-primary">{{experience.length}}</span>
       <span class="pull-right">
         <small><a href=""><strong>expand all</strong></a> / <a href="">collapse all</a></small>
       </span>
