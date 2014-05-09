@@ -44,13 +44,18 @@
           <div class="panel-body">
             <a href="#" class="edit">edit <span class="fui-new"></span></a>
             <p class="summary">
-              {{#if summary}}{{summary}}{{/if}}
-              Lorem ipsum dolor sit amet, at sit doctus mentitum, sit eu eius harum maiestatis. Essent lucilius gubergren mea eu. Labitur accommodare per id, sea at dicat democritum efficiendi. Fugit feugait sit id, diam torquatos eu has, consul scaevola apeirian nec at. Ipsum aliquid ne sea, eam modus clita in, per mutat impedit ceteros te.
+              {{#if summary}}
+                {{summary}}
+              {{else}}
+                Click edit to update your experience.
+              {{/if}}
             </p>
+            {{#if skills}}
             <p>
               <span class="badge">java</span>
               <span class="badge">spring</span>
             </p>
+            {{/if}}
           </div>
         </div>
       </div>
@@ -64,8 +69,8 @@
     <div id="sidebar">
       <ul class="nav nav-list nav-list-vivid">
         <li class="nav-header">Industries</li>
-        {{#each industries}}
-          <li><a href="#" {{bind-attr class="id"}} {{action 'highlight' id}}>{{name}} <span class="badge pull-right">{{weight}}</span></a></li>
+        {{#each industries itemView="sidebar-item"}}
+          <a href="#" {{bind-attr class="id"}} {{action 'highlight' id}}>{{name}} <span class="badge pull-right">{{weight}}</span></a>
         {{else}}
           <li><em>None</em></li>
         {{/each}}
