@@ -13,8 +13,8 @@ export default Em.ArrayController.extend({
   filterString: function(key, value, prev) {
     console.log(this.get('filters').mapBy('id').join());
     if(value) {
-      value.split(',').forEach(function(filter) {
-        var filter = this.get('search-index.terms').get(filter);
+      value.split(',').forEach(function(f) {
+        var filter = this.get('search-index.terms').get(f);
         if(!this.get('filters').contains(filter))
           this.get('filters').pushObject(filter);
       }, this);
@@ -24,7 +24,7 @@ export default Em.ArrayController.extend({
 
   actions: {
     view: function(item, type) {
-      this.transitionToRoute(type, item);
+      this.transitionToRoute(type, item, { queryParams: { filter: this.get('filters').mapBy('id') }});
     }
   },
 

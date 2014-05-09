@@ -1,6 +1,6 @@
 <li class="search-result" {{action 'view' this 'person'}}>
   {{profile-img size='sm' image=profileImage type='person'}}
-  {{#link-to 'person' this}}{{firstName}} {{lastName}}{{/link-to}}
+  <a href="">{{firstName}} {{lastName}}</a>
   <p class="small">
     {{location}} &#151; {{cohort}} <!-- ascii dash -->
   </p>
