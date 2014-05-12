@@ -24,7 +24,15 @@ export default Em.ArrayController.extend({
 
   actions: {
     view: function(item, type) {
-      this.transitionToRoute(type, item, { queryParams: { filter: this.get('filters').mapBy('id') }});
+      // for people we want to allow skills and industries
+      var peopleParams = this.get('filters').filter(function(filter) {
+        return filter.type === 'Industry' || filter.type === 'Skill';
+      });
+      if(type === 'person')
+        this.transitionToRoute('person', item, { queryParams: { filter: peopleParams.mapBy('id') }});
+
+      if(type === 'client') // no query param support for now on client page
+        this.transitionToRoute('client', item);
     }
   },
 

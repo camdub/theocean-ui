@@ -1,1 +1,14 @@
-<button {{action 'login'}}>Log in</button>
+<!-- full-page is to put a full-page background image without applying
+     to the body tag (only this page)
+-->
+<div class="overlay full-page">
+  <div class="centered">
+
+    <h1 class="login-header">The <img src="assets/images/ocean-logo-white.svg" alt="">cean</h1>
+
+    <button class="btn btn-primary" {{action 'login'}}>
+        <span class="icon-parivedalogo"></span> &nbsp; Login with Pariveda
+    </button>
+
+  </div>
+</div>

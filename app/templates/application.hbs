@@ -1,5 +1,6 @@
 <div class="container">
 
+{{#if showNavBar}}
   <div class="navbar navbar-default" role="navigation">
       <div class="container-fluid">
           <div class="navbar-header">{{#link-to 'index' class='navbar-brand'}}The Ocean{{/link-to}}</div>
@@ -12,6 +13,7 @@
           </ul>
       </div> <!-- /container-fluid -->
   </div>
+{{/if}}
 
   {{outlet}}
 

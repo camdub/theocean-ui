@@ -8,32 +8,19 @@ export default Em.Route.extend({
       session.open().then(function() {
         index.setup();
         var lastTransition = session.get('afterRedirect');
-        if(lastTransition && !route.router.isActive('login')) {
+        if(lastTransition && lastTransition.targetName !== 'loading') {
           lastTransition.retry();
         } else {
           route.transitionTo('index');
         }
       });
     },
+
     logout: function() {
       var route = this;
       this.get('session').close().then(function() {
         route.transitionTo('login');
       });
-    }
-  },
-
-  beforeModel: function(transition) {
-    var session = this.get('session');
-    if(!session.get('isAuthenticated') && !Em.testing) {
-      session.set('afterRedirect', transition);
-      if(Em.isEmpty(session.checkToken())) {
-        this.transitionTo('login');
-      }
-      else {
-        transition.abort();
-        transition.send('login');
-      }
     }
   }
 });
