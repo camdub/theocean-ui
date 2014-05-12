@@ -18,4 +18,30 @@ Router.reopen({
   }.on('didTransition')
 });
 
+// AUTHENTICATION helper hooks
+Em.Route.reopen({
+  setupController: function(controller, model) {
+    this._super(controller, model);
+    if(!this.get('session.isAuthenticated'))
+      this.controllerFor('application').set('showNavBar', false);
+    else
+      this.controllerFor('application').set('showNavBar', true);
+  },
+
+  beforeModel: function(transition) {
+    this._super(transition);
+    var session = this.get('session');
+    if(transition.targetName !== 'login' && !session.get('isAuthenticated') && !Em.testing) {
+      session.set('afterRedirect', transition);
+      if(Em.isEmpty(session.checkToken())) {
+        this.transitionTo('login');
+      }
+      else {
+        this.transitionTo('loading');
+        transition.send('login');
+      }
+    }
+  }
+});
+
 export default Router;

@@ -3,8 +3,9 @@ var env = window.ENV;
 export default Em.Object.extend({
 
   close: function(session) {
-    this.store.deleteRecord(session.get('currentUser'));
-    this.store.deleteRecord(this.store.all('session').get('firstObject'));
+    this.store.unloadRecord(session.get('currentUser'));
+    this.store.unloadAll('session');
+    delete localStorage['authToken'];
     return Em.RSVP.resolve();
   },
 
