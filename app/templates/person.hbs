@@ -21,10 +21,10 @@
        <span class="badge">{{filteredExperience.length}} matches</span> /
       {{/if}}
       <span class="badge badge-primary">{{experience.length}}</span>
-      <span class="pull-right">
+<!--       <span class="pull-right">
         <small><a href=""><strong>expand all</strong></a> / <a href="">collapse all</a></small>
       </span>
-    </h5>
+ -->    </h5>
     {{#each filteredExperience}}
       <div class="experience">
         <div {{bind-attr class=":panel-heading industry.id"}}>
@@ -42,12 +42,11 @@
         </div>
         <div class="panel-collapse">
           <div class="panel-body">
-            <a href="#" class="edit">edit <span class="fui-new"></span></a>
             <p class="summary">
               {{#if summary}}
                 {{summary}}
               {{else}}
-                Click edit to update your experience.
+                Nothing yet.
               {{/if}}
             </p>
             {{#if skills}}

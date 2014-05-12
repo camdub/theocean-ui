@@ -19,8 +19,5 @@
     "qunit": "~1.12.0",
     "ember-qunit": "https://github.com/rpflorence/ember-qunit.git#master",
     "ember-testing-httpRespond": "~0.1.1"
-  },
-  "resolutions": {
-    "ember": "e-tag:c80637cd1"
   }
 }

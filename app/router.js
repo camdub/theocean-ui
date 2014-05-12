@@ -22,6 +22,7 @@ Router.reopen({
 Em.Route.reopen({
   setupController: function(controller, model) {
     this._super(controller, model);
+
     if(!this.get('session.isAuthenticated'))
       this.controllerFor('application').set('showNavBar', false);
     else
@@ -29,8 +30,8 @@ Em.Route.reopen({
   },
 
   beforeModel: function(transition) {
-    this._super(transition);
     var session = this.get('session');
+
     if(transition.targetName !== 'login' && !session.get('isAuthenticated') && !Em.testing) {
       session.set('afterRedirect', transition);
       if(Em.isEmpty(session.checkToken())) {
