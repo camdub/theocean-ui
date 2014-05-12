@@ -1,4 +1,17 @@
 <div class="row">
+  <div class="col-md-4">
+    <div id="sidebar">
+      <ul class="nav nav-list nav-list-vivid">
+        <li class="nav-header">Industries</li>
+        {{#each industries}}
+          <li><a href="#" {{bind-attr class="id"}} {{action 'highlight' id}}>{{name}} <span class="badge pull-right">{{weight}}</span></a></li>
+        {{else}}
+          <li><em>None</em></li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+  
   <div class="col-md-8">
     <div class="row">
       <div class="col-md-3">
@@ -59,18 +72,5 @@
     {{/each}}
 
   </div><!-- end col-8 -->
-
-  <div class="col-md-4">
-    <div id="sidebar">
-      <ul class="nav nav-list nav-list-vivid">
-        <li class="nav-header">Industries</li>
-        {{#each industries}}
-          <li><a href="#" {{bind-attr class="id"}} {{action 'highlight' id}}>{{name}} <span class="badge pull-right">{{weight}}</span></a></li>
-        {{else}}
-          <li><em>None</em></li>
-        {{/each}}
-      </ul>
-    </div>
-  </div>
 
 </div>

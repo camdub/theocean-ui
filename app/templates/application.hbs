@@ -3,12 +3,12 @@
   <div class="navbar navbar-default" role="navigation">
       <div class="container-fluid">
           <div class="navbar-header">{{#link-to 'index' class='navbar-brand'}}The Ocean{{/link-to}}</div>
-          <ul class="nav navbar-nav">
+          <ul class="nav navbar-nav navbar-search">
             <li>{{#link-to 'search'}}Search{{/link-to}}</li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-              <li>{{#link-to 'person' session.currentUser}}{{session.currentUser.fullName}}{{/link-to}}</a></li>
-              <li><a href="#" {{action 'logout'}}>Logout</a></li>
+              <li class="user">{{#link-to 'person' session.currentUser}}{{session.currentUser.fullName}}{{/link-to}}</a></li>
+              <li class="logout"><a href="#" {{action 'logout'}}>Logout</a></li>
           </ul>
       </div> <!-- /container-fluid -->
   </div>
