@@ -104,18 +104,16 @@ echo Handling node.js deployment.
 selectNodeVersion
 
 # 2. Install npm packages
-if [ -e "$DEPLOYMENT_TARGET/package.json" ]; then
-  cd "$DEPLOYMENT_TARGET"
-  eval $NPM_CMD install --production
-  exitWithMessageOnError "npm failed"
-  cd - > /dev/null
+if [ -e "$DEPLOYMENT_SOURCE/package.json" ]; then
+  eval $NPM_CMD install
+  exitWithMessageOnError "npm failed in DEPLOYMENT_SOURCE"
 fi
 
 # 3. Install bower packages
 if [ -e "$DEPLOYMENT_SOURCE/bower.json" ]; then
   eval $NPM_CMD install bower
   exitWithMessageOnError "installing bower failed"
-  ./node_modules/.bin/bower install -fp
+  ./node_modules/.bin/bower install -f
   exitWithMessageOnError "bower failed"
 fi
 
@@ -133,6 +131,13 @@ if [[ "$IN_PLACE_DEPLOYMENT" -ne "1" ]]; then
   exitWithMessageOnError "Kudu Sync failed"
 fi
 
+# 6. Install npm packages
+if [ -e "$DEPLOYMENT_TARGET/package.json" ]; then
+  cd "$DEPLOYMENT_TARGET"
+  eval $NPM_CMD install
+  exitWithMessageOnError "npm failed in DEPLOYMENT_TARGET"
+  cd - > /dev/null
+fi
 
 ##################################################################################################################################
 
@@ -145,3 +150,4 @@ if [[ -n "$POST_DEPLOYMENT_ACTION" ]]; then
 fi
 
 echo "Finished successfully."
+
