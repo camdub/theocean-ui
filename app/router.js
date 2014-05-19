@@ -32,7 +32,7 @@ Em.Route.reopen({
   beforeModel: function(transition) {
     var session = this.get('session');
 
-    if(transition.targetName !== 'login' && !session.get('isAuthenticated') && !Em.testing) {
+    if(transition.targetName !== 'loading' && !session.get('isAuthenticated') && !Em.testing) {
       session.set('afterRedirect', transition);
       if(Em.isEmpty(session.checkToken())) {
         this.transitionTo('login');

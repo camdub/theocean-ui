@@ -11,7 +11,7 @@
       </ul>
     </div>
   </div>
-  
+
   <div class="col-md-8">
     <div class="row">
       <div class="col-md-3">
@@ -22,7 +22,7 @@
         <p>{{location}} &#151; {{cohort}}</p>
         <p>Employee since {{display-date hireDate}}</p>
         {{#if school}}<p>Graduated from {{school}}</p>{{/if}}
-        {{#if mentor}}<p>Mentored by {{#link-to 'person' mentor}}{{mentor.fullName}}{{/link-to}}</p>{{/if}}
+        {{#if mentor}}<p>Mentored by {{#link-to 'person' mentor (query-params filter="")}}{{mentor.fullName}}{{/link-to}}</p>{{/if}}
         <p>{{mail-to email}}</p>
         <p>{{phone}}</p>
       </div>

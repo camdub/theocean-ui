@@ -5,6 +5,8 @@ export default Em.ObjectController.extend({
   filterString: function(key, value, prev) {
     if(value) {
       this.set('filters', value.split(','));
+    } else if(value === '') {
+      this.get('filters').clear();
     }
     return this.get('filters').join();
   }.property('filters.@each'),
@@ -19,7 +21,7 @@ export default Em.ObjectController.extend({
     return exps.filter(function(exp) {
       return filters.contains(exp.get('industry.id'));
     }, this);
-  }.property('filters.@each'),
+  }.property('filters.@each', 'model'),
 
   showMatchBadge: function() {
     return this.get('filteredExperience.length') !== this.get('model.experience.length');
