@@ -28,7 +28,7 @@ export default DS.RESTSerializer.extend({
 
       var people = mentor === null ? [payload] : [payload, mentor];
       payload = {
-        person: payload.id,
+        person: { id : payload.id },
         people: people,
         experience: experience,
         projects: projects,

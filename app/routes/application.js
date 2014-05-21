@@ -8,7 +8,7 @@ export default Em.Route.extend({
       session.open().then(function() {
         index.setup();
         var lastTransition = session.get('afterRedirect');
-        if(lastTransition && lastTransition.targetName !== 'loading') {
+        if(lastTransition && (lastTransition.targetName !== 'loading' && lastTransition.targetName !== 'login')) {
           lastTransition.retry();
         } else {
           route.transitionTo('index');
