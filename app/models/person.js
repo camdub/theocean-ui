@@ -13,6 +13,7 @@ export default DS.Model.extend({
     phone: attr('string'),
     school: attr('string'),
     hireDate: attr('isodate'),
+    termDate: attr('isodate'),
     email: attr('string'),
     pictureUrl: attr('string'),
     industries: attr(), // pojo
