@@ -22,6 +22,7 @@ export default Em.Object.extend({
 
   _isOld: function() {
     var lastCache = moment(localStorage['lastCache']);
+    if(lastCache === undefined) { return true; }
     return lastCache < moment();
   },
 
